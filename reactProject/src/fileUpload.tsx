@@ -2,34 +2,39 @@ import { useState } from 'react';
 import Csrf from './csrf';
 
 export default function FileUpload() {
-    const [textInput, setTextInput] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
     const security = Csrf();
 
     function handleFileChange(event: any) {
-        setTextInput(event.target.value);
+        setSelectedFile(event.target.files[0]);
     }
 
     async function handleUpload() {
-        console.log(security);
+        if (!selectedFile) {
+            console.error('No file selected');
+            return;
+        }
+
         const formData = new FormData();
-        formData.append('text', textInput);
+        formData.append('file', selectedFile);
 
         try {
             const response = await fetch('http://localhost:8000/uploadfile/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': security, // Include the CSRF token in the headers
+                    'X-CSRFToken': security, 
                 },
                 body: formData,
             });
             if (response.ok) {
-                console.log(response);
-            } else {
+                console.log('File uploaded successfully');
+            } 
+            else {
                 throw new Error('Request failed');
             }
-        } catch (error) {
-            console.error('Error fetching data:', error);
+        } 
+        catch (error) {
+            console.error('Error uploading file:', error);
         }
     }
 

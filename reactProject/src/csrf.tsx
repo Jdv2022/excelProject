@@ -19,6 +19,5 @@ export default function Csrf() {
             fetchCsrfToken();
         }
     }, [csrfToken]);
-    console.log('csrf',csrfToken.csrf_token)
     return csrfToken.csrf_token;
 }

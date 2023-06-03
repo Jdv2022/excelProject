@@ -12,7 +12,7 @@ def index(request):
 
 @csrf_exempt
 def saveToDb(request):
-    pass
+    
     return JsonResponse({'csrf_token': 'csrf_token'})
 
 

@@ -5,7 +5,7 @@ export default function FileUpload() {
     const [textInput, setTextInput] = useState('');
     const security = Csrf();
 
-    function handleTextChange(event: any) {
+    function handleFileChange(event: any) {
         setTextInput(event.target.value);
     }
 
@@ -19,7 +19,7 @@ export default function FileUpload() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': security, // Replace `csrfToken` with the actual CSRF token value
+                    'X-CSRFToken': security, // Include the CSRF token in the headers
                 },
                 body: formData,
             });
@@ -35,7 +35,7 @@ export default function FileUpload() {
 
     return (
         <div>
-            <input type="text" value={textInput} onChange={handleTextChange} />
+            <input type="file" onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload</button>
         </div>
     );

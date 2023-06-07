@@ -1,14 +1,11 @@
-import Api from './dashBoardApi';
-import FileUpload from './fileUpload';
+import uploadFile from './uploadFile'
 
-export default function apiData(){
-    const Data = Api()
-    const uploadFile = FileUpload()
+export default function ApiData(){
+    const myUploadFile = uploadFile()
     const newData = (
-        <div>
-            {Data}
-            {uploadFile}
-        </div>
+        <>
+            {myUploadFile}
+        </>
     )
     return newData
 }

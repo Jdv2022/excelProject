@@ -1,17 +1,10 @@
 from django.middleware.csrf import get_token
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import pandas as pd
 import csv
-import json
 
 def index(request):
-    data = {
-        'name': 'John Doe',
-        'age': 30,
-        'occupation': 'Software Engineer',
-    }
-    return JsonResponse(data, safe=False)
+    return JsonResponse({ 'main': 'success'})
 
 @csrf_exempt
 def saveToDb(request):
@@ -24,11 +17,11 @@ def saveToDb(request):
         for i, value in enumerate(row):
             item[fieldnames[i]] = value
         json_data.append(item)
-    print(json_data)
-    return JsonResponse({'csrf_token': 'csrf_token'})
-
+    return JsonResponse({'data': json_data})
 
 def csrf(request):
     csrf_token = get_token(request)
     return JsonResponse({'csrf_token': csrf_token})
+
+
 

@@ -1,0 +1,16 @@
+.th{
+    height: 40px;
+    background-color: #F2BED1;
+}
+.td1{
+    background-color: #FDCEDF;
+}
+.td2{
+    background-color: #F8E8EE;
+}
+table{
+    font-size: 12px;
+}
+.right{
+    text-align: right;
+}

@@ -1,6 +1,8 @@
 
 
-export default function SideBar(){
+export default function SideBar(params: any){
+
+    console.log('params')
 
     return (
 

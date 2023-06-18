@@ -8,7 +8,7 @@ type PaginationProps = {
 
 /* Docu: This Function renders the data from fileUploadApi.tsx into a table
 */
-export default function Pagination({ data, handleSelectedColumns }: PaginationProps) {
+export default function Pagination({ data, handleSelectedColumns }: PaginationProps){
     const [renderedData, setRenderedData] = useState<JSX.Element | null>(null)
     const [selectedColumn, setSelectedColumns] = useState<number[]>([])
     const [index, setIndex] = useState<number[]>([])
@@ -53,7 +53,7 @@ export default function Pagination({ data, handleSelectedColumns }: PaginationPr
                 const headerLength = Object.keys(header)
                 //this is for header text display, color and alignment. Note: Displays text in right alignment if integer otherwise left alignment
                 for(let i =0; i<headerLength.length; i++){
-                    const isNumeric = /^\d+$/.test(cellHeader[i] as any) //validate if string is a numerber
+                    const isNumeric = /^(₱|\$)?\d+(\.\d+)?$/.test(cellHeader[i] as any) //validate if string is a numerber
                     rowHeader.push(
                         <th className={`th p-3 border-1                                 
                             ${ index.includes(i) ? 'blue' : 'white' }
@@ -73,7 +73,7 @@ export default function Pagination({ data, handleSelectedColumns }: PaginationPr
                     const cell = Object.values(body[i])
                     for(let j=0; j<cell.length; j++){
                         let fields = cell[j]
-                        const isNumeric = /^\d+$/.test(fields as any) //validate if string is a number 
+                        const isNumeric = /^(₱|\$)?\d+(\.\d+)?$/.test(fields as any) //validate if string is a number 
                         columns.push(
                             <td className={`px-3 text-nowrap border-1  
                             ${ index.includes(j) ? 'blue' : (i%2 == 0 ? 'td1' : 'td2') }

@@ -3,6 +3,8 @@ import UploadFile from './uploadFile'
 import FileUpload from './fileUploadApi'
 import Display from './display'
 import './uploadFile.css'
+import { Route, Routes } from 'react-router-dom'
+
 
 interface ChildComponentProps {
     onData: (data: any) => void
@@ -40,14 +42,14 @@ export default function ApiData({ onData }: ChildComponentProps){
 
     const newData = (
         <>  
-            <div className='position1 vh-100 d-flex align-items-start p-3 flex-column maindashboardContainer'>
-                <div className='d-block w-100 h-100 maindashboard overflow-y-auto'>
-                    {api ? (<Display data={api} handleSelectedColumns={handleSelectedColumns} />) : (<h1></h1>)}
-                </div>
-                <div className='mt-3 w-100 d-flex justify-content-between'>
-                    <button onClick={displayToSidebar}>Generate Table</button>
-                    <UploadFile fileData={uploadedFile}/>
-                </div>
+            <div className='d-block w-100 h-100 maindashboard overflow-y-auto'>
+                <Routes>
+                    <Route path='' element={api ? (<Display data={api} handleSelectedColumns={handleSelectedColumns} />) : (<h1></h1>)} />
+                </Routes>
+            </div>
+            <div className='mt-3 w-100 d-flex justify-content-between'>
+                <button onClick={displayToSidebar}>Generate Table</button>
+                <UploadFile fileData={uploadedFile}/>
             </div>
         </>
     )

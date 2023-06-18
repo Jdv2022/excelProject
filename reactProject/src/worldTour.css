@@ -1,0 +1,11 @@
+.panel{
+    height: 700px;
+}
+.panel1{
+    height: 700px;
+    background-color: white;
+}
+.panel3{    
+    width: 100%;
+    border: 1px solid black;
+}

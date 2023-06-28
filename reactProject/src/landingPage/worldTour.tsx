@@ -1,14 +1,20 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import { MyContext } from './App'
+import { useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3'
 import Api from './worldTourApi'
 import Versor from './versor'
 import './worldTour.css'
+import { createContext } from 'react'
+import Widget from './widget'
+import Widget2 from './widget2'
+
+export const MyWidget = createContext('')
+let INITIAL_CALL = true
 
 export default function WorldTourD3() {
-    const value = useContext(MyContext)
     const svgRef = useRef<SVGSVGElement|null>(null)
     const [data, setData] = useState<any|null>(null)
+    const [widgetData, setWidgetData] = useState<any|null>(null)
+    const nextCountryCallInterval = 5000
     let interval: any
 
     useEffect(() => {
@@ -17,13 +23,13 @@ export default function WorldTourD3() {
         }
         async function fetchData() {
             try {
-                console.log('This should be only executed twice!')
                 setData(await Api())
             } catch (error) {
                 console.error('Error fetching data:', error)
             }
         }
-    }, [data])
+
+    }, [])
 
     useEffect(() => {   
         if(!data){
@@ -31,7 +37,6 @@ export default function WorldTourD3() {
         }
         world() 
         function world(){
-            console.log('every two seconds')
             const sphere = { type: 'Sphere' }
             const width = 940
             const height = 640
@@ -47,52 +52,46 @@ export default function WorldTourD3() {
             const path = d3.geoPath(projection)
 
             function render(country: any, arc: any) {
-                const name = country.properties.name
-                const len = name.length
-                const x = (1050 - 8*len) / 2
-                svg.selectAll('path').remove()
-                svg.select('text').remove()
 
-                svg
-                    .append('text')
-                    .attr('x', x)
-                    .attr('y', 20)
-                    .style('font','Sans Serif')
-                    .style('font-weight','bold')
-                    .text(name);
+                svg.selectAll('*').remove()
 
-                svg
+                svg.selectAll('path')
+                    .style('position', 'absolute')
+                    .style('z-index', '-1');
+
+                //countries color
+                svg 
                     .append('path')
                     .datum(data.data2)
                     .attr('d', path)
-                    .style('fill', '#17594A')
+                    .style('fill', '#367E18')
                     .attr('transform', 'translate(50, 50)');
-
+                //next country 
                 svg
                     .append('path')
                     .datum(country)
                     .attr('d', path)
-                    .style('fill', '#090580')
+                    .style('fill', '#FA9884')
                     .attr('transform', 'translate(50, 50)');
-
+                //country border
                 svg
                     .append('path')
                     .datum(data.data1)
                     .attr('d', path)
-                    .style('stroke', '#fff')
-                    .style('stroke-width', 0.5)
+                    .style('stroke', '#17594A')
+                    .style('stroke-width',1)
                     .style('fill', 'none')
                     .attr('transform', 'translate(50, 50)');
-
+                //earth border
                 svg
                     .append('path')
                     .datum(sphere)
                     .attr('d', path)
-                    .style('stroke', '#000')
-                    .style('stroke-width', 1.5)
+                    .style('stroke', 'rgb(0, 255, 209)')
+                    .style('stroke-width', .5)
                     .style('fill', 'none')
                     .attr('transform', 'translate(50, 50)');
-
+                //arc path
                 svg
                     .append('path')
                     .datum(arc)
@@ -103,16 +102,30 @@ export default function WorldTourD3() {
                     .attr('transform', 'translate(50, 50)');
             }
 
-            interval = setInterval(()=>{
-                console.log(count)
+            function mainCall(){
+                const numberOfCountries = 177
+                const random = Math.ceil(Math.random()*numberOfCountries)
+                const theData = data.data0[random]
                 count++
-                whereTo(data.data0[count])
+                if(theData && theData.population){
+                    setWidgetData(theData.population)
+                }
+                else{
+                    setWidgetData(null)
+                }
+                whereTo(theData)
                 if(data.data0.length == count){
                     count = 0
                 }
-            }, 4000)
+            }
+
+            interval = setInterval(mainCall, nextCountryCallInterval)
 
             let p1: any, p2 = [0, 0], r1, r2 = [0, 0, 0]
+            if(INITIAL_CALL){
+                mainCall()
+                INITIAL_CALL = false
+            }
             async function whereTo(country: any){
                 await new Promise((resolve) => {
                     render(country, null)
@@ -137,27 +150,44 @@ export default function WorldTourD3() {
                         render(country, {
                             type: 'LineString',
                             coordinates: [ip(t), p2],
-                        })
+                        });
                     })
                     .on('end', resolve)
                 })
             } 
         }
-        
 
         return () => {
-            clearInterval(interval);
+            clearInterval(interval)
         }
 
     }, [data])
 
     return (
-        <div className="row w-100 align-top">
-            <svg className="col-md-10 panel1 align-top" ref={svgRef}></svg>
-            <div className="col-md-2 panel align-top">
-                <div className='panel3'>
-
-                </div>
+        <div className="landingPage vh-100 panel1 align-top w-100" >
+            <div className='d-inline-block col-md-7 align-top'>
+                <svg id='svg' className='vh-100 w-100 world' ref={svgRef}></svg>
+                <div className='sea'></div>
+                <MyWidget.Provider value={widgetData}>
+                    <div className='widget'>
+                        <Widget />
+                    </div>
+                    <div className='widget2'>
+                        <Widget2 />
+                    </div>
+                </MyWidget.Provider>
+            </div>
+            <div className='d-inline-block col-md-5 content vh-100'>
+                <h1 id='landingPagehead'>Convert Excel Data into Stunning Graphs with D3.js.</h1>
+                <p>Introducing our powerful and user-friendly tool that transforms your Excel data into visually appealing and interactive graphs in just a few clicks.</p>
+                <p>Benefits:</p>
+                <ul>
+                    <li>Save time and effort by automating the graph creation process</li>
+                    <li>Create professional-looking graphs without the need for advanced design skills</li>
+                    <li>Customize and visualize your data in a variety of graph types</li>
+                    <li>Effortlessly share and export your graphs for presentations or reports</li>
+                </ul>
+                <a href='/home' id='button' className='bg-primary mt-5'>Get started!</a>
             </div>
         </div>
     )

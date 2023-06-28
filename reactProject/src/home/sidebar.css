@@ -1,0 +1,19 @@
+.home{
+    box-sizing: border-box;
+}
+.link{
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: white;
+    color:black;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+}
+.display-container{
+    padding: 10px 10px 0;
+}
+.bg-custom{
+    background-color: whitesmoke;
+}

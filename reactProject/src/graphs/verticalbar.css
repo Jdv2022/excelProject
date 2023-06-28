@@ -1,0 +1,53 @@
+.displayGraph{
+    overflow:auto;
+}
+.verticalBarGraphContainer{
+    display: grid;
+    grid-template-rows: calc(100vh - 50px - 10px) 50px;
+}
+th,td{
+    font-size: 1em;
+    white-space: nowrap;
+    padding: 2px 5px;
+}
+.rightbar{
+    height: 600px;
+}
+.y-panel{
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+.y-panel p {
+    color: black;
+}
+.margin-top{
+    margin-top: 50px;
+}
+.downloadBars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 5px;
+}
+.grey{
+    background-color: rgb(215, 206, 206);
+}
+.greylight{
+    background-color: rgb(240, 228, 228);
+}
+.greydark{
+    background-color: rgb(194, 190, 190);
+}
+.borderCustom{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.fixed-div {
+    position: fixed;
+    top: 20px;
+    left: 150px;
+}
+.marginTop{
+    margin-top: 70px;
+}

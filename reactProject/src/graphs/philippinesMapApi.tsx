@@ -1,6 +1,8 @@
-export default async function Api(){
+/* PH map data used for render */
+export default async function PhilippinesMapApi(){
+
     try {
-        const response = await fetch('http://localhost:8000/api/worldtour/', {
+        const response = await fetch('http://localhost:8000/api/ph/', {
             method: 'GET'
         })
         if (response.ok) {
@@ -17,4 +19,5 @@ export default async function Api(){
         }
     }
     return null // Return your desired JSX or component here if needed
+
 }

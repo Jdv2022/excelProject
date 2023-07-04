@@ -9,14 +9,13 @@ import Widget2 from './widget2'
 
 export const MyWidget = createContext('')
 let INITIAL_CALL = true
-
+/*  World in the landing page render */
 export default function WorldTourD3() {
     const svgRef = useRef<SVGSVGElement|null>(null)
     const [data, setData] = useState<any|null>(null)
     const [widgetData, setWidgetData] = useState<any|null>(null)
     const nextCountryCallInterval = 5000
     let interval: any
-
     useEffect(() => {
         if(!data){
             fetchData()
@@ -28,9 +27,7 @@ export default function WorldTourD3() {
                 console.error('Error fetching data:', error)
             }
         }
-
     }, [])
-
     useEffect(() => {   
         if(!data){
             return
@@ -42,37 +39,30 @@ export default function WorldTourD3() {
             const height = 640
             const tilt = 20
             let count = 0
-
             const svg = d3.select(svgRef.current)
-
             const projection = d3
                 .geoOrthographic()
                 .fitExtent([[10, 10], [width - 10, height - 10]], sphere)
-                
             const path = d3.geoPath(projection)
-
             function render(country: any, arc: any) {
-
                 svg.selectAll('*').remove()
-
                 svg.selectAll('path')
                     .style('position', 'absolute')
                     .style('z-index', '-1');
-
                 //countries color
                 svg 
                     .append('path')
                     .datum(data.data2)
                     .attr('d', path)
                     .style('fill', '#367E18')
-                    .attr('transform', 'translate(50, 50)');
+                    .attr('transform', 'translate(50, 50)')
                 //next country 
                 svg
                     .append('path')
                     .datum(country)
                     .attr('d', path)
                     .style('fill', '#FA9884')
-                    .attr('transform', 'translate(50, 50)');
+                    .attr('transform', 'translate(50, 50)')
                 //country border
                 svg
                     .append('path')
@@ -81,7 +71,7 @@ export default function WorldTourD3() {
                     .style('stroke', '#17594A')
                     .style('stroke-width',1)
                     .style('fill', 'none')
-                    .attr('transform', 'translate(50, 50)');
+                    .attr('transform', 'translate(50, 50)')
                 //earth border
                 svg
                     .append('path')
@@ -90,7 +80,7 @@ export default function WorldTourD3() {
                     .style('stroke', 'rgb(0, 255, 209)')
                     .style('stroke-width', .5)
                     .style('fill', 'none')
-                    .attr('transform', 'translate(50, 50)');
+                    .attr('transform', 'translate(50, 50)')
                 //arc path
                 svg
                     .append('path')
@@ -99,9 +89,8 @@ export default function WorldTourD3() {
                     .style('stroke', 'white')
                     .style('stroke-width', '2px')
                     .style('fill', 'none')
-                    .attr('transform', 'translate(50, 50)');
+                    .attr('transform', 'translate(50, 50)')
             }
-
             function mainCall(){
                 const numberOfCountries = 177
                 const random = Math.ceil(Math.random()*numberOfCountries)
@@ -118,9 +107,7 @@ export default function WorldTourD3() {
                     count = 0
                 }
             }
-
             interval = setInterval(mainCall, nextCountryCallInterval)
-
             let p1: any, p2 = [0, 0], r1, r2 = [0, 0, 0]
             if(INITIAL_CALL){
                 mainCall()
@@ -135,32 +122,30 @@ export default function WorldTourD3() {
                     r2 = [-p2[0], tilt - p2[1], 0]
                     const ip = d3.geoInterpolate(p1, p2)
                     const iv = Versor.interpolateAngles(r1, r2)
-
-                    d3.transition()
-                    .duration(2000)
-                    .tween('render', () => (t: any) => {
-                        projection.rotate(iv(t))
-                        render(country, {
-                            type: 'LineString',
-                            coordinates: [p1, ip(t)],
-                        });
-                    })
-                    .transition()
-                    .tween('render', () => (t: any) => {
-                        render(country, {
-                            type: 'LineString',
-                            coordinates: [ip(t), p2],
-                        });
-                    })
-                    .on('end', resolve)
+                    d3
+                        .transition()
+                        .duration(2000)
+                        .tween('render', () => (t: any) => {
+                            projection.rotate(iv(t))
+                            render(country, {
+                                type: 'LineString',
+                                coordinates: [p1, ip(t)],
+                            });
+                        })
+                        .transition()
+                        .tween('render', () => (t: any) => {
+                            render(country, {
+                                type: 'LineString',
+                                coordinates: [ip(t), p2],
+                            });
+                        })
+                        .on('end', resolve)
                 })
             } 
         }
-
         return () => {
             clearInterval(interval)
         }
-
     }, [data])
 
     return (
@@ -178,7 +163,7 @@ export default function WorldTourD3() {
                 </MyWidget.Provider>
             </div>
             <div className='d-inline-block col-md-5 content vh-100'>
-                <h1 id='landingPagehead'>Convert Excel Data into Stunning Graphs with D3.js.</h1>
+                <h1 id='landingPagehead'>Convert Excel Data into Stunning Graphs</h1>
                 <p>Introducing our powerful and user-friendly tool that transforms your Excel data into visually appealing and interactive graphs in just a few clicks.</p>
                 <p>Benefits:</p>
                 <ul>

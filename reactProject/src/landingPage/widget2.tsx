@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { MyWidget } from './worldTour'
 import * as d3 from 'd3'
 import './widget.css'
@@ -6,7 +6,6 @@ import './widget.css'
 export default function Widget2(){
     const myValue: any = useContext(MyWidget)
     const svgRef = useRef<SVGSVGElement|null>(null)
-
     useEffect(()=>{
         if (!myValue) return;
         const population = myValue['total']
@@ -44,7 +43,6 @@ export default function Widget2(){
                 }
             }
         }
-
         const data = [
             {'age':'0-14','amount':low},
             {'age':'15-64','amount':mid},
@@ -55,23 +53,19 @@ export default function Widget2(){
             "#2192FF",
             "#F24C3D",
         ]
-        
         function chart(){   
             const formatedData = d3.pie().value((d:any) => d.amount)(data)
             const width = 200;
             const height = 450;
-            const svg = d3.select(svgRef.current)
-                .style("font", "12px sans-serif");
-
-            svg.selectAll('*').remove()
-            
-            const g = svg.append("g")
-                .attr("transform", `translate(${width / 2},${height / 2})`);
-
             const arc = d3.arc()
                 .innerRadius(0)
                 .outerRadius(100)
-            
+            const svg = d3.select(svgRef.current)
+                .style("font", "12px sans-serif");
+            svg
+                .selectAll('*').remove()
+            const g = svg.append("g")
+                .attr("transform", `translate(${width / 2},${height / 2})`);
             svg
                 .append('text')
                 .attr('x', 5)
@@ -81,7 +75,6 @@ export default function Widget2(){
                 .style('font-weight','bold')
                 .style('font-size','1.1em')
                 .text('Population:');
-            
             svg
                 .append('text')
                 .attr('x', 85)
@@ -92,7 +85,6 @@ export default function Widget2(){
                 .style('font-size','1.1em')
                 .style('fill','#FFED00')
                 .text(num);
-
             svg
                 .append('text')
                 .attr('x', 5)
@@ -102,7 +94,6 @@ export default function Widget2(){
                 .style('font-weight','bold')
                 .style('font-size','1.1em')
                 .text('Legend:');
-
             svg
                 .append('text')
                 .attr('x', 28)
@@ -112,7 +103,6 @@ export default function Widget2(){
                 .style('font-weight','bold')
                 .style('font-size','1.1em')
                 .text('0-14 Years Old');
-
             svg
                 .append('text')
                 .attr('x', 28)
@@ -122,7 +112,6 @@ export default function Widget2(){
                 .style('font-weight','bold')
                 .style('font-size','1.1em')
                 .text('15-64 Years Old');
-
             svg
                 .append('text')
                 .attr('x', 28)
@@ -132,7 +121,6 @@ export default function Widget2(){
                 .style('font-weight','bold')
                 .style('font-size','1.1em')
                 .text('65+ Years Old');
-
             svg
                 .append('rect')
                 .attr('x', 5)
@@ -154,32 +142,24 @@ export default function Widget2(){
                 .style('fill','#F24C3D')
                 .attr('height', 10)
                 .attr('width', 10)
-
             g.selectAll()
                 .data(formatedData)
                 .join("path")
-                    .attr('d',arc)
-                    .attr("fill", (d:any,i:any) => color[i])
-                    .attr("stroke", "none")
-                    .attr("d", arc)
-
+                .attr('d',arc)
+                .attr("fill", (d:any,i:any) => color[i])
+                .attr("stroke", "none")
             g.selectAll()
                 .data(formatedData)
                 .join('text')
-                    .text((d:any) => d.data.amount + '%')
-                    .attr('transform', (d:any) => `translate(${arc.centroid(d)})`)
-                    .style('text-anchor','middle')
-                    .style('font-size','1.2em')
-                    .style('font-weight','bold')
-                    .attr('fill','#1d1b1b')
-            
+                .text((d:any) => d.data.amount + '%')
+                .attr('transform', (d:any) => `translate(${arc.centroid(d)})`)
+                .style('text-anchor','middle')
+                .style('font-size','1.2em')
+                .style('font-weight','bold')
+                .attr('fill','#1d1b1b')
             return svg.node();
-
         }
-
         chart();
-        
     },[myValue])
-    
     return <svg className='widget1' ref={svgRef}></svg>
 }

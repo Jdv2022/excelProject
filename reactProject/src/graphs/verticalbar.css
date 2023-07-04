@@ -1,10 +1,6 @@
 .displayGraph{
     overflow:auto;
 }
-.verticalBarGraphContainer{
-    display: grid;
-    grid-template-rows: calc(100vh - 50px - 10px) 50px;
-}
 th,td{
     font-size: 1em;
     white-space: nowrap;
@@ -24,12 +20,6 @@ th,td{
 .margin-top{
     margin-top: 50px;
 }
-.downloadBars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 5px;
-}
 .grey{
     background-color: rgb(215, 206, 206);
 }
@@ -47,7 +37,4 @@ th,td{
     position: fixed;
     top: 20px;
     left: 150px;
-}
-.marginTop{
-    margin-top: 70px;
 }

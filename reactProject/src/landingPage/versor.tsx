@@ -1,4 +1,4 @@
-
+/* D3.js animation for world landing page */
 class Versor {
     static fromAngles([l, p, g]: any) {
         l *= Math.PI / 360;

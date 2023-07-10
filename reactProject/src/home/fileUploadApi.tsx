@@ -1,10 +1,10 @@
 import Csrf from './csrf';
 
 export default async function FileUpload(file: any) {
-    const security = await Csrf();
+    const security = await Csrf()
     try {
-        const formData = new FormData();
-        formData.append('file', file);
+        const formData = new FormData()
+        formData.append('file', file)
         const response = await fetch('http://localhost:8000/uploadfile/', {
             method: 'POST',
             headers: {
@@ -21,7 +21,7 @@ export default async function FileUpload(file: any) {
         }
     } 
     catch (error) {
-        console.error('Error uploading file:', error);
+        console.error('Error uploading file:', error)
     }
     return null // Return your desired JSX or component here if needed
 }

@@ -1,6 +1,8 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef, useContext,useState } from 'react'
 import * as d3 from 'd3'
 import { PH } from '../home/home'
+import JumpLoading from '../extra/jumploading'
+import Csrf from '../home/csrf'
 
 const CHART_DIMENTIONS = ({
     width: 1200,
@@ -11,71 +13,53 @@ const CHART_DIMENTIONS = ({
 export default function PhRegion(){
 
     const svgRef = useRef<SVGSVGElement|null>(null)
+    const [render, setRender] = useState<Boolean>(false)
     const tableData = useContext<any>(PH)
     const raw = tableData.data0
     const tools = tableData.data1
     let arr1:any[] = []
-    /* Hard coded x and y coordinates for pie graph */
-    const locations:any = {
-        'Region I':{x:450,y:500},
-        'Cordillera Administrative Region':{x:580,y:450},
-        'Region II':{x:680,y:470},
-        'Region III':{x:500,y:700},
-        'National Capital Region':{x:350,y:750},
-        'Region IV-A':{x:650,y:800},
-        'Region V':{x:900,y:900},
-        'Region IV-B':{x:400,y:1100},
-        'Region VI':{x:725,y:1175},
-        'Region VIII':{x:1000,y:1100},
-        'Negros Island Region':{x:750,y:1350},
-        'Region VII':{x:900,y:1300},
-        'Region IX':{x:750,y:1500},
-        'Region X':{x:950,y:1450},
-        'Region XIII':{x:1100,y:1450},
-        'Region XI':{x:1150,y:1600},
-        'Autonomous Region in Muslim Mindanao':{x:900,y:1625},
-        'Region XII':{x:1000,y:1750},
-    }
     
     useEffect(()=>{
         if(tableData && tools && tools.orig){
             const bdC = tools.borderC
             const geoJson = tools.orig.data0
             const title = tools.titleD
+            const toProcess = {raw: raw, geoJson: geoJson}
 
-            operation()
+            op(toProcess)
 
-            function operation(){
-                let objTable:any = {}
-                const column1 = Object.keys(tableData.data0[0])[0]
-                let filterRaw = []
-                if(geoJson) {
-                    //get what are user's region
-                    for(let i=0; i<raw.length; i++){
-                        objTable[raw[i][column1]] = raw[i]
+            async function op(params:any){
+                const processedData = await operation(params)
+                arr1 = processedData.arr1
+                await renderMap(processedData.filterRaw)
+            }
+
+            async function operation(params:any){
+                const security = await Csrf()
+                const jsonData = JSON.stringify(params)
+                try {
+                    const response = await fetch('http://localhost:8000/api/phregion/', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': security.csrf_token, 
+                        },
+                        body: jsonData,
+                    })
+                    if (response.ok) {
+                        const viewData = await response.json()
+                        return viewData
+                    } 
+                    else {
+                        throw new Error('Request failed')
                     }
-                    //filter what is in the geoJson from user's input
-                    for(let j=0; j<geoJson.features.length; j++){
-                        const name = geoJson.features[j].properties.ADM1_EN
-                        if(objTable[name]){
-                            const appendData = geoJson.features[j]
-                            appendData['color'] = objTable[name]
-                            arr1.push(appendData)
-                        }
-                    }
-                    //datas from user (amount #)
-                    for(let i=0; i<raw.length; i++){
-                        filterRaw.push(raw[i])
-                    }
-                    for(let i=0; i<raw.length; i++){
-                        filterRaw[i]['loc'] = locations[raw[i]['region']]
-                        filterRaw[i]['amount'] = [raw[i].amount0, raw[i].amount1, raw[i].amount2]
-                    }
-                    renderMap(filterRaw)
+                } 
+                catch (error) {
+                    console.error('Error uploading file:', error)
                 }
+                return null
             }
             /* Renders the pie charts */
-            function pieGraph(svg:any, dataPie:any, x:any, y:any, pieColor:any, innerR:any){
+            async function pieGraph(svg:any, dataPie:any, x:any, y:any, pieColor:any, innerR:any){
                 const pieGroup = svg.append('g')
                 const arc = d3.arc()
                     .innerRadius(innerR)
@@ -92,7 +76,7 @@ export default function PhRegion(){
                     .attr('stroke-width', tableData.data1.tPie)
             }
             /* Renders the entire map */
-            function renderMap(filterRaw:any){
+            async function renderMap(filterRaw:any){
                 if(!geoJson) return
                 const svg = d3.select(svgRef.current)
                     .attr('width', CHART_DIMENTIONS.width)
@@ -208,12 +192,18 @@ export default function PhRegion(){
                     const locX = filterRaw[i].loc.x
                     const locY = filterRaw[i].loc.y
                     const innerR = tableData.data1.pieR
-                    pieGraph(svg,dataPie,locX,locY,pieColor,innerR)
+                    await pieGraph(svg,dataPie,locX,locY,pieColor,innerR)
                 }
+                setRender(true)
                 return svg.node();
             }
         }
     },[tableData,])
-
-    return <svg ref={svgRef}></svg>
+    if(render){
+        return <svg ref={svgRef}></svg>
+    }
+    else{
+        return <div id='loadingJump'><JumpLoading/></div>
+    }
+    
 }

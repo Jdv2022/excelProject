@@ -9,7 +9,7 @@ export default function RenderVerticalBarGraph(){
         function VBG(){
             const svg = d3.select(svgRef.current)
             svg.selectAll('*').remove()
-            const width = 1100 
+            const width = 1075 
             const height = 400 
             const xScale = d3.scaleBand().range ([0, width]).padding(0.4)
             const yScale = d3.scaleLinear().range ([height, 0])
@@ -75,6 +75,6 @@ export default function RenderVerticalBarGraph(){
         VBG()
     },[verticalBarData.data0, verticalBarData.data1])
 
-    return <svg width="1250" height="600" ref={svgRef}></svg>
+    return <svg width="1190" height="600" ref={svgRef}></svg>
 
 }

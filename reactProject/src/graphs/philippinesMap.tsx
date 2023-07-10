@@ -1,7 +1,9 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef, useContext, useState } from 'react'
 import * as d3 from 'd3'
 import { PH } from '../home/home'
-
+import JumpLoading from '../extra/jumploading'
+import Csrf from '../home/csrf'
+//GLOBALS
 const chart_dimensions = ({
     width: 1200,
     height: 2000,
@@ -11,86 +13,62 @@ const chart_dimensions = ({
 export default function Philippines(){
 
     const svgRef = useRef<SVGSVGElement|null>(null)
+    const [render, setRender] = useState<boolean>(false)
     const tableData = useContext<any>(PH)
     const tools = tableData.data1
-    let newArrMax:any = []
-    let newArrMid:any = []
-    let newArrMin:any = []
-    let noDataArray:any = []
-    let obj: any = {}
-    
+
     useEffect(()=>{
         if(tableData && tools && tools.orig){
-            const maxC = tools.maxColor
-            const midC = tools.midColor
-            const minC = tools.minColor
             const bdC = tools.borderC
             const geoJson = tools.orig.data0
             const color = tools.bg
-            const maxUpD = tools.max
-            const midMaxD = tools.maxMid
-            const midMinD = tools.minMid
-            const minD = tools.min
+            const maxC = tools.maxColor
+            const midC = tools.midColor
+            const minC = tools.minColor
             const title = tools.titleD
-
-            Province()
-
-            function Province(){
-                if(geoJson) {
-                    let arrMax:any = []
-                    let arrMid:any = []
-                    let arrMin:any = []
-                    let arrNoData:any = []
-                    const column1 = Object.keys(tableData.data0[0])[0]
-                    const column2 = Object.keys(tableData.data0[0])[1]
-                    const lenT = tableData.data0.length
-                    const tableD = tableData.data0
-                    const len = geoJson.features.length
-                    for(let i=0; i<len; i++){
-                        const name = geoJson.features[i].properties.ADM2_EN
-                        const value = geoJson.features[i]
-                        obj[name] = value
+            /* Process is done backend */
+            async function Province(params0:any){
+                const security = await Csrf()
+                const jsonData = JSON.stringify(params0)
+                try {
+                    const response = await fetch('http://localhost:8000/api/philippinesmap/', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': security.csrf_token, 
+                        },
+                        body: jsonData,
+                    })
+                    if (response.ok) {
+                        const viewData = await response.json()
+                        return viewData
                     } 
-
-                    for(let i=0; i<lenT; i++){
-                        const item = parseInt(tableD[i][column2])
-                        if((item >= maxUpD) && maxUpD){
-                            arrMax.push(tableD[i][column1])
-                        }
-                        else if(item <= midMaxD && item >= midMinD && midMaxD && midMinD){
-                            arrMid.push(tableD[i][column1])
-                        }
-                        else if(item < midMinD && item >= minD && midMinD && (minD || minD == 0)){
-                            arrMin.push(tableD[i][column1])
-                        }
-                        else{
-                            arrNoData.push(tableD[i][column1])
-                        }
+                    else {
+                        throw new Error('Request failed')
                     }
-                    const segragatedData = [arrMax, arrMid, arrMin, arrNoData]
-                    for(let i=0; i<segragatedData.length; i++){
-                        for(let j=0; j<segragatedData[i].length; j++){
-                            const name = segragatedData[i][j]
-                            if(i==0 && obj[name]){
-                                newArrMax.push(obj[name])
-                            }
-                            else if(i==1 && obj[name]){
-                                newArrMid.push(obj[name])
-                            }
-                            else if(i==2 && obj[name]){
-                                newArrMin.push(obj[name])
-                            }
-                            else if(i==3 && obj[name]){
-                                noDataArray.push(obj[name])
-                            }
-                        }
-                    }
+                } 
+                catch (error) {
+                    console.error('Error uploading file:', error)
                 }
+                return null
             }
-            
+
             renderMap()
 
-            function renderMap(){
+            async function renderMap(){
+                const tool = {
+                    max: tableData.data1.max, 
+                    maxmid: tableData.data1.maxMid,
+                    minmid: tableData.data1.minMid,
+                    min: tableData.data1.min,
+                }
+
+                const read = await Province({tableData:tableData.data0, tool: tool, geoJson: geoJson})
+                
+                const newArrMax = read.newArrMax
+                const newArrMid = read.newArrMid
+                const newArrMin = read.newArrMin
+                const noDataArray = read.noDataArray
+                
                 if(!geoJson) return
                 const svg = d3.select(svgRef.current)
                     .attr('width', chart_dimensions.width)
@@ -98,7 +76,6 @@ export default function Philippines(){
                 svg.selectAll('*').remove()
                 const clippedWidth = chart_dimensions.width - chart_dimensions.margin * 2;
                 const clippedHeight = chart_dimensions.height - chart_dimensions.margin * 2;
-
                 const geoMercator = d3
                     .geoMercator()
                     // the center uses longtitude and latitude
@@ -107,7 +84,7 @@ export default function Philippines(){
                     .fitSize([clippedWidth, clippedHeight], geoJson);
                 const pathGen = d3.geoPath(geoMercator)
                 const arr = [
-                    {color: maxC, intensity: 'High'}, 
+                    {color:maxC, intensity: 'High'}, 
                     {color:midC, intensity: 'Moderate'}, 
                     {color:minC, intensity: 'Low'},
                     {color:color, intensity: 'No Data'}
@@ -188,12 +165,18 @@ export default function Philippines(){
                         .attr('d', pathGen)
                         .attr('stroke', bdC)
                         .attr('fill', minC)
-                }
-                            
+                    }
+                setRender(true)
                 return svg.node();
             }
         }
-    },[tableData,])
+    },[tableData])
 
-    return <svg ref={svgRef}></svg>
+    if(render){
+        return <svg ref={svgRef}></svg>
+    }
+    else{
+        return <div id='loadingJump'><JumpLoading/></div>
+    }
+    
 }

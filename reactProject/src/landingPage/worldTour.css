@@ -1,9 +1,6 @@
-.panel1{
-    height: 700px;
-    background-color: white;
-}
 .landingPage{
-    background: linear-gradient(to right, rgb(0, 0, 0), rgb(79, 76, 76), rgb(181, 172, 172));
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0),  rgb(0, 0, 0),rgb(61, 61, 61));
+    height: inherit;
 }
 .world{
     position: relative;
@@ -12,7 +9,7 @@
 #landingPagehead{
     font-weight: bold;
     font-size: 2em;
-    background: linear-gradient(to right, #000000, #5a625a);
+    background: linear-gradient(to right, #d0d0d0, #5a625a);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 }
@@ -50,4 +47,10 @@ p, ul{
     background: linear-gradient(to right, rgba(5, 106, 213, 0.1), rgba(2, 85, 173, 0.2), rgba(0, 98, 203, 0.3), rgb(0, 123, 255, .4));
     z-index: 0;
 }
-
+.jumpLoading {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 250px;
+}

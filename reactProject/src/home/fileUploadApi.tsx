@@ -14,7 +14,7 @@ export default async function FileUpload(file: any) {
         });
         if (response.ok) {
             const viewData = await response.json();
-            return viewData
+            return viewData.data
         } 
         else {
             throw new Error('Request failed');

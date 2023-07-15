@@ -5,22 +5,41 @@ import csv
 import requests
 from django.http import HttpResponse
 import json
+import pandas as pd
+import csv
 
 def index(request):
     return JsonResponse({ 'main': 'success'})
 
+def convert_to_json(file, file_format):
+    json_data = []
+    if file_format == 'xlsx':
+        df = pd.read_excel(file, header=0)
+        for _, row in df.iterrows():
+            item = {}
+            for column_name, value in row.items():
+                item[column_name] = value
+            json_data.append(item)
+    
+    elif file_format == 'csv':
+        csv_data = csv.reader(file.read().decode('utf-8').splitlines())
+        fieldnames = next(csv_data)
+        for row in csv_data:
+            item = {}
+            for i, value in enumerate(row):
+                item[fieldnames[i]] = value
+            json_data.append(item)
+    
+    return json_data
 @csrf_exempt
 def saveToDb(request):
-    csv_file  = request.FILES['file']
-    csv_data = csv.reader(csv_file.read().decode('utf-8').splitlines())
-    json_data = []
-    fieldnames = next(csv_data)
-    for row in csv_data:
-        item = {}
-        for i, value in enumerate(row):
-            item[fieldnames[i]] = value
-        json_data.append(item)
-    return JsonResponse({'data': json_data})
+    if request.method == 'POST' and 'file' in request.FILES:
+        file = request.FILES['file']
+        file_format = file.name.split('.')[-1].lower()
+        json_data = convert_to_json(file, file_format)
+        return JsonResponse({'data': json_data})
+    return JsonResponse({'message': 'No file uploaded or incorrect method.'})
+
 
 def csrf(request):
     csrf_token = get_token(request)

@@ -1,6 +1,6 @@
 import SideBar from './sidebar'
 import './sidebar.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import FileUpload from '../home/fileUploadApi'
 import { createContext } from 'react'
@@ -10,16 +10,19 @@ import html2canvas from 'html2canvas'
 import provincePh from '../sampleData/provincesPh'
 import VerticalBarGraphSampleData from '../sampleData/verticalGraph'
 import Philippines from '../graphs/philippinesMap'
-import VerticalGraphTool from './verticalgraphtoolbar'
-import PhTool from './phtool'
+import VerticalGraphTool from '../tools/verticalgraphtoolbar'
+import PhTool from '../tools/phtool'
 import regionPh from '../sampleData/regionPh'
 import PhRegion from '../graphs/phRegion'
-import RegionPhTool from './regionphtool'
+import RegionPhTool from '../tools/regionphtool'
 import CircleMove from '../extra/loading'
 import arrowImage from '../assets/arrow.png'
 import NotYet from '../notYetAvailable'
 import HeatMap from '../graphs/heatmap'
-import HeatMapTool from './heatmaptool'
+import HeatMapTool from '../tools/heatmaptool'
+import { Link } from 'react-router-dom'
+import Contact from '../extra/contact'
+import AdminLogin from '../admin/adminLogin'
 
 /* Contexts */
 export const VERTICALBAR = createContext<any>(null)     //vertical bar chart and ph-province tree
@@ -37,8 +40,7 @@ const URLS = [
 export default function Home(){
     /* Hooks */
     const location = useLocation()                                                         //for url's
-    const [selectedFile, setSelectedFile] = useState(null)                                 //the selected file
-    const [name, setName] = useState('Sample Data')                                        //data title, will be rendered when a chart is selected 
+    const [selectedFile, setSelectedFile] = useState(null)                                 //the selected file                                 //data title, will be rendered when a chart is selected 
     const [render, setRender] = useState(true)                                             //this sets what to render and what not
     const [data, setData] = useState<any>(VerticalBarGraphSampleData())                    //this sets the different hard coded data for different charts
     const [verticalDataTool, setVerticalDataTool] = useState(null)                         //sets the settings of tool widget for vertical chart
@@ -48,6 +50,7 @@ export default function Home(){
     const [screenWidth, setScreenWidth] = useState<any>(null)             
     const [selectedPic, setSelectedPic] = useState(null)
     const [heatMapTool, setHeatTool] = useState(null)
+    let nameRef = useRef<any>(null)
     /* End hooks */
 
     /* Context data */
@@ -123,6 +126,7 @@ export default function Home(){
             const url = URLS
             for(let i=0; i< url.length; i++){
                 if(url[i].url === location.pathname){
+                    nameRef.current.textContent = 'Sample Data'
                     if(location.pathname == '/home/choroplethmap(ph-provinces)' || location.pathname == '/home/verticalbargraph'){
                         setData(url[i].value)
                     }
@@ -141,7 +145,7 @@ export default function Home(){
         const file = event.target.files[0]
         const name = file.name
         setSelectedFile(file)
-        setName(name)
+        nameRef.current.textContent = name;
     }
 
     function handlePicChange(event:any){
@@ -149,7 +153,7 @@ export default function Home(){
         const name = file.name
         const temporaryURL:any = URL.createObjectURL(file);
         setSelectedPic(temporaryURL)
-        setName(name)
+        nameRef.current.textContent = name;
     }
         
     function updateData(newData:any){
@@ -175,6 +179,7 @@ export default function Home(){
         }
         const api = await FileUpload(selectedFile)
         setData(api)
+        setRenderRegion(api)
     }
 
     function handleSubmitPic(){
@@ -262,16 +267,22 @@ export default function Home(){
             <input type='submit' onClick={()=>{handleSubmitPic()}}></input>
         </div>
     )
+    const condition = (
+        location.pathname != '/home' && location.pathname != '/home/heatmap' && location.pathname != '/home/messageme' && location.pathname != '/home/admin/login'
+    )
 
     if(screenWidth && screenWidth < 972) return <div><NotYet/></div>
     return (
         
-        <div className="vh-100 home w-100">
-            <div className='col-md-1 vh-100 align-top'  id='sidebar'>
+        <main className="vh-100 home w-100">
+            <aside className='col-md-1 vh-100 align-top'  id='sidebar'>
                 <SideBar />
-            </div>
-            <div className='col-md-11 d-inline-block display-container align-top'>
-                {(location.pathname != '/home') ? <h1 className='d-block'>{name}</h1>:<img className='arrowPic' src={arrowImage} alt="Arrow" />}
+            </aside>
+            <section className='col-md-11 d-inline-block display-container align-top'>
+                <Link to={'/home/messageme'} id='info'>i</Link>
+                {location.pathname == '/home/messageme' && <Contact />}
+                {location.pathname == '/home/admin/login' && <AdminLogin />}
+                {(location.pathname != '/home') ? <h1 ref={nameRef}></h1>:<img className='arrowPic' src={arrowImage} alt="Arrow" />}
                 <div className="custom-container">
                     <div className='custom-dashboard  overflow-auto'>
                         <div className='col-md-11 d-inline-block align-top pdfParent'>
@@ -290,18 +301,18 @@ export default function Home(){
                             {location.pathname === '/home/heatmap' &&  <HeatMapTool updateData={heatTool} />}
                         </div>
                     </div>
-                    <div className='w-100 d-inline-block mt-3'>
+                    <footer className='w-100 d-inline-block mt-3'>
                         <div className="w-100 downloadBars">
-                            {location.pathname != '/home' && location.pathname != '/home/heatmap' &&  up}
-                            {location.pathname != '/home' && location.pathname != '/home/heatmap' && (render ? generateGraphButton : generatePaginationhButton)}
-                            {location.pathname != '/home' && location.pathname != '/home/heatmap' && (!render ? ScreenShot:downloadSampleData)}
+                            {condition &&  up}
+                            {condition && (render ? generateGraphButton : generatePaginationhButton)}
+                            {condition && (!render ? ScreenShot:downloadSampleData)}
                             {location.pathname == '/home/heatmap' && uploadPic}
                             {location.pathname == '/home/heatmap' && ScreenShot}
                         </div>
-                    </div>
+                    </footer>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     )
 
 }

@@ -198,7 +198,7 @@ export default function PhRegion(){
                 return svg.node();
             }
         }
-    },[tableData,])
+    },[tableData])
     if(render){
         return <svg ref={svgRef}></svg>
     }

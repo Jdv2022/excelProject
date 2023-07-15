@@ -65,6 +65,20 @@
 .margin-3{
     margin-left: 15px;
 }
+#info{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgb(92, 92, 255);
+    border: 3px solid #19A7CE;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    left: auto;
+    right: 30px;
+    top: 20px;
+    font-size: 1rem;
+}
 @media screen and (min-width: 1580px){
     .custom-dashboard{
         height: 89vh;

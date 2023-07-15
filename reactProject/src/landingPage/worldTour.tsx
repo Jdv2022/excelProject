@@ -170,7 +170,7 @@ export default function WorldTourD3() {
                 </MyWidget.Provider>
             </div>
             <div className='d-inline-block col-md-5 content vh-100'>
-                <h1 id='landingPagehead'>Convert Excel Data into Stunning Graphs</h1>
+                <h1 id='landingPagehead'>Convert Excel/CSV into Stunning Graphs</h1>
                 <p>Introducing our powerful and user-friendly tool that transforms your Excel data into visually appealing and interactive graphs in just a few clicks.</p>
                 <p>Benefits:</p>
                 <ul>

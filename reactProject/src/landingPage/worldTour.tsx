@@ -6,14 +6,17 @@ import './worldTour.css'
 import { createContext } from 'react'
 import Widget from './widget'
 import Widget2 from './widget2'
+import JumpLoading from '../extra/jumploading'
+import NotYet from '../notYetAvailable'
 
 export const MyWidget = createContext('')
-let INITIAL_CALL = true
 /*  World in the landing page render */
 export default function WorldTourD3() {
     const svgRef = useRef<SVGSVGElement|null>(null)
     const [data, setData] = useState<any|null>(null)
     const [widgetData, setWidgetData] = useState<any|null>(null)
+    const [renderMainWorld, setRenderMainWorld] = useState<boolean>(false)
+    const [screenWidth, setScreenWidth] = useState<any>(null)
     const nextCountryCallInterval = 5000
     let interval: any
     useEffect(() => {
@@ -29,6 +32,11 @@ export default function WorldTourD3() {
         }
     }, [])
     useEffect(() => {   
+        function logScreenSize() {
+            const screenWidth = window.innerWidth;
+            setScreenWidth(screenWidth)
+        }
+        window.addEventListener("resize", logScreenSize);
         if(!data){
             return
         }
@@ -92,6 +100,7 @@ export default function WorldTourD3() {
                     .attr('transform', 'translate(50, 50)')
             }
             function mainCall(){
+                setRenderMainWorld(true)
                 const numberOfCountries = 177
                 const random = Math.ceil(Math.random()*numberOfCountries)
                 const theData = data.data0[random]
@@ -107,12 +116,10 @@ export default function WorldTourD3() {
                     count = 0
                 }
             }
-            interval = setInterval(mainCall, nextCountryCallInterval)
-            let p1: any, p2 = [0, 0], r1, r2 = [0, 0, 0]
-            if(INITIAL_CALL){
+            interval = setInterval(()=>{
                 mainCall()
-                INITIAL_CALL = false
-            }
+            }, nextCountryCallInterval)
+            let p1: any, p2 = [0, 0], r1, r2 = [0, 0, 0]
             async function whereTo(country: any){
                 await new Promise((resolve) => {
                     render(country, null)
@@ -146,13 +153,13 @@ export default function WorldTourD3() {
         return () => {
             clearInterval(interval)
         }
-    }, [data])
-
+    }, [data, renderMainWorld])
+    if(screenWidth && screenWidth < 972) return <div><NotYet/></div>
     return (
-        <div className="landingPage vh-100 panel1 align-top w-100" >
+        <div className="landingPage align-top w-100">
             <div className='d-inline-block col-md-7 align-top'>
-                <svg id='svg' className='vh-100 w-100 world' ref={svgRef}></svg>
-                <div className='sea'></div>
+                {renderMainWorld ? <svg id='svg' className='vh-100 w-100 world' ref={svgRef}></svg>: <div className='jumpLoading'><JumpLoading/></div>}
+                {renderMainWorld ? <div className='sea'></div> : <></>}
                 <MyWidget.Provider value={widgetData}>
                     <div className='widget'>
                         <Widget />
@@ -163,7 +170,7 @@ export default function WorldTourD3() {
                 </MyWidget.Provider>
             </div>
             <div className='d-inline-block col-md-5 content vh-100'>
-                <h1 id='landingPagehead'>Convert Excel Data into Stunning Graphs</h1>
+                <h1 id='landingPagehead'>Convert Excel/CSV into Stunning Graphs</h1>
                 <p>Introducing our powerful and user-friendly tool that transforms your Excel data into visually appealing and interactive graphs in just a few clicks.</p>
                 <p>Benefits:</p>
                 <ul>

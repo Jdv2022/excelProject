@@ -1,6 +1,6 @@
 import SideBar from './sidebar'
 import './sidebar.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import FileUpload from '../home/fileUploadApi'
 import { createContext } from 'react'
@@ -10,35 +10,47 @@ import html2canvas from 'html2canvas'
 import provincePh from '../sampleData/provincesPh'
 import VerticalBarGraphSampleData from '../sampleData/verticalGraph'
 import Philippines from '../graphs/philippinesMap'
-import VerticalGraphTool from './verticalgraphtoolbar'
-import PhTool from './phtool'
+import VerticalGraphTool from '../tools/verticalgraphtoolbar'
+import PhTool from '../tools/phtool'
 import regionPh from '../sampleData/regionPh'
 import PhRegion from '../graphs/phRegion'
-import RegionPhTool from './regionphtool'
+import RegionPhTool from '../tools/regionphtool'
+import CircleMove from '../extra/loading'
+import arrowImage from '../assets/arrow.png'
+import NotYet from '../notYetAvailable'
+import HeatMap from '../graphs/heatmap'
+import HeatMapTool from '../tools/heatmaptool'
+import { Link } from 'react-router-dom'
+import Contact from '../extra/contact'
+import AdminLogin from '../admin/adminLogin'
 
 /* Contexts */
 export const VERTICALBAR = createContext<any>(null)     //vertical bar chart and ph-province tree
 export const PH = createContext<any>(null)              //ph-region tree
+export const HEATMAP = createContext<any>(null)              //ph-region tree
 
 /* Global URLS */
 const URLS = [
     {url:'/home/verticalbargraph', 'value':VerticalBarGraphSampleData()}, //vertical bar chart
     {url:'/home/choroplethmap(ph-provinces)', 'value':provincePh()},      //ph-province
-    {url:'/home/choroplethmap(ph-region)', 'value':regionPh()}            //ph-region
+    {url:'/home/choroplethmap(ph-region)', 'value':regionPh()},           //ph-region
 ]
 
 /* Home Component (Route= '/home/*') */
 export default function Home(){
     /* Hooks */
     const location = useLocation()                                                         //for url's
-    const [selectedFile, setSelectedFile] = useState(null)                                 //the selected file
-    const [name, setName] = useState('Sample Data')                                        //data title, will be rendered when a chart is selected 
+    const [selectedFile, setSelectedFile] = useState(null)                                 //the selected file                                 //data title, will be rendered when a chart is selected 
     const [render, setRender] = useState(true)                                             //this sets what to render and what not
     const [data, setData] = useState<any>(VerticalBarGraphSampleData())                    //this sets the different hard coded data for different charts
     const [verticalDataTool, setVerticalDataTool] = useState(null)                         //sets the settings of tool widget for vertical chart
     const [phToolbar, setPhToolBar] = useState<any>(null)                                  //sets the settings of tool widget for ph-province
     const [verticalDataToolRegion, setVerticalDataToolRegion] = useState<any>(null)        //sets the settings of tool widget for ph-region
-    const [renderRegion, setRenderRegion] = useState<any>(null)                            //sets the data for ph-region 
+    const [renderRegion, setRenderRegion] = useState<any>(null)                            //sets the data for ph-region        
+    const [screenWidth, setScreenWidth] = useState<any>(null)             
+    const [selectedPic, setSelectedPic] = useState(null)
+    const [heatMapTool, setHeatTool] = useState(null)
+    let nameRef = useRef<any>(null)
     /* End hooks */
 
     /* Context data */
@@ -56,8 +68,21 @@ export default function Home(){
         data0: data,
         data1: phToolbar
     }
+
+    const toHeat = {
+        data0: heatMapTool,
+        url: data
+    }
     /* End Context Data */
     /* Contexts tree */
+    const heat = (
+        <>
+            <HEATMAP.Provider value={toHeat}>
+                <HeatMap />
+            </HEATMAP.Provider>
+        </>
+    )
+
     const renderTable = (
         <>
             <VERTICALBAR.Provider value={toChild}>
@@ -92,10 +117,16 @@ export default function Home(){
     /* End Contexts tree */
     useEffect(()=>{
         //This will set the temporary data to the corresponding url
+        function logScreenSize() {
+            const screenWidth = window.innerWidth;
+            setScreenWidth(screenWidth)
+        }
+        window.addEventListener("resize", logScreenSize);
         function temp(){
             const url = URLS
             for(let i=0; i< url.length; i++){
                 if(url[i].url === location.pathname){
+                    nameRef.current.textContent = 'Sample Data'
                     if(location.pathname == '/home/choroplethmap(ph-provinces)' || location.pathname == '/home/verticalbargraph'){
                         setData(url[i].value)
                     }
@@ -108,17 +139,25 @@ export default function Home(){
         }
         temp()
         setRender(true)
-    },[location.pathname])
+    },[location.pathname,screenWidth])
     /* Function call for user interactions */
     function handleFileChange(event:any){
         const file = event.target.files[0]
         const name = file.name
         setSelectedFile(file)
-        setName(name)
+        nameRef.current.textContent = name;
+    }
+
+    function handlePicChange(event:any){
+        const file = event.target.files[0]
+        const name = file.name
+        const temporaryURL:any = URL.createObjectURL(file);
+        setSelectedPic(temporaryURL)
+        nameRef.current.textContent = name;
     }
         
     function updateData(newData:any){
-        setVerticalDataTool(newData);
+        setVerticalDataTool(newData)
     }
 
     function phTool(newData:any){
@@ -128,6 +167,10 @@ export default function Home(){
     function regionTool(newData:any){
         setVerticalDataToolRegion(newData)
     }
+
+    function heatTool(newData:any){
+        setHeatTool(newData)
+    }
     
     async function handleSubmit(){
         if(!selectedFile){
@@ -136,6 +179,15 @@ export default function Home(){
         }
         const api = await FileUpload(selectedFile)
         setData(api)
+        setRenderRegion(api)
+    }
+
+    function handleSubmitPic(){
+        if(!selectedPic){
+            console.error('No file selected')
+            return null
+        }
+        setData(selectedPic)
     }
 
     function generatePagi(){
@@ -146,15 +198,15 @@ export default function Home(){
         setRender(false)
     }
 
-    function downloadAsPDF() {
+    function downloadAsPDF(){
         const element:any = document.getElementById('pdf')
-        const options = {scale: 5};
+        const options = {scale: 10}
         html2canvas(element, options).then((canvas) => {
-            const imageDataURL = canvas.toDataURL('image/jpeg');
-            const link = document.createElement('a');
-            link.href = imageDataURL;
-            link.download = 'Graph.jpg';
-            link.click();
+            const imageDataURL = canvas.toDataURL('image/jpeg')
+            const link = document.createElement('a')
+            link.href = imageDataURL
+            link.download = 'Graph.jpg'
+            link.click()
         });
     }
 
@@ -168,12 +220,12 @@ export default function Home(){
         let csvRows = []
         for (const row of data) {
             const values = headers.map((header:any) => {
-                const escapedValue = row[header].toString().replace(/"/g, '\\"');
-                return `"${escapedValue}"`;
-            });
-            csvRows.push(values.join(','));
+                const escapedValue = row[header].toString().replace(/"/g, '\\"')
+                return `"${escapedValue}"`
+            })
+            csvRows.push(values.join(','))
         }
-        return csvRows.join('\n');
+        return csvRows.join('\n')
     }
 
     function downloadAsCSV(){
@@ -192,7 +244,7 @@ export default function Home(){
     /* End for function calls */       
     /* Buttons */
     const downloadSampleData = (
-        <input className='bg-primary text-light border-0 rounded p-1 ' type='button' value='Download Sample File' onClick={()=>{downloadAsCSV()} } />
+        <input className='bg-primary text-light border-0 rounded p-1 ' type='button' value='Download File' onClick={()=>{downloadAsCSV()} } />
     )
 
     const generatePaginationhButton = (
@@ -202,46 +254,65 @@ export default function Home(){
     const generateGraphButton = (
         <input className='bg-primary text-light border-0' type='button' value='Generate Graph' onClick={()=>{generate()}}></input>
     )
-
+    const ScreenShot = (<input className='bg-primary text-light border-0' type='button' value='Download Image' onClick={()=>{downloadAsPDF()} }></input>)
     const up = (
         <div >
             <input type='file' onChange={handleFileChange}></input>
             <input type='submit' onClick={()=>{handleSubmit()}}></input>
         </div>
     )
+    const uploadPic = (
+        <div >
+            <input type='file' onChange={handlePicChange}></input>
+            <input type='submit' onClick={()=>{handleSubmitPic()}}></input>
+        </div>
+    )
+    const condition = (
+        location.pathname != '/home' && location.pathname != '/home/heatmap' && location.pathname != '/home/messageme' && location.pathname != '/home/admin/login'
+    )
 
+    if(screenWidth && screenWidth < 972) return <div><NotYet/></div>
     return (
-
-        <div className="vh-100 home w-100 bg-custom">
-            <div className='col-md-1 d-inline-block bg-secondary vh-100 align-top'>
+        
+        <main className="vh-100 home w-100">
+            <aside className='col-md-1 vh-100 align-top'  id='sidebar'>
                 <SideBar />
-            </div>
-            <div className='col-md-11 d-inline-block display-container align-top '>
-                {(location.pathname != '/home') ? <h1 className='d-block'>{name}</h1>:<h1 className='text-light'>.</h1>}
+            </aside>
+            <section className='col-md-11 d-inline-block display-container align-top'>
+                <Link to={'/home/messageme'} id='info'>i</Link>
+                {location.pathname == '/home/messageme' && <Contact />}
+                {location.pathname == '/home/admin/login' && <AdminLogin />}
+                {(location.pathname != '/home') ? <h1 ref={nameRef}></h1>:<img className='arrowPic' src={arrowImage} alt="Arrow" />}
                 <div className="custom-container">
                     <div className='custom-dashboard  overflow-auto'>
-                        <div id='pdf' className='col-md-11 d-inline-block align-top' >
-                            {location.pathname === '/home/verticalbargraph' && (render ? renderTable : renderGraph)}
-                            {location.pathname === '/home/choroplethmap(ph-provinces)' && (render ? renderTable : renderPh)}
-                            {location.pathname === '/home/choroplethmap(ph-region)' && (render ? renderTable : renderPhRegion)}
+                        <div className='col-md-11 d-inline-block align-top pdfParent'>
+                            <div id={!render ? 'pdf':''}>
+                                {location.pathname === '/home' && <CircleMove/>}
+                                {location.pathname === '/home/verticalbargraph' && (render ? renderTable : renderGraph)}
+                                {location.pathname === '/home/choroplethmap(ph-provinces)' && (render ? renderTable : renderPh)}
+                                {location.pathname === '/home/choroplethmap(ph-region)' && (render ? renderTable : renderPhRegion)}
+                                {location.pathname === '/home/heatmap' && <div id='pdf' className='w-auto'>{heat}</div>}
+                            </div>
                         </div>
-                        <div className='col-md-1 d-inline-block align-top bg-prmary position-sticky top-0'>
+                        <div className='col-md-1 d-inline-block align-top position-sticky top-0'>
                             {location.pathname === '/home/verticalbargraph' && !render && <VerticalGraphTool upDateData={updateData} />}
                             {location.pathname === '/home/choroplethmap(ph-provinces)'&& !render && <PhTool updateData={phTool} />}
                             {location.pathname === '/home/choroplethmap(ph-region)' && !render && <RegionPhTool updateData={regionTool} />}
+                            {location.pathname === '/home/heatmap' &&  <HeatMapTool updateData={heatTool} />}
                         </div>
                     </div>
-                    <div className='w-100 d-inline-block'>
+                    <footer className='w-100 d-inline-block mt-3'>
                         <div className="w-100 downloadBars">
-                            {location.pathname != '/home' && up}
-                            {location.pathname != '/home' && (render ? generateGraphButton : generatePaginationhButton)}
-                            {location.pathname != '/home' && (!render ? <input className='bg-primary text-light border-0' type='button' value='Download Image' onClick={()=>{downloadAsPDF()} }></input>:downloadSampleData)}
+                            {condition &&  up}
+                            {condition && (render ? generateGraphButton : generatePaginationhButton)}
+                            {condition && (!render ? ScreenShot:downloadSampleData)}
+                            {location.pathname == '/home/heatmap' && uploadPic}
+                            {location.pathname == '/home/heatmap' && ScreenShot}
                         </div>
-                    </div>
+                    </footer>
                 </div>
-            </div>
-        </div>
-
+            </section>
+        </main>
     )
 
 }

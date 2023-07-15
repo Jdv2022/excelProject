@@ -5,11 +5,12 @@ import {VERTICALBAR} from '../home/home'
 export default function RenderVerticalBarGraph(){
     const svgRef = useRef<SVGSVGElement|null>(null)
     const verticalBarData = useContext<any>(VERTICALBAR)
+
     useEffect(()=>{
         function VBG(){
             const svg = d3.select(svgRef.current)
             svg.selectAll('*').remove()
-            const width = 1100 
+            const width = 1075 
             const height = 400 
             const xScale = d3.scaleBand().range ([0, width]).padding(0.4)
             const yScale = d3.scaleLinear().range ([height, 0])
@@ -64,7 +65,8 @@ export default function RenderVerticalBarGraph(){
                 .attr("transform", (fontAngle == 'Horizontal')?"":"rotate(45)")
             g.selectAll(".bar")
                 .data(verticalBarData.data0)
-                .enter().append("rect")
+                .enter()
+                .append("rect")
                 .attr("class", "bar")
                 .attr("x", function(d:any) { return xScale(d[AxisX[0]]) })
                 .attr("y", function(d:any) { return yScale(d[AxisX[1]]) })
@@ -73,8 +75,8 @@ export default function RenderVerticalBarGraph(){
                 .attr('fill', color)
         }
         VBG()
-    },[verticalBarData.data0, verticalBarData.data1])
+    },[verticalBarData, svgRef])
 
-    return <svg width="1250" height="600" ref={svgRef}></svg>
+    return <svg width="1190" height="600" ref={svgRef}></svg>
 
 }

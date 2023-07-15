@@ -24,7 +24,7 @@ th,td{
     background-color: rgb(215, 206, 206);
 }
 .greylight{
-    background-color: rgb(240, 228, 228);
+    background-color: rgba(255, 255, 0, 0.1);
 }
 .greydark{
     background-color: rgb(194, 190, 190);
@@ -37,4 +37,14 @@ th,td{
     position: fixed;
     top: 20px;
     left: 150px;
+}
+.img{
+    height: 600px;
+    width: 1200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media screen and (max-width: 1441px){
+    
 }

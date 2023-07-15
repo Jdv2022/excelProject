@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch';
-
 export default async function Csrf() {
     try {
         const response = await fetch('http://localhost:8000/get_csrf_token/');

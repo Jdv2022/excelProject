@@ -5,11 +5,12 @@ import { useLocation } from 'react-router-dom'
 /* Home page side bar */
 export default function SideBar(){
     const location = useLocation()
-    const bar = ['Vertical Bar Graph', 'Choropleth Map (PH-Provinces)', 'Choropleth Map (PH-Region)']
+    const bar = ['Vertical Bar Graph', 'Choropleth Map (PH-Provinces)', 'Choropleth Map (PH-Region)','Heat Map']
     const url:any = {
         'Vertical Bar Graph':'/home/verticalbargraph',
         'Choropleth Map (PH-Provinces)':'/home/choroplethmap(ph-provinces)',
-        'Choropleth Map (PH-Region)':'/home/choroplethmap(ph-region)'
+        'Choropleth Map (PH-Region)':'/home/choroplethmap(ph-region)',
+        'Heat Map':'/home/heatmap'
     }
     return (
         <div>

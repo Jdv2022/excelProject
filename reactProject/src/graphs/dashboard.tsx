@@ -8,7 +8,7 @@ export default function DashBoard(){
     const valueFromHome = useContext(VERTICALBAR)
     const [header, setHeader] = useState<any>([])
     const [body, setBody] = useState<any>([])
-    
+
     useEffect(()=>{
         function dataConvert(){
             let newBody = []
@@ -25,7 +25,6 @@ export default function DashBoard(){
         if(!valueFromHome) return
         dataConvert()
     },[valueFromHome])
-
     const renderTable = (
         <table>
             <thead className="position-sticky top-0">
@@ -46,7 +45,6 @@ export default function DashBoard(){
             </tbody>
         </table>
     )
-    
     return (
         <div>
             {renderTable}

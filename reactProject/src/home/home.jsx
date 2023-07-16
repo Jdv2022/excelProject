@@ -2,7 +2,7 @@ import SideBar from './sidebar'
 import './sidebar.css'
 import { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import FileUpload from '../home/fileUploadApi'
+import FileUpload from './fileUploadApi'
 import { createContext } from 'react'
 import DashBoard from '../graphs/dashboard'
 import RenderVerticalBarGraph from '../graphs/renderverticalBarGraph'
@@ -25,9 +25,9 @@ import Contact from '../extra/contact'
 import AdminLogin from '../admin/adminLogin'
 
 /* Contexts */
-export const VERTICALBAR = createContext<any>(null)     //vertical bar chart and ph-province tree
-export const PH = createContext<any>(null)              //ph-region tree
-export const HEATMAP = createContext<any>(null)              //ph-region tree
+export const VERTICALBAR = createContext(null)     //vertical bar chart and ph-province tree
+export const PH = createContext(null)              //ph-region tree
+export const HEATMAP = createContext(null)              //ph-region tree
 
 /* Global URLS */
 const URLS = [
@@ -42,15 +42,15 @@ export default function Home(){
     const location = useLocation()                                                         //for url's
     const [selectedFile, setSelectedFile] = useState(null)                                 //the selected file                                 //data title, will be rendered when a chart is selected 
     const [render, setRender] = useState(true)                                             //this sets what to render and what not
-    const [data, setData] = useState<any>(VerticalBarGraphSampleData())                    //this sets the different hard coded data for different charts
+    const [data, setData] = useState(VerticalBarGraphSampleData())                    //this sets the different hard coded data for different charts
     const [verticalDataTool, setVerticalDataTool] = useState(null)                         //sets the settings of tool widget for vertical chart
-    const [phToolbar, setPhToolBar] = useState<any>(null)                                  //sets the settings of tool widget for ph-province
-    const [verticalDataToolRegion, setVerticalDataToolRegion] = useState<any>(null)        //sets the settings of tool widget for ph-region
-    const [renderRegion, setRenderRegion] = useState<any>(null)                            //sets the data for ph-region        
-    const [screenWidth, setScreenWidth] = useState<any>(null)             
+    const [phToolbar, setPhToolBar] = useState(null)                                  //sets the settings of tool widget for ph-province
+    const [verticalDataToolRegion, setVerticalDataToolRegion] = useState(null)        //sets the settings of tool widget for ph-region
+    const [renderRegion, setRenderRegion] = useState(null)                            //sets the data for ph-region        
+    const [screenWidth, setScreenWidth] = useState(null)             
     const [selectedPic, setSelectedPic] = useState(null)
     const [heatMapTool, setHeatTool] = useState(null)
-    let nameRef = useRef<any>(null)
+    let nameRef = useRef(null)
     /* End hooks */
 
     /* Context data */
@@ -141,34 +141,34 @@ export default function Home(){
         setRender(true)
     },[location.pathname,screenWidth])
     /* Function call for user interactions */
-    function handleFileChange(event:any){
+    function handleFileChange(event){
         const file = event.target.files[0]
         const name = file.name
         setSelectedFile(file)
         nameRef.current.textContent = name;
     }
 
-    function handlePicChange(event:any){
+    function handlePicChange(event){
         const file = event.target.files[0]
         const name = file.name
-        const temporaryURL:any = URL.createObjectURL(file);
+        const temporaryURL = URL.createObjectURL(file);
         setSelectedPic(temporaryURL)
         nameRef.current.textContent = name;
     }
         
-    function updateData(newData:any){
+    function updateData(newData){
         setVerticalDataTool(newData)
     }
 
-    function phTool(newData:any){
+    function phTool(newData){
         setPhToolBar(newData)
     }
 
-    function regionTool(newData:any){
+    function regionTool(newData){
         setVerticalDataToolRegion(newData)
     }
 
-    function heatTool(newData:any){
+    function heatTool(newData){
         setHeatTool(newData)
     }
     
@@ -199,7 +199,7 @@ export default function Home(){
     }
 
     function downloadAsPDF(){
-        const element:any = document.getElementById('pdf')
+        const element = document.getElementById('pdf')
         const options = {scale: 10}
         html2canvas(element, options).then((canvas) => {
             const imageDataURL = canvas.toDataURL('image/jpeg')
@@ -212,14 +212,14 @@ export default function Home(){
 
     function jsonToCsvConvert(){
         const headers = Object.keys(data[0])
-        let obj:any= {}
+        let obj= {}
         for(let i=0; i<headers.length; i++){
             obj[headers[i]] = headers[i]
         }
         data.splice(0,0,obj)
         let csvRows = []
         for (const row of data) {
-            const values = headers.map((header:any) => {
+            const values = headers.map((header) => {
                 const escapedValue = row[header].toString().replace(/"/g, '\\"')
                 return `"${escapedValue}"`
             })

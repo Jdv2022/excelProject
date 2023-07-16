@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import { PH } from '../home/home'
 import JumpLoading from '../extra/jumploading'
 import Csrf from '../home/csrf'
-const apiBaseUrl = import.meta.env.VITE_CODEIGNITER_API_BASE_URL
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
 const endpointUrl = `${apiBaseUrl}/api/philippinesmap/`
 
 //GLOBALS
@@ -14,10 +14,10 @@ const chart_dimensions = ({
 })
 /* Renders the ph-region */
 export default function Philippines(){
-
-    const svgRef = useRef<SVGSVGElement|null>(null)
-    const [render, setRender] = useState<boolean>(false)
-    const tableData = useContext<any>(PH)
+    
+    const svgRef = useRef(null)
+    const [render, setRender] = useState(false)
+    const tableData = useContext(PH)
     const tools = tableData.data1
 
     useEffect(()=>{
@@ -30,7 +30,7 @@ export default function Philippines(){
             const minC = tools.minColor
             const title = tools.titleD
             /* Process is done backend */
-            async function Province(params0:any){
+            async function Province(params0){
                 const security = await Csrf()
                 const jsonData = JSON.stringify(params0)
                 try {
@@ -99,9 +99,9 @@ export default function Philippines(){
                         .enter()
                         .append('rect')
                         .attr("transform", "translate(0,150)")
-                        .attr("y", function(d:any, i:any) {return i * 80 })
+                        .attr("y", function(d, i) {return i * 80 })
                         .attr("x", 50)
-                        .style('fill', function(d:any) {return d.color})  
+                        .style('fill', function(d) {return d.color})  
                         .attr('height', 20)
                         .attr('width', 20)
                         .attr('stroke', bdC)
@@ -113,8 +113,8 @@ export default function Philippines(){
                         .append('text')
                         .attr('x', 100) 
                         .attr("transform", "translate(0,165)")
-                        .attr('y', function(d:any, i:any) {return (i * 80)})
-                        .text(function(d:any) {return d.intensity})
+                        .attr('y', function(d, i) {return (i * 80)})
+                        .text(function(d) {return d.intensity})
                         .attr('font-size', '20px')
                         .attr("font-weight", "bold")
                     svg

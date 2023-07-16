@@ -1,0 +1,56 @@
+.landingPage{
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0),  rgb(0, 0, 0),rgb(61, 61, 61));
+    height: inherit;
+}
+.world{
+    position: relative;
+    z-index: 1;
+}
+#landingPagehead{
+    font-weight: bold;
+    font-size: 2em;
+    background: linear-gradient(to right, #d0d0d0, #5a625a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+.widget{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.widget2{
+    position: absolute;
+    top: 400px;
+    left: 25px;
+}
+#button{
+    padding: 7px 10px;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #EEE2DE;
+}
+.content{
+    padding-top: 200px;
+}
+p, ul{
+    color: #fbfbfb;
+}
+.sea{
+    position: absolute;
+    top: 60px;
+    left: 210px;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    background: linear-gradient(to right, rgba(5, 106, 213, 0.1), rgba(2, 85, 173, 0.2), rgba(0, 98, 203, 0.3), rgb(0, 123, 255, .4));
+    z-index: 0;
+}
+.jumpLoading {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 250px;
+}

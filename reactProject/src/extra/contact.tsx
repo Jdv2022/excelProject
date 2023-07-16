@@ -1,6 +1,8 @@
 import './extra.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+const apiBaseUrl = import.meta.env.VITE_CODEIGNITER_API_BASE_URL
+const endpointUrl = `${apiBaseUrl}/admin`
 
 export default function Contact(){
 
@@ -12,7 +14,7 @@ export default function Contact(){
           event.preventDefault()
             try {
                 const formData = new FormData(form);
-                const response = await fetch('http://localhost:8081/admin', {
+                const response = await fetch(endpointUrl, {
                     method: 'POST',
                     body: formData,
                 })       

@@ -1,6 +1,9 @@
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+const endpointUrl = `${apiBaseUrl}/api/worldtour/`
 export default async function Api(){
+    console.log(endpointUrl)
     try {
-        const response = await fetch('http://localhost:8000/api/worldtour/', {
+        const response = await fetch(endpointUrl, {
             method: 'GET'
         })
         if (response.ok) {

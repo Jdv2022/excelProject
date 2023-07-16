@@ -1,8 +1,11 @@
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+const endpointUrl = `${apiBaseUrl}/api/ph/`
+
 /* PH map data used for render */
 export default async function PhilippinesMapApi(){
 
     try {
-        const response = await fetch('http://localhost:8000/api/ph/', {
+        const response = await fetch(endpointUrl, {
             method: 'GET'
         })
         if (response.ok) {

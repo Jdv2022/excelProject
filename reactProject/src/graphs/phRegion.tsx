@@ -3,6 +3,8 @@ import * as d3 from 'd3'
 import { PH } from '../home/home'
 import JumpLoading from '../extra/jumploading'
 import Csrf from '../home/csrf'
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+const endpointUrl = `${apiBaseUrl}/api/phregion/`
 
 const CHART_DIMENTIONS = ({
     width: 1200,
@@ -38,7 +40,7 @@ export default function PhRegion(){
                 const security = await Csrf()
                 const jsonData = JSON.stringify(params)
                 try {
-                    const response = await fetch('http://localhost:8000/api/phregion/', {
+                    const response = await fetch(endpointUrl, {
                         method: 'POST',
                         headers: {
                             'X-CSRFToken': security.csrf_token, 

@@ -16,8 +16,11 @@ class App extends BaseConfig
      * WITH a trailing slash:
      *
      *    http://example.com/
+     *    excel2charts.online - prod
+     *    http://localhost:8081/ - dev
      */
-    public string $baseURL = 'http://localhost:8081/';
+    public string $baseURL = 'http://excel2charts.online/';
+    public $env = 'development';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

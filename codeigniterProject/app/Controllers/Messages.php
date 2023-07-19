@@ -7,6 +7,9 @@ use CodeIgniter\Session\SessionInterface;
 use Config\Services;
 
 class Messages extends BaseController{
+    public function index(){
+        return view('index');
+    }
     public function sessionG(){
         $model = new Admin();
         $status = $model->where('username', 'admin')->findAll();

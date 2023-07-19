@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import './admin.css'
 import { useNavigate , Link } from 'react-router-dom'
+const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
+const endpointUrl = `${apiBaseUrl}/messages`
+const endpointUrlSession = `${apiBaseUrl}/session`
+const endpointUrlDelete = `${apiBaseUrl}/delete`
+const endpointUrlLogout = `${apiBaseUrl}/admin/logout`
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -16,7 +21,7 @@ export default function Admin(){
     useEffect(()=>{
         async function api(){
             try {
-                const response = await fetch('http://localhost:8081/messages', {
+                const response = await fetch(endpointUrl, {
                     method: 'POST'
                 });
                 if (response.ok) {
@@ -34,7 +39,7 @@ export default function Admin(){
         }
         async function apiSession(){
             try {
-                const response = await fetch('http://localhost:8081/session', {
+                const response = await fetch(endpointUrlSession, {
                     method: 'POST'
                 });
                 if (response.ok) {
@@ -63,7 +68,7 @@ export default function Admin(){
         const deleteAdmin = async ()=>{
             setBool(false)
             try{
-                const response = await fetch(`http://localhost:8081/delete`,{
+                const response = await fetch(endpointUrlDelete,{
                     method: 'POST',
                     body: id.toString(),
                 })
@@ -88,7 +93,7 @@ export default function Admin(){
     },[id])
     async function logOutAdmin(){
         try{
-            const response = await fetch(`http://localhost:8081/admin/logout`,{
+            const response = await fetch(endpointUrlLogout,{
                 method: 'POST',
             })
             if(response.ok){

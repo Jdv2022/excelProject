@@ -1,7 +1,7 @@
 import './extra.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-const apiBaseUrl = import.meta.env.VITE_CODEIGNITER_API_BASE_URL
+const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
 const endpointUrl = `${apiBaseUrl}/admin`
 
 export default function Contact(){
@@ -38,7 +38,7 @@ export default function Contact(){
         return () => {
             form.removeEventListener('submit', handleSubmit);
         };
-      }, [data])
+    }, [data])
       
     return (
         <div id='contactContainer'>
@@ -47,9 +47,9 @@ export default function Contact(){
             <form id="contact">
                 <label className="d-block" htmlFor="name">Your name</label>
                 <input className="mb-2" name='name' type="text" placeholder={data && data.name?data.name:''} id="name" />
-                <label className="d-block" htmlFor="title">Title</label>
+                <label className="d-block" htmlFor="title">Chart/bug title</label>
                 <input className="mb-2" name='title' type="text" placeholder={data && data.title?data.title:''} id="title" />
-                <label className="d-block" htmlFor="message">Chart details</label>
+                <label className="d-block" htmlFor="message">Chart/bug details</label>
                 <textarea className="messageMeTextArea mb-2" name='message' placeholder={data && data.message?data.message:''} id="message" />
                 <input className='mb-3' type='submit'/>
             </form>

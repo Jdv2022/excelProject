@@ -32,6 +32,7 @@ th,td{
 .borderCustom{
     border-left: 1px solid black;
     border-right: 1px solid black;
+    text-align: left;
 }
 .fixed-div {
     position: fixed;

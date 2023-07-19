@@ -2,8 +2,7 @@ import { useEffect, useRef, useContext,useState } from 'react'
 import * as d3 from 'd3'
 import { PH } from '../home/home'
 import JumpLoading from '../extra/jumploading'
-import Csrf from '../home/csrf'
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
 const endpointUrl = `${apiBaseUrl}/api/phregion/`
 
 const CHART_DIMENTIONS = ({
@@ -37,14 +36,10 @@ export default function PhRegion(){
             }
 
             async function operation(params){
-                const security = await Csrf()
                 const jsonData = JSON.stringify(params)
                 try {
                     const response = await fetch(endpointUrl, {
                         method: 'POST',
-                        headers: {
-                            'X-CSRFToken': security.csrf_token, 
-                        },
                         body: jsonData,
                     })
                     if (response.ok) {

@@ -1,5 +1,7 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
+const endpointUrl = `${apiBaseUrl}/admin/admin`
 
 export default function AdminLogin(){
 
@@ -7,12 +9,11 @@ export default function AdminLogin(){
     const navigate = useNavigate()
     useEffect(() => {
         const form = document.querySelector('#contact') 
-        
         const handleSubmit = async (event) => {
           event.preventDefault()
             try {
                 const formData = new FormData(form)
-                const response = await fetch('http://localhost:8081/admin/admin', {
+                const response = await fetch(endpointUrl,{
                     method: 'POST',
                     body: formData,
                 })       
@@ -38,7 +39,7 @@ export default function AdminLogin(){
         return () => {
             form.removeEventListener('submit', handleSubmit)
         };
-      }, [])
+    }, [])
     
     return (
         <div id='contactContainer'>

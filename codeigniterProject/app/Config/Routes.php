@@ -31,10 +31,18 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //MESSAGES
+$routes->get('/index', 'Messages::index');
 $routes->post('/admin', 'Messages::create');
 $routes->post('/messages', 'Messages::getAll');
 $routes->post('/delete', 'Messages::deleteAdmin');
 $routes->post('/session', 'Messages::sessionG');
+
+//PROCESSES
+$routes->get('/api/worldtour/', 'Process::worldTour');
+$routes->post('/api/uploadfile/', 'Process::convertToJson');
+$routes->get('/api/ph/', 'Process::phMap');
+$routes->post('api/philippinesmap/', 'Process::philippines');
+$routes->post('api/phregion/', 'Process::phRegion');
 
 //ADMINS
 $routes->post('/admin/admin', 'Admins::adminLogin');

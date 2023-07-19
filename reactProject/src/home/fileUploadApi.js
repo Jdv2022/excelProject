@@ -1,21 +1,17 @@
-import Csrf from './csrf'
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
 const endpointUrl = `${apiBaseUrl}/api/uploadfile/`
 
 export default async function FileUpload(file) {
-    const security = await Csrf()
     try {
         const formData = new FormData()
         formData.append('file', file)
         const response = await fetch(endpointUrl, {
             method: 'POST',
-            headers: {
-                'X-CSRFToken': security, 
-            },
             body: formData,
         });
         if (response.ok) {
-            const viewData = await response.json();
+            const text = await response.text()
+            const viewData = text ? JSON.parse(text) : {}
             return viewData.data
         } 
         else {

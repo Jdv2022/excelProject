@@ -1,0 +1,19 @@
+CRITICAL - 2023-07-25 12:32:09 --> Maximum execution time of 60 seconds exceeded
+in APPPATH\Controllers\Process.php on line 33.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-07-25 13:46:57 --> Undefined property: stdClass::$Apple
+in APPPATH\Controllers\Process.php on line 170.
+ 1 APPPATH\Controllers\Process.php(170): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$Apple', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Process.php', 170)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Process->philippines()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Process))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-25 13:46:57 --> Undefined property: stdClass::$Apple
+in APPPATH\Controllers\Process.php on line 170.
+ 1 APPPATH\Controllers\Process.php(170): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$Apple', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Process.php', 170)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Process->philippines()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Process))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')

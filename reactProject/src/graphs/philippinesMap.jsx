@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import { PH } from '../home/home'
 import JumpLoading from '../extra/jumploading'
 const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
-const endpointUrl = `${apiBaseUrl}/api/philippinesmap/`
+const endpointUrl = `${apiBaseUrl}/api/philippinesmap`
 
 //GLOBALS
 const chart_dimensions = ({
@@ -59,35 +59,32 @@ export default function Philippines(){
                     minmid: tableData.data1.minMid,
                     min: tableData.data1.min,
                 }
-
                 const read = await Province({tableData:tableData.data0, tool: tool, geoJson: geoJson})
-                
                 const newArrMax = read.newArrMax
                 const newArrMid = read.newArrMid
                 const newArrMin = read.newArrMin
                 const noDataArray = read.noDataArray
                 
-                if(!geoJson) return
-                const svg = d3.select(svgRef.current)
-                    .attr('width', chart_dimensions.width)
-                    .attr('height', chart_dimensions.height);
-                svg.selectAll('*').remove()
-                const clippedWidth = chart_dimensions.width - chart_dimensions.margin * 2;
-                const clippedHeight = chart_dimensions.height - chart_dimensions.margin * 2;
-                const geoMercator = d3
-                    .geoMercator()
-                    // the center uses longtitude and latitude
-                    // get Long/Lat data from google maps
-                    .center([128, 36])
-                    .fitSize([clippedWidth, clippedHeight], geoJson);
-                const pathGen = d3.geoPath(geoMercator)
-                const arr = [
-                    {color:maxC, intensity: 'High'}, 
-                    {color:midC, intensity: 'Moderate'}, 
-                    {color:minC, intensity: 'Low'},
-                    {color:color, intensity: 'No Data'}
-                ]
-                if(newArrMax && newArrMid && newArrMin){ 
+                if(geoJson){
+                    const svg = d3.select(svgRef.current)
+                        .attr('width', chart_dimensions.width)
+                        .attr('height', chart_dimensions.height);
+                    svg.selectAll('*').remove()
+                    const clippedWidth = chart_dimensions.width - chart_dimensions.margin * 2;
+                    const clippedHeight = chart_dimensions.height - chart_dimensions.margin * 2;
+                    const geoMercator = d3
+                        .geoMercator()
+                        // the center uses longtitude and latitude
+                        // get Long/Lat data from google maps
+                        .center([128, 36])
+                        .fitSize([clippedWidth, clippedHeight], geoJson);
+                    const pathGen = d3.geoPath(geoMercator)
+                    const arr = [
+                        {color:maxC, intensity: 'High'}, 
+                        {color:midC, intensity: 'Moderate'}, 
+                        {color:minC, intensity: 'Low'},
+                        {color:color, intensity: 'No Data'}
+                    ]
                     svg
                         .selectAll('rect')
                         .data(arr)
@@ -163,12 +160,11 @@ export default function Philippines(){
                         .attr('d', pathGen)
                         .attr('stroke', bdC)
                         .attr('fill', minC)
-                    }
-                setRender(true)
-                return svg.node();
+                }
             }
+            setRender(true)
         }
-    },[tableData])
+    },[tableData, svgRef.current])
 
     if(render){
         return <svg ref={svgRef}></svg>

@@ -1,5 +1,5 @@
 const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
-const endpointUrl = `${apiBaseUrl}/api/uploadfile/`
+const endpointUrl = `${apiBaseUrl}/api/uploadfile`
 
 export default async function FileUpload(file) {
     try {

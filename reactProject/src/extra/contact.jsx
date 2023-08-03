@@ -54,7 +54,7 @@ export default function Contact(){
                 <input className='mb-3' type='submit'/>
             </form>
             <div className='successContact'>{data && data.success?data.success:''}</div> 
-            <p className='footer'>Alternatively, you can reach me at ppp.projects@gmail.com</p>
+            <p className='footer'>Alternatively, you can reach me at <span className='footerSpan'>ppp.jdv.projects@excel2charts.online</span></p>
             <Link id='link' to={'/home/admin/login'}>Admin login</Link>
         </div>
     )

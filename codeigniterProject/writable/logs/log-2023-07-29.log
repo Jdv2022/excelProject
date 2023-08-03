@@ -1,0 +1,572 @@
+ERROR - 2023-07-29 14:15:40 --> mysqli_sql_exception: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mydb.traffic.created@' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:15:40 --> Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mydb.traffic.created@' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:15:41 --> mysqli_sql_exception: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mydb.traffic.created@' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:15:41 --> Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mydb.traffic.created@' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, COUNT(name) as name_count, `created@`
+FROM `traffic`
+GROUP BY `name`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:16:12 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:16:12 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:16:13 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:16:13 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:16:16 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:16:16 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:16:17 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:16:17 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:36:48 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:36:48 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:37:06 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:37:06 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:37:21 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:37:21 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:37:57 --> syntax error, unexpected token "}", expecting ";"
+in APPPATH\Controllers\Traffics.php on line 39.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:38:12 --> syntax error, unexpected token "}", expecting ";"
+in APPPATH\Controllers\Traffics.php on line 39.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:38:26 --> syntax error, unexpected token "}", expecting ";"
+in APPPATH\Controllers\Traffics.php on line 39.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:39:01 --> syntax error, unexpected token "foreach"
+in APPPATH\Controllers\Traffics.php on line 27.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:39:20 --> Attempt to read property "created_at" on null
+in APPPATH\Controllers\Traffics.php on line 28.
+ 1 APPPATH\Controllers\Traffics.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "created_at" on null', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 28)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:39:27 --> view(): Argument #2 ($data) must be of type array, App\Models\Traffic given, called in C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php on line 38
+in SYSTEMPATH\Common.php on line 1168.
+ 1 APPPATH\Controllers\Traffics.php(38): view('index', Object(App\Models\Traffic))
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+ERROR - 2023-07-29 14:40:10 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1 in C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\projects\excelProject\codeigniterProject\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, ...', 0)
+#1 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, ...')
+#2 C:\projects\excelProject\codeigniterProject\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, ...')
+#3 C:\projects\excelProject\codeigniterProject\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, ...', Array, false)
+#4 C:\projects\excelProject\codeigniterProject\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\projects\excelProject\codeigniterProject\app\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', Array)
+#6 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+#7 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+#8 C:\projects\excelProject\codeigniterProject\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\projects\excelProject\codeigniterProject\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\projects\excelProject\codeigniterProject\system\Commands\Server\rewrite.php(47): require_once('C:\\projects\\exc...')
+#11 {main}
+CRITICAL - 2023-07-29 14:40:10 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `name`, `created@`, COUNT(created@) as name_count
+FROM `traffic`
+GROUP BY `name`, `created@`', [], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Traffics.php(23): CodeIgniter\Model->__call('get', [])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:41:09 --> Undefined property: stdClass::$created_at
+in APPPATH\Controllers\Traffics.php on line 26.
+ 1 APPPATH\Controllers\Traffics.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:42:03 --> syntax error, unexpected token "}", expecting ";"
+in APPPATH\Controllers\Traffics.php on line 36.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:42:29 --> Undefined property: stdClass::$created_at
+in APPPATH\Controllers\Traffics.php on line 26.
+ 1 APPPATH\Controllers\Traffics.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:42:33 --> Undefined property: stdClass::$created_at
+in APPPATH\Controllers\Traffics.php on line 26.
+ 1 APPPATH\Controllers\Traffics.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:43:15 --> Undefined property: stdClass::$created_at
+in APPPATH\Controllers\Traffics.php on line 26.
+ 1 APPPATH\Controllers\Traffics.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:44:36 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(29): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:44:44 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(29): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:45:30 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(29): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:46:03 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(29): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:46:47 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(29): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:47:08 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(29): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:47:43 --> Undefined property: stdClass::$created_at
+in APPPATH\Controllers\Traffics.php on line 26.
+ 1 APPPATH\Controllers\Traffics.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-29 14:49:08 --> Undefined property: stdClass::$created_at
+in APPPATH\Views\index.php on line 20.
+ 1 APPPATH\Views\index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$created_at', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php', 20)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\projects\\excelProject\\codeigniterProject\\app\\Views\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('index', [], true)
+ 5 APPPATH\Controllers\Traffics.php(28): view('index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')

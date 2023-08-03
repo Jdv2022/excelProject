@@ -1,6 +1,3 @@
-*{
-    user-select: none;
-}
 .backgroundColor{
     background-color: rgb(6, 143, 255, .0);
 }
@@ -24,7 +21,11 @@
 }
 .footer{
     color: black;
-    font-size: .8rem;
+    font-size: .7rem;
+}
+.footerSpan{
+    font-size: .7rem;
+    font-weight: bold;
 }
 #headerForm{
     color: black;

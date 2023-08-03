@@ -2,11 +2,13 @@
 
 namespace App\Controllers;
 use CodeIgniter\Controller;
+use App\Models\Traffic;
 use CodeIgniter\Files\File;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
 class Process extends Controller{   
+
     //this function is for the landing page data to be rendered
     public function worldTour(){
         

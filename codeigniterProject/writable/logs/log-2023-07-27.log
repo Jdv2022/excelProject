@@ -1,0 +1,46 @@
+CRITICAL - 2023-07-27 08:49:56 --> syntax error, unexpected token "return"
+in APPPATH\Controllers\Traffics.php on line 17.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-27 08:50:55 --> syntax error, unexpected token "return"
+in APPPATH\Controllers\Traffics.php on line 17.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-27 08:51:08 --> syntax error, unexpected token "return"
+in APPPATH\Controllers\Traffics.php on line 17.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-27 08:51:37 --> Undefined variable $data
+in APPPATH\Controllers\Traffics.php on line 17.
+ 1 APPPATH\Controllers\Traffics.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 17)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->log()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-27 08:51:40 --> Undefined variable $data
+in APPPATH\Controllers\Traffics.php on line 17.
+ 1 APPPATH\Controllers\Traffics.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 17)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->log()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')

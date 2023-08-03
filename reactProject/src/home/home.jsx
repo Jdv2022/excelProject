@@ -1,9 +1,8 @@
 import SideBar from './sidebar'
 import './sidebar.css'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, createContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import FileUpload from './fileUploadApi'
-import { createContext } from 'react'
 import DashBoard from '../graphs/dashboard'
 import RenderVerticalBarGraph from '../graphs/renderverticalBarGraph'
 import html2canvas from 'html2canvas'
@@ -15,7 +14,6 @@ import PhTool from '../tools/phtool'
 import regionPh from '../sampleData/regionPh'
 import PhRegion from '../graphs/phRegion'
 import RegionPhTool from '../tools/regionphtool'
-import CircleMove from '../extra/loading'
 import arrowImage from '../assets/arrow.png'
 import NotYet from '../notYetAvailable'
 import HeatMap from '../graphs/heatmap'
@@ -287,7 +285,6 @@ export default function Home(){
                     <div className='custom-dashboard  overflow-auto'>
                         <div className='col-md-11 d-inline-block align-top pdfParent'>
                             <div id={!render ? 'pdf':''}>
-                                {location.pathname === '/home' && <CircleMove/>}
                                 {location.pathname === '/home/verticalbargraph' && (render ? renderTable : renderGraph)}
                                 {location.pathname === '/home/choroplethmap(ph-provinces)' && (render ? renderTable : renderPh)}
                                 {location.pathname === '/home/choroplethmap(ph-region)' && (render ? renderTable : renderPhRegion)}

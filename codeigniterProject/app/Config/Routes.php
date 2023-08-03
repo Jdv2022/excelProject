@@ -38,15 +38,20 @@ $routes->post('/delete', 'Messages::deleteAdmin');
 $routes->post('/session', 'Messages::sessionG');
 
 //PROCESSES
-$routes->get('/api/worldtour/', 'Process::worldTour');
-$routes->post('/api/uploadfile/', 'Process::convertToJson');
-$routes->get('/api/ph/', 'Process::phMap');
-$routes->post('api/philippinesmap/', 'Process::philippines');
-$routes->post('api/phregion/', 'Process::phRegion');
+$routes->get('/api/worldtour', 'Process::worldTour');
+$routes->post('/api/uploadfile', 'Process::convertToJson');
+$routes->get('/api/ph', 'Process::phMap');
+$routes->post('/api/philippinesmap', 'Process::philippines');
+$routes->post('/api/phregion', 'Process::phRegion');
 
 //ADMINS
 $routes->post('/admin/admin', 'Admins::adminLogin');
 $routes->post('/admin/logout', 'Admins::adminLogout');
+
+//TRAFFIC
+$routes->post('/logtraffic', 'Traffics::log');
+$routes->get('/get/logtraffic', 'Traffics::getlog');
+$routes->get('/get/timelog', 'Traffics::getTime');
 
 /*
  * --------------------------------------------------------------------

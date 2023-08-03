@@ -1,5 +1,5 @@
 const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
-const endpointUrl = `${apiBaseUrl}/api/ph/`
+const endpointUrl = `${apiBaseUrl}/api/ph`
 
 /* PH map data used for render */
 export default async function PhilippinesMapApi(){

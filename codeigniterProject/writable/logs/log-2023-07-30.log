@@ -1,0 +1,234 @@
+CRITICAL - 2023-07-30 05:01:28 --> syntax error, unexpected token "}", expecting "," or ";"
+in APPPATH\Controllers\Traffics.php on line 32.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:01:36 --> Array to string conversion
+in APPPATH\Controllers\Traffics.php on line 25.
+ 1 APPPATH\Controllers\Traffics.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 25)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:01:48 --> Array to string conversion
+in APPPATH\Controllers\Traffics.php on line 25.
+ 1 APPPATH\Controllers\Traffics.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 25)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:01:50 --> Array to string conversion
+in APPPATH\Controllers\Traffics.php on line 25.
+ 1 APPPATH\Controllers\Traffics.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 25)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:04:17 --> syntax error, unexpected identifier "in"
+in APPPATH\Controllers\Traffics.php on line 26.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:17:30 --> syntax error, unexpected token "}"
+in APPPATH\Controllers\Traffics.php on line 32.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:17:46 --> Cannot use [] for reading
+in APPPATH\Controllers\Traffics.php on line 31.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-07-30 05:18:03 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:18:10 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:18:43 --> syntax error, unexpected variable "$dateOnly1", expecting "," or ";"
+in APPPATH\Controllers\Traffics.php on line 28.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:18:57 --> syntax error, unexpected variable "$dateOnly1"
+in APPPATH\Controllers\Traffics.php on line 28.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:19:06 --> syntax error, unexpected variable "$dateOnly1", expecting "," or ";"
+in APPPATH\Controllers\Traffics.php on line 28.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Traffics')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Traffics')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Traffics', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:19:10 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:19:14 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:20:27 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:21:18 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:21:39 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:22:01 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:22:18 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:22:35 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:23:36 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:25:26 --> Undefined array key "name_count"
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 APPPATH\Controllers\Traffics.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "name_count"', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 30)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:25:58 --> Attempt to read property "name_count" on array
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 APPPATH\Controllers\Traffics.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "name_count" on array', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 30)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:26:18 --> Undefined array key "name_count"
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 APPPATH\Controllers\Traffics.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "name_count"', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 30)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:26:58 --> Undefined array key "name_count"
+in APPPATH\Controllers\Traffics.php on line 28.
+ 1 APPPATH\Controllers\Traffics.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "name_count"', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 28)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:27:09 --> Attempt to read property "name_count" on array
+in APPPATH\Controllers\Traffics.php on line 28.
+ 1 APPPATH\Controllers\Traffics.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "name_count" on array', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 28)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:28:13 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:34:35 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:40:08 --> Undefined variable $count
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 APPPATH\Controllers\Traffics.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $count', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 30)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')
+CRITICAL - 2023-07-30 05:40:58 --> Attempt to read property "name_count" on array
+in APPPATH\Controllers\Traffics.php on line 30.
+ 1 APPPATH\Controllers\Traffics.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "name_count" on array', 'C:\\projects\\excelProject\\codeigniterProject\\app\\Controllers\\Traffics.php', 30)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Traffics->getlog()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Traffics))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\projects\\excelProject\\codeigniterProject\\public\\index.php')

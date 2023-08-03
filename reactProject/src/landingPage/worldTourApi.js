@@ -1,5 +1,5 @@
 const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
-const endpointUrl = `${apiBaseUrl}/api/worldtour/`
+const endpointUrl = `${apiBaseUrl}/api/worldtour`
 export default async function Api(){
     try {
         const response = await fetch(endpointUrl, {

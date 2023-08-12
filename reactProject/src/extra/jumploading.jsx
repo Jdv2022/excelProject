@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import * as d3 from 'd3'
-import'./extra.css'
+import './jumpingloading.css'
 
 function JumpLoading() {
     const svgRef = useRef(null)
@@ -163,7 +163,9 @@ function JumpLoading() {
     }, [locY5])
 
     return (
-        <svg width="500" height="200" className='backgroundColor user-select-none' ref={svgRef}></svg>
+        <div id='jump' >
+            <svg id='jumpRef' ref={svgRef}></svg>
+        </div>
     )
 }
 

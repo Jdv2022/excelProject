@@ -1,0 +1,78 @@
+#tableDashboard{
+    overflow: auto;
+    height: 80vh;
+    font-family: sans-serif;
+    text-align: left;
+}
+table{
+    margin: auto;
+    border-collapse: collapse;
+}
+    td, th{
+        white-space: nowrap;
+    }
+    table tbody td{
+        border: none;
+        border: 0px;
+    }
+.borderCustom, th{
+    line-height: 30px;
+    padding: 0 5px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.greylight{
+    background-color: rgba(234, 237, 238, 0.675);
+}
+.grey{
+    background-color: rgba(206, 207, 208, 0.675);
+}
+.headColor{
+    background-color: white;
+}
+#uploadFile{
+    height: 5vh;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#titleFile{
+    height: 5vh;
+}
+#fileUploadcontainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.downloadFile{
+    border-radius: 5px;
+    background-color: rgba(84, 84, 222, 0.484);
+}
+.downloadFile:hover{
+    background-color: rgba(128, 128, 128, 0.468);
+}
+#handlechange:hover{
+    background-color: rgba(128, 128, 128, 0.468);
+}
+#handlesubmit:hover{
+    background-color: rgba(128, 128, 128, 0.468);
+}
+@media screen and (max-width: 894px) and (min-width: 503px) {
+    #titleFile{
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 502px) {
+    #uploadFile{
+        display: block;
+    }
+    .downloadFile{
+        display: block;
+    }
+    #handlechange{
+        font-size: .5rem;
+        width: 60%;
+    }
+    #handlesubmit{
+        font-size: .5rem;
+        width: 40%;
+    }
+}

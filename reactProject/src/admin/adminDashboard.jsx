@@ -48,11 +48,9 @@ export default function AdminDashboard(){
 
     return (
         <div id="adminDashboard">
-            <div id="section-1">
-                {lineChart}
-                {solo}
-                <Adminpie />
-            </div>
+            {lineChart}
+            {solo}
+            <Adminpie />
         </div>
     )
 

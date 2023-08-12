@@ -40,9 +40,9 @@ $routes->post('/session', 'Messages::sessionG');
 //PROCESSES
 $routes->get('/api/worldtour', 'Process::worldTour');
 $routes->post('/api/uploadfile', 'Process::convertToJson');
-$routes->get('/api/ph', 'Process::phMap');
-$routes->post('/api/philippinesmap', 'Process::philippines');
-$routes->post('/api/phregion', 'Process::phRegion');
+/* $routes->get('/api/ph', 'Process::phMap'); */
+/* $routes->post('/api/philippinesmap', 'Process::philippines');
+$routes->post('/api/phregion', 'Process::phRegion'); */
 
 //ADMINS
 $routes->post('/admin/admin', 'Admins::adminLogin');

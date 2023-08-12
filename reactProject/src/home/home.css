@@ -1,0 +1,22 @@
+#temp{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(168, 150, 150, 0.516);
+}
+#downloadButton{
+    width: 100px;
+    height: 50px;
+}
+#tempSecondContainer{
+    width: 90%;
+}
+@media screen and (max-width: 894px) and (min-width: 503px) {
+    #tempSecondContainer{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 502px) {
+    #tempSecondContainer{
+        width: 100%;
+    }
+}

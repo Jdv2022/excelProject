@@ -1,0 +1,58 @@
+.borderBox{
+    box-sizing: border-box;
+}
+#sideBar{
+    background-color: rgba(0, 0, 0, 0.16);
+    width: 10%;
+    height: 100vh;
+    padding: 10px;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    overflow-y: auto;
+}
+.sidebarChoices{
+    font-size: 1rem;
+    color: whitesmoke;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.sidebarChoices:hover{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #e6e627 100%);
+}
+#selectedHighlight{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #2bec04 100%);
+}
+@media screen and (min-width: 1103px) {
+    .sidebarChoices{
+        font-size: .8rem;
+    }
+}
+@media screen and (max-width: 1102px) and (min-width: 895px) {
+    .sidebarChoices{
+        font-size: .7rem;
+    }
+}
+@media screen and (max-width: 894px) {
+    .sidebarChoices{
+        font-size: .6rem;
+        width: 100px;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 10px 0 0;
+        height: 100%;
+        padding: 10px;
+        white-space: normal;
+    }
+    #sideBar{
+        white-space: nowrap;
+        width: 100%;
+        height: 60px;
+        overflow: auto;
+    }
+}

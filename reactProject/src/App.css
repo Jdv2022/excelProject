@@ -1,6 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.inlineBlock{
+    display: inline-block;
+}
+.block{
+    display: block;
+}
+.vat{
+    vertical-align: top;
+}
+.vam{
+    vertical-align: middle;
+}
 .custom{
     height: 500px;
 }
 .sidebar-custom{
     background-color: rgb(255, 0, 0, .1);
 }
+.positionSticky{
+    position: sticky;
+    top: 0;
+}
+#text-left{
+    text-align: left;
+    width: 50px;
+}
+#titleChart, #y-axis, #x-axis{
+    font-family: sans-serif;
+}
+#titleChart{
+    position: absolute;
+    left: 50%;
+    top: 5vh;
+    margin-top: 50px;
+    font-size: 2rem;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+}
+#y-axis{
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    text-align: center;
+    top: 45vh;
+    left: 12%;
+}
+#x-axis{
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    top: 85vh;
+    left: 50%;
+}
+.darkmode{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+.white{
+    color: white;
+}
+.black{
+    color: black;
+}
+

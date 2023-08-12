@@ -1,13 +1,25 @@
 .mainAdmin{
     display: grid;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    user-select: none;
+    height: 100vh;
+    overflow: auto;
+}
+#mainAdmin{
+    color: white;
+    overflow: auto;
+    height: 80%;
+    width: 60%;
+    margin: 100px auto 0;
+    padding: 10px;
 }
 .textAdmin{
     color:black;
 }
 header{
     width: 100%;
-    height: 50px;
-    background-color: #526D82;
+    height: 5%;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     display: grid;
     justify-content: right;
     align-items: center;
@@ -18,49 +30,44 @@ header{
     color: white;
     margin: 0 25px 0;
 }
-section{
-    display: grid;
-    grid-template-columns: 5fr 1fr;
-}
 #asideAdmin{
-    margin-top: 50px;
-    overflow: auto;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    height: 600px;
+    overflow-y: auto;
     text-align: center;
-    height: 700px;
+    width: 15%;
 }
 .asideperMessageAdmin{
-    width: 200px;
+    width: 80%;
     font-size: .8rem;
-    background-color: #C4DFDF;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     margin: 10px auto;
     border-radius: 20px;
     padding: 10px;
-    border: 2px solid #8294C4;
+    border: 2px solid #4682b4;
     user-select: none;
 }
+.asideperMessageAdmin:hover{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #1c7928 100%);
+}
 .asidetextAdmin{
-    color: black;
+    color: rgb(255, 255, 255);
     text-align: left;
     margin: 0;
 }
-#mainAdmin{
-    overflow: auto;
-    height: 600px;
-    width: 1000px;
-    margin: 100px auto 0;
-    padding: 10px;
-}
 .color{
-    background-color: rgba(65, 198, 65, 0.584);
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #066474c0 100%);
 }
 #deleteADmin{
     padding: 5px 10px;
     background-color: rgba(22, 96, 255, 0.893);
     color: white;
     border-radius: 5px;
-    position: absolute;
+    position: relative;
     top: 120px;
-    left: 1050px;
+    left: 0px;
     text-decoration: none;
 }
 .errorAdminLogin{
@@ -81,14 +88,17 @@ section{
 }
 #adminDashboard{
     width: 100%;
-    height: 100vh;
+    height: 30vh;
+    margin: 50px 0 0;
 }
 #mul{
     width: 100%;
     height: 100%;
+    padding: 10px;
+    border: 1px solid white;
 }
 #multiplecharts_dash{
-    background-color: black;
+    background-color: rgb(0, 0, 0, .5);
     width: 12%;
     height: 100%;
     display: inline-block;
@@ -110,31 +120,23 @@ section{
     vertical-align: top;
     width: 50%;
     height: 63vh;
-    background-color: rgba(36, 194, 36, 0.5);
 }
 #mul3{
     display: inline-block;
     vertical-align: top;
     width: 50%;
     height: 63vh;
-    background-color: rgba(128, 15, 0, 0.5);
-}
-#section-1{
-    background-color: rgb(0, 128, 0, 0.1);
-    width: 100%;
-    height: 30vh;
-    margin: 50px 0 0;
 }
 .pie:hover{
-    fill: black;
+    fill: rgb(255, 255, 255);
 }
 #pie_dash{
     display: inline-block;
     position: absolute;
-    background-color: black;
+    background-color: rgb(0, 0, 0, 0.5);
     height: 50%;
     width: 15%;
-    margin-top: 30px;
+    margin-top: 60px;
     border-radius: 10px;
     color: white;
     padding: 1%;
@@ -153,7 +155,7 @@ section{
         border-radius: 10px;
     }
 .line:hover{
-    stroke: black;
+    stroke: rgb(255, 255, 255);
     stroke-width: 5px;
     position: absolute;
 }
@@ -165,4 +167,121 @@ section{
 #h3_multiplecharts_dash{
     margin-top: 50px;
     font-size: 1.5rem;
+}
+.tick line{
+    color: white;
+}
+@media screen and (max-width: 1410px) and (min-width: 1019px) {
+    /* dashboard */
+    #h3_multiplecharts_dash, #p_multiplecharts_dash{
+        font-size: .8rem;
+    }
+    #h3_multiplecharts_dash{
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 1018px) and (min-width: 426px) {
+    /* messages */
+        .asidetextAdmin{
+            font-size: .6rem;
+        }
+        #asideAdmin{
+            width: 20%;
+        }
+    /* dashboard */
+    #p_multiplecharts_dash{
+        font-size: .8rem;
+    }
+    #h3_multiplecharts_dash{
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+    #mul{
+        height: 50vh;
+    }
+    #mul, #mul2, #mul3{
+        display: block;
+        width: 100%;
+    }
+    #multiplecharts_dash{
+        display: block;
+        height: 40%;
+        width: 100%;
+    }
+    #svg_multiplecharts{
+        height: 55%;
+        width: 100%;
+    }
+    #pie_dash{
+        vertical-align: top;
+        display: inline-block;
+        position: relative;
+        left: 10%;
+        width: 30%;
+        padding: 20px;
+        height: 80%;
+    }
+    .pie_dash_h2{
+        font-size: 1rem;
+    }
+    .pie_dash_h3{
+        font-size: .8rem;
+    }
+}
+@media screen and (max-width: 426px) {
+    /* messages */
+    .asidetextAdmin{
+        font-size: .5rem;
+    }
+    #asideAdmin{
+        width: 30%;
+    }
+    #mainAdmin{
+        margin: 100px 0 0;
+    }
+    /* dashboard */
+    #p_multiplecharts_dash{
+        font-size: .8rem;
+    }
+    #h3_multiplecharts_dash{
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+    #mul{
+        height: 50vh;
+    }
+    #mul, #mul2, #mul3{
+        display: block;
+        width: 100%;
+    }
+    #multiplecharts_dash{
+        display: block;
+        height: 40%;
+        width: 100%;
+    }
+    #svg_multiplecharts{
+        height: 55%;
+        width: 100%;
+    }
+    #pie_dash{
+        vertical-align: top;
+        display: inline-block;
+        position: relative;
+        left: 10%;
+        width: 30%;
+        padding: 20px;
+        height: 80%;
+    }
+    .pie_dash_h2{
+        font-size: 1rem;
+    }
+    .pie_dash_h3{
+        font-size: .8rem;
+    }
+    #homeAdmin, #homeMessages, #logoutAdmin{
+        font-size: .8rem;
+    }
+    #homeMessages{
+        margin-left: 100px;
+    }
 }

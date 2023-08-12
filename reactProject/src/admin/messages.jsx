@@ -112,7 +112,6 @@ export default function Messages(){
     }
     const aside = (
         <aside id="asideAdmin">
-            <h3>Messages List</h3>
             {data?data.map((item, index)=>(
                 <div key={index} className={index == color?"asideperMessageAdmin color":"asideperMessageAdmin"} onClick={() => {selectMessage(index)}}>
                     <p className="asidetextAdmin">Title: {item.title}</p>

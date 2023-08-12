@@ -11,9 +11,33 @@ export default function Adminpie(){
     const totalRef =  useRef('Loading')
     const totalpRef =  useRef('Loading')
     const [t, setT] = useState(100)
+    const [json, setJson] = useState(null)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight)
+    const [R, setR] = useState(150)
+    const [X, setX] = useState(.3)
+    function handleResize(){
+        if(window.innerWidth <= 1018){
+            setR(150)
+            setX(.5)
+        }
+        else{
+            setR(150)
+            setX(.3)
+        }
+        if(window.innerWidth <= 428){
+            setR(50)
+        }
+        setScreenWidth(window.innerWidth)
+        setScreenHeight(window.innerHeight)
+    }
     useEffect(()=>{
-        api()
-    },[t])
+        window.addEventListener('resize', handleResize);
+        (json)?processData(json):api()
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    },[t, screenWidth])
     async function api(){
         try{
             const response = await fetch(endpointUrl, {
@@ -22,6 +46,7 @@ export default function Adminpie(){
             if(response.ok){
                 const apiData = await response.text()
                 const jsonData = apiData ? await JSON.parse(apiData) : {}
+                setJson(jsonData.response)
                 processData(jsonData.response)
             }
             else {
@@ -88,16 +113,16 @@ export default function Adminpie(){
     }
     function chart(params){  
         const formatedData = d3.pie().value((d) => d.value)(params)
-        const width = 500;
-        const height = 450;
+        const width = screenWidth*X
+        const height = screenHeight*.6
         const arc = d3.arc()
             .innerRadius(0)
-            .outerRadius(200)
-            const svg = d3.select(svgRef.current).attr('width', width).attr('height', height)
+            .outerRadius(R)
+        const svg = d3.select(svgRef.current).attr('width', width).attr('height', height)
         svg
             .selectAll('*').remove()
         const g = svg.append("g")
-            .attr("transform", `translate(${width / 2},${height / 2})`);
+            .attr("transform", `translate(${width / 2},${height / 1.8})`);
         g.selectAll("path")
             .data(formatedData)
             .join("path")
@@ -111,7 +136,14 @@ export default function Adminpie(){
             .on("mouseout", function(event, d, i) {
                 unhov(d)
             });
-
+        const text = svg.append('g')
+        text.append('text')
+            .attr('x', '50%')
+            .attr('y', 50)
+            .text('Request Per Charts')
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '1.5rem')
+            .attr('fill', 'white')
     }
     return (
         <div id='mul3'>

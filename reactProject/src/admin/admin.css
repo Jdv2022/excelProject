@@ -1,10 +1,4 @@
-.mainAdmin{
-    display: grid;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    user-select: none;
-    height: 100vh;
-    overflow: auto;
-}
+
 #mainAdmin{
     color: white;
     overflow: auto;
@@ -29,33 +23,6 @@ header{
     font-size: 1.5rem;
     color: white;
     margin: 0 25px 0;
-}
-#asideAdmin{
-    position: absolute;
-    top: 50px;
-    right: 0px;
-    height: 600px;
-    overflow-y: auto;
-    text-align: center;
-    width: 15%;
-}
-.asideperMessageAdmin{
-    width: 80%;
-    font-size: .8rem;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    margin: 10px auto;
-    border-radius: 20px;
-    padding: 10px;
-    border: 2px solid #4682b4;
-    user-select: none;
-}
-.asideperMessageAdmin:hover{
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #1c7928 100%);
-}
-.asidetextAdmin{
-    color: rgb(255, 255, 255);
-    text-align: left;
-    margin: 0;
 }
 .color{
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #066474c0 100%);
@@ -86,11 +53,7 @@ header{
 #homeMessages{
     margin-left: 150px;
 }
-#adminDashboard{
-    width: 100%;
-    height: 30vh;
-    margin: 50px 0 0;
-}
+
 #mul{
     width: 100%;
     height: 100%;

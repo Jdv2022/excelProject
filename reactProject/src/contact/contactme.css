@@ -1,0 +1,121 @@
+#contactme{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    box-sizing: border-box; 
+    font-family: sans-serif;
+    user-select: none;
+}
+#contactme > div{
+    width: 25%;
+    height: 30vh;
+    border-radius:  12px;
+    padding: 10px;
+    border: 2px solid silver;
+    line-height: 30px;
+}
+#contactme > div:hover{
+    box-shadow: 0px 4px 6px rgba(255, 255, 255);
+}
+#contactme > div> h2{
+    color: white;
+    border-radius: 50px 0px 50px 0px;
+    padding-left: 20px;
+    border: 2px solid silver;
+    text-align: center;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+#adminul{
+    padding-left: 20px;
+}
+.contactmetext{
+    border: 2px solid silver;
+    color: white;
+    background-color: rgba(40, 33, 60, 0.764);
+    width: 100%;
+    height: 80%;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+#mesC{
+    background-color: rgba(0, 0, 255, 0.558);
+}
+#bugC{
+    background-color:  rgba(255, 0, 0, 0.558);
+}
+#adC{
+    background-color:  rgba(64, 255, 0, 0.558);
+}
+.contactred{
+    background-color:  rgb(115, 14, 14);
+}
+.contactblue{
+    background-color:  rgb(19, 14, 115);
+}
+.contactgreen{
+    background-color:  rgb(34, 115, 14);
+}
+#contactme > #mesform{
+    color: white;
+    height: 50vh;
+    width: 50%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 30%;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+#mesname, #mestitle, #mestext{
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+#mesname, #mestitle{
+    width: 40%;
+    height: 30px;
+    margin: 5px 10px 10px;
+    border-radius: 10px;
+    padding: 0 5px;
+}
+#mestext{
+    resize: none;
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.submit{
+    color: white;
+    width: 10%;
+    height: 30px;
+    border-radius: 2px;
+    background-color: rgba(211, 191, 191, 0.416);
+}
+.submit:hover{
+    background-color: white;
+    color: black;
+}
+.close{
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.333);
+    display: block;
+    padding: 0px 10px;
+    margin: 0 0 0 auto;
+}
+.close:hover{
+    background-color: white;
+    color: black;
+}
+.succ{
+    box-shadow: 20px 10px 20px rgb(47, 255, 0) !important;
+}
+.fail{
+    box-shadow: 20px 10px 20px rgb(255, 0, 0) !important;
+}

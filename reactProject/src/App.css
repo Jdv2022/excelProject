@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     border: 0;
+    font-family: sans-serif;
 }
 .inlineBlock{
     display: inline-block;
@@ -64,4 +65,30 @@
 .black{
     color: black;
 }
-
+.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.bluetheme{
+    background-color:  rgb(29, 27, 55);
+}
+.redtheme{
+    background-color:  rgb(55, 27, 27);
+}
+.greentheme{
+    background-color:  rgb(27, 55, 27);
+}
+  
+/* Create custom scroll behavior */
+.custom-scroll-container {
+    overflow: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    background-color: #00000000;
+    padding: 10px;
+}
+.custom-scroll-container::-webkit-scrollbar {
+    width: 0; 
+    height: 0;
+}
+  

@@ -4,6 +4,7 @@ import linechart from "../../sampleData/linechart"
 import DownloadBars from "../../common/downloadbars"
 import DashBoard from "../../common/dashboard"
 import LineTool from "../../tools/linecharttool"
+import segregateData from "./segregatedata"
 
 export const tools = createContext()
 export const Move = createContext()
@@ -63,8 +64,9 @@ export default function LineChart(){
     function renderChart(params1, toolset){  
         let data
         let fill
-        const val1 = params1[0].value
-        const val2 = params1[params1.length - 1].value
+        const segData = segregateData(params1)
+        const val1 = segData[0].value
+        const val2 = segData[segData.length - 1].value
         if(toolset.mode){
             setDark(true)
             setColor('white')
@@ -75,15 +77,15 @@ export default function LineChart(){
         }
         if(toolset.fill && (val1 != 0 || val2 != 0)){
             fill = toolset.lcolor
-            const date = params1[0].date
+            const date = segData[0].date
             tempData.unshift({date: date, value: 0})
-            const last_date = params1[params1.length - 1].date
+            const last_date = segData[segData.length - 1].date
             tempData.push({date: last_date, value: 0})
             data = tempData
         }
         else{
             fill = 'none'
-            data = params1
+            data = segData
         }
         const maxHeight = getMax(data)
         const svg = d3.select(svgRef.current)

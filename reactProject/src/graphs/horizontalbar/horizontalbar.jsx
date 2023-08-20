@@ -23,8 +23,17 @@ export default function HorizontalBar(){
     const [moveIt, setMoveIt] = useState(150)
     /* COPY */
     useEffect(()=>{
+        window.addEventListener('resize', handleResize)
         renderChart(data, tool)
+        return () =>{
+            window.removeEventListener('resize', handleResize)
+        }
     },[data, render, tool, width, height, dark, moveIt])
+
+    function handleResize(){
+        setWidth(window.innerWidth)
+        setHeight(window.innerHeight)
+    }
 
     function renderChart(main, tool){
         if(!tool)return
@@ -55,7 +64,7 @@ export default function HorizontalBar(){
         //const bar = svg.append('rect')
         svg.selectAll('*').remove()
         const x = d3.scaleLinear()
-            .domain([0, max + max*.05])
+            .domain([0, max + max*.09])
             .range([0, width - 80])
         const y = d3.scaleBand()
             .domain(data.map(function(d) { return d[x_key] } ))
@@ -76,7 +85,7 @@ export default function HorizontalBar(){
             .attr("width", function(d) { return x(parseInt(d[val]))})
             .attr("height", y.bandwidth())
             .attr("fill", function(d) {return d.color})
-            .attr('opacity', .7)
+            .attr('opacity', .9)
         const title = svg.append('text')
             .attr("transform", "translate(" + width * 0.6 + "," + (height * 0.1 + 20) + ")")
             .text(tool.titleT)
@@ -96,7 +105,6 @@ export default function HorizontalBar(){
         svg.selectAll('text')
             .attr('color', color)
     }
-    /* this charts operations */
     //max value
     function getmax(params, key){
         let temp = 0

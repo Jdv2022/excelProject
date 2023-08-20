@@ -6,7 +6,7 @@ export default function HorizontalBarTool(){
 
     const handlevalue = useContext(tools)
     const [asc, setAsc] = useState(false)
-    const [titleT, setTitle] = useState('XYZ Sales')
+    const [titleT, setTitle] = useState('GDP')
     const [xlabel, setXlabel] = useState('Dates')
     const [mode, setMode] = useState(false)
 
@@ -41,7 +41,7 @@ export default function HorizontalBarTool(){
         <div id='toolsContainer' className='inlineBlock vat'>
             <div id="horizontal_tool">
                 <p>Title</p>
-                <input type="text" placeholder="Title" defaultValue={'XYZ Sales'} onChange={handleTitle} />
+                <input type="text" placeholder="Title" defaultValue={'GDP'} onChange={handleTitle} />
                 <p>X-Label</p>
                 <input type="text" placeholder="X-label" defaultValue={'Dates'} onChange={handleXlabel} />
                 <p>Order</p>

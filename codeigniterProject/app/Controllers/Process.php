@@ -10,7 +10,7 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 class Process extends Controller{   
 
     //this function is for the landing page data to be rendered
-    public function worldTour(){
+    /* public function worldTour(){
         
         $curl1 = curl_init();
         curl_setopt($curl1, CURLOPT_URL, "https://raw.githubusercontent.com/Jdv2022/d3js-worldTour/main/population%20with%20world.json");
@@ -50,7 +50,7 @@ class Process extends Controller{
             'data2' => $jsonData3,
             'data3' => $jsonData4,
         ]);
-    }
+    } */
 
     public function convertToJson(){
         $file = $this->request->getFiles();

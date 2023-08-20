@@ -5,87 +5,38 @@ import './verticalTool.css'
 export default function PieChartTool(){
 
     const handlevalue = useContext(tools)
-    const [lwidth, setLiWidth] = useState(1.5)
-    const [lcolor, setLColor] = useState('SteelBlue')
-    const [titleT, setTitle] = useState('XYZ Sales')
-    const [ticksx, setTicksX] = useState(4)
-    const [ticksy, setTicksY] = useState(10)
-    const [xlabel, setXlabel] = useState('Dates')
-    const [ylabel, setYlabel] = useState('Amount')
-    const [fill, setFill] = useState(false)
-    const [mode, setMode] = useState(false)
+    const [lcolor, setLColor] = useState('white')
+    const [title, setTitle] = useState('XYZ Sales')
+    const [label, setLabel] = useState(false)
 
     const res = {
-        lwidth: lwidth,
-        lcolor: lcolor,
-        titleT: titleT,
-        ticksx: ticksx,
-        ticksy: ticksy,
-        xlabel: xlabel,
-        ylabel: ylabel,
-        fill: fill,
-        mode: mode
+        title: title,
+        label: label,
+        color: lcolor
     }
 
     useEffect(()=>{
         handlevalue(res)
-    },[lwidth, lcolor, ticksx, ticksy, xlabel, ylabel, fill, titleT, mode])
+    },[title, label, lcolor])
 
-    function handleLWidth(e){
-        setLiWidth(e.target.value)
-    }
-
-    function lcoloro(e){
-        setLColor(e.target.value)
-    }
-
-    function handleX(e){
-        setTicksX(e.target.value)
-    }
-
-    function handleY(e){
-        setTicksY(e.target.value)
-    }
-
-    function handleTitle(e){
+    function handlTitle(e){
         setTitle(e.target.value)
     }
-
-    function handleXlabel(e){
-        setXlabel(e.target.value)
+    function handleRadio(e){
+        setLabel(e.target.checked)
     }
-
-    function handleYlabel(e){
-        setYlabel(e.target.value)
+    function handlecolor(e){
+        setLColor(e.target.value)
     }
-
-    function handlefill(e){
-        setFill(e.target.checked)
-    }
-
-    function handlemode(e){
-        setMode(e.target.checked)
-    }
-
     const sideTools = (
         <div id='toolsContainer' className='inlineBlock vat'>
-            <div id="philippinesSidetoolsSub_I">
+            <div id="horizontal_tool">
                 <p>Line-Width</p>
-                <input type="number" placeholder='Line-Width' defaultValue={1.5} onChange={handleLWidth} />
-                <input type="text" placeholder="Color" defaultValue={'SteelBlue'} onChange={lcoloro} />
-                <p>Ticks X & Y</p>
-                <input type="number" placeholder='Ticks X' defaultValue={4} onChange={handleX}/>
-                <input type="number" placeholder='Ticks Y' defaultValue={10} onChange={handleY}/>
-                <p>Title</p>
-                <input type="text" placeholder="Title" defaultValue={'XYZ Sales'} onChange={handleTitle} />
-                <p>X-Label</p>
-                <input type="text" placeholder="X-label" defaultValue={'Dates'} onChange={handleXlabel} />
-                <p>Y-Label</p>
-                <input type="text" placeholder="Y-label" defaultValue={'Amount'} onChange={handleYlabel} />
-                <p>Fill</p>
-                <input type="checkbox" onChange={handlefill} />
-                <p>Dark Mode</p>
-                <input type="checkbox" onChange={handlemode} />
+                <input type="text" placeholder='Line-Width' defaultValue={'XYZ Sales'} onChange={handlTitle} />
+                <p>Percent</p>
+                <input className="inlineBlock vat width_50 rad" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
+                <label className="inlineBlock vat width_50 mt_5 w_70pr p_10px" htmlFor="flexRadioDefault1">Pie Label</label>
+                <input type="text" placeholder='Line-Width' defaultValue={'white'} onChange={handlecolor} />
             </div>
         </div>
     )

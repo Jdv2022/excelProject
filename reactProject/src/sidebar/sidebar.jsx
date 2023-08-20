@@ -7,11 +7,17 @@ const endpointUrl = `${apiBaseUrl}/logtraffic`
 export default function SideBar(){
 
     const bar = [
+        'Welcome',
+        'Instructions',
+        'I Was Here!',
         'Choropleth Map (PH-Provinces)', 
         'Choropleth Map (PH-Region)', 
         'Vertical Bar Graph', 'Line Chart', 
         'Horizontal Bar Chart',
-        'Pie Chart'
+        'Improved Horizontal Bar Chart',
+        'Pie Chart',
+        'Donut Chart',
+        'Multiple Line Chart'
     ]
     const url = {
         'Choropleth Map (PH-Provinces)':'/home/choroplethmap(ph-provinces)',
@@ -20,6 +26,13 @@ export default function SideBar(){
         'Line Chart':'/home/linechart',
         'Horizontal Bar Chart':'/home/horizontalbarchart',
         'Pie Chart':'/home/piechart',
+        'Donut Chart':'/home/donutchart',
+        'Multiple Line Chart':'/home/multiplelinechart',
+        'Improved Horizontal Bar Chart':'/home/improvedhorizontalbarchart',
+        'I Was Here!':'/home/iwashere!',
+        'Instructions':'/home/instructions',
+        'Welcome':'/home/welcome',
+        'Contact me':'/home/contactme'
     }
 
     async function handleClick(params){
@@ -45,6 +58,12 @@ export default function SideBar(){
                     </Link>
                 ))
             }
+            <div id='contactme'>
+                <Link to={`/home/contactme`} //.replace(/\s/g, '') remove spaces
+                    id={('/home/contactme' === location.pathname) ? 'selectedHighlight' : undefined}  
+                    className='sidebarChoices borderBox' onClick={() => handleClick('Contact me')}>Contact me
+                </Link>
+            </div>
         </div>
     )  
 }

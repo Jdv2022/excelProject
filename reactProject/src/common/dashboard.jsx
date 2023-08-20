@@ -3,9 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { useContext } from 'react'
 import { table as provinceTable } from '../graphs/ph_province/philippinesMap'
 import { table as regionTable } from '../graphs/ph_region/phRegion'
-import { table as  berticaltable } from '../graphs/bargraph_vertical/renderverticalBarGraph'
+import { table as berticaltable } from '../graphs/bargraph_vertical/renderverticalBarGraph'
 import { table as lineTable } from '../graphs/linechart/linechart'
 import { table as horizontalTable } from '../graphs/horizontalbar/horizontalbar'
+import { table as pieTable } from '../graphs/piechart/piechart'
+import { table as donutTable } from '../graphs/piechart/donut'
+import { table as multiplelineTable } from '../graphs/multipleline/multipleline'
+import { table as improvedhorizontalTable } from '../graphs/horizontalbar/improvedhorizontal'
 import './dashboard.css'
 import convertToJson from './convertojson'
 
@@ -18,6 +22,10 @@ export default function DashBoard(prop){
         '/home/verticalbargraph': useContext(berticaltable),
         '/home/linechart': useContext(lineTable),
         '/home/horizontalbarchart': useContext(horizontalTable),
+        '/home/piechart': useContext(pieTable),
+        '/home/donutchart': useContext(donutTable),
+        '/home/multiplelinechart': useContext(multiplelineTable),
+        '/home/improvedhorizontalbarchart': useContext(improvedhorizontalTable),
     }
 
     const location = useLocation()

@@ -17,14 +17,29 @@ export default function PieChart(){
     const [tool, setTool] = useState(null)
     const [width, setWidth] = useState(window.innerWidth * .7)
     const [height, setHeight] = useState(window.innerHeight * .77)
-    const [dark, setDark] = useState(false)
-    const [color, setColor] = useState('black')
-    const [moveIt, setMoveIt] = useState(150)
+    const [moveIt, setMoveIt] = useState(width * .8)
+    const [display, setDisplay] = useState('none')
     /* COPY */
     useEffect(()=>{
-        renderPie(data)
-    },[])
-    function renderPie(params){
+        window.addEventListener('resize', handleResize)
+        if(!tool) return
+        renderPie(data, tool)
+        return () =>{
+            window.removeEventListener('resize', handleResize)
+        }
+    },[data, width, height, moveIt, tool, render, display])
+    function handleResize(){
+        setWidth(window.innerWidth)
+        setHeight(window.innerHeight)
+    }
+    function renderPie(params, tool){
+        if(tool.label){
+            setDisplay(null)
+        }
+        else{
+            setDisplay('none')
+        }
+        const sum = total(params)
         const name = Object.keys(params[0])[0]
         const key = Object.keys(params[0])[1]
         const color = Object.keys(params[0])[2]
@@ -37,19 +52,69 @@ export default function PieChart(){
             .innerRadius(0)
             .outerRadius(width * .26)
         const pie = svg.append('g')
-            .attr("transform", `translate(${width * .8},${height / 1.8})`)
+            .attr("transform", `translate(${moveIt},${height / 1.8})`)
         pie.selectAll("path")
             .data(formatedData)
             .enter()
             .append("path")
             .attr('d', arc)
             .attr("fill", (d) => d.data.color)
-        const text = svg.append('text')
-        text.selectAll("text")
+        svg.append('g') 
+            .selectAll("text") 
             .data(formatedData)
             .enter()
-            .text(function(d){ d.data[name] })
+            .append('text')
+            .attr("transform", `translate(${width * .1},100)`)
+            .attr('y', function(d, i) {
+                return i * ((width + height) * 0.03) + 100
+            })
+            .attr('x', 100)
+            .attr('font-size', (width + height) * 0.015)
+            .attr("font-weight", "bold")
+            .attr('font-family', 'sans-serif')
+            .text(function(d) {
+                return d.data[name]
+            })
+        svg.append('g')
+            .selectAll('rect')
+            .data(formatedData)
+            .enter()
+            .append('rect')
+            .attr("transform", `translate(${width * .15},83)`)
+            .attr('y', function(d, i) {
+                return i * ((width + height) * 0.03) + 100
+            })
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr('fill', function(d) { return d.data[color] })
+        pie.append('g')
+            .selectAll()
+            .data(formatedData)
+            .join('text')
+            .text((d) => ((d.data[key]/sum)*100).toFixed(2) + '%')
+            .attr('transform', (d) => `translate(${arc.centroid(d)})`)
+            .style('text-anchor','middle')
+            .style('font-size','1.5rem')
+            .style('font-weight','bold')
+            .attr('fill', tool.color)
+            .attr('font-family', 'sans-serif')
+            .attr('display', display);
+        svg.append('text')
+            .attr("transform", `translate(${width * .15}, 100)`)
+            .text(tool.title)
+            .attr('text-anchor', 'start')
+            .style('font-size','2rem')
+            .style('font-weight','bold')
+            .attr('font-family', 'sans-serif')
     }   
+    function total(params){
+        const key = Object.keys(params[0])[1]
+        let total = 0
+        for(let i=0; i<params.length; i++){
+            total = total + parseInt(params[i][key])
+        }
+        return total
+    }
     /* -----------------------copy---------------------- */
     const lowerBars = (
         <Move.Provider value={handleMoveIt}>
@@ -62,7 +127,7 @@ export default function PieChart(){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className={(dark)?'landscape darkmode': 'landscape'}>
+        <div id='screenShoot' className='landscape'>
             <svg id='svgV' ref={svgRef}/>
         </div>
     )
@@ -80,7 +145,6 @@ export default function PieChart(){
     }
     function handleDataFromChild(params){
         setData(params)
-        setTempData(params)
     }
     function handleValue(params){
         setTool(params)

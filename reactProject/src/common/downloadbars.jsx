@@ -3,6 +3,11 @@ import { Move as regionMove } from '../graphs/ph_region/phRegion'
 import { Move as verticalMove } from '../graphs/bargraph_vertical/renderverticalBarGraph'
 import { Move as lineMove } from '../graphs/linechart/linechart'
 import { Move as horizontalMove } from '../graphs/horizontalbar/horizontalbar'
+import { Move as pieMove } from '../graphs/piechart/piechart'
+import { Move as donutMove } from '../graphs/piechart/donut'
+import { Move as multiplelineMove } from '../graphs/multipleline/multipleline'
+import { Move as improvedhorizontalMove } from '../graphs/horizontalbar/improvedhorizontal'
+import { Move as iwashereMove } from '../graphs/iwashere/iwahere'
 import { useState, useContext, useEffect } from "react"
 import { useLocation } from 'react-router-dom'
 import html2canvas from 'html2canvas'
@@ -16,6 +21,11 @@ export default function DownloadBars(){
             '/home/verticalbargraph': useContext(verticalMove),
             '/home/linechart': useContext(lineMove),
             '/home/horizontalbarchart': useContext(horizontalMove),
+            '/home/piechart': useContext(pieMove),
+            '/home/donutchart': useContext(donutMove),
+            '/home/multiplelinechart': useContext(multiplelineMove),
+            '/home/improvedhorizontalbarchart': useContext(improvedhorizontalMove),
+            '/home/iwashere!': useContext(iwashereMove),
         }
         
         const location = useLocation()
@@ -69,7 +79,7 @@ export default function DownloadBars(){
             <div id="downloadBars" className='inlineBlock vat'>
                 {downloadImg}
                 {move}
-                {(render)?chart:pagination}
+                {(render)?chart:(location.pathname == '/home/iwashere!')?null:pagination}
             </div>
         )
 

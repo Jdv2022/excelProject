@@ -1,0 +1,66 @@
+.mainAdmin{
+    display: grid;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    user-select: none;
+    height: 100vh;
+    overflow: auto;
+}
+.line-graph:hover{
+    stroke: white;
+    stroke-width: 3px;
+}
+#adminDashboard{
+    width: 100%;
+    height: 690px;
+    margin: 50px 0 0; 
+    overflow: auto;
+}
+#soloContainer{
+    display: flex;
+}
+.asidetextAdmin{
+    color: rgb(255, 255, 255);
+    text-align: left;
+    margin: 0;
+}
+.asideperMessageAdmin{
+    width: 80%;
+    font-size: .8rem;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    margin: 2px auto;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #4682b4;
+    user-select: none;
+}
+.asideperMessageAdmin:hover{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #1c7928 100%);
+}
+.asideperMessageAdmin:active{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #79791c 100%);
+}
+#asideAdmin{
+    height: 300px;
+    overflow-y: auto;
+    text-align: center;
+    margin: 0 0 0 auto;
+}
+#messagesTextAdmin > h3{
+    color: white;
+    margin: auto;
+}
+#messagesTextAdmin{
+    border: 1px solid white;
+    width: 200px;
+    height: 100%;
+    margin: 0 0 0 auto;
+}
+#messagesTextAdminContainer{
+    display: flex;
+    width: 1900px;
+    height: 350px;
+    border: 1px solid white;
+}
+#messagesTextAdminContainer > :first-child{
+    width: 700px;
+} 

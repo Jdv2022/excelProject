@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import './jumpingloading.css'
 
-function JumpLoading() {
+export default function JumpLoading() {
     const svgRef = useRef(null)
     const [locY, setLocY] = useState({y1:150,y2:50})
     const [locY2, setLocY2] = useState({y1:140,y2:50})
@@ -169,5 +169,4 @@ function JumpLoading() {
     )
 }
 
-export default JumpLoading
 

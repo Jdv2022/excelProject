@@ -1,7 +1,6 @@
 import React from 'react'
 import './app.css'
 import { Route, Routes } from 'react-router-dom'
-import WorldTourD3 from './landingPage/worldTour'
 import Home from './home/home' 
 import Admin from './admin/admin'
 
@@ -12,8 +11,7 @@ function App() {
             <MyContext.Provider value='Default valuea'>
                 <div>
                     <Routes>
-                        <Route path='*' element={<WorldTourD3 />} /> 
-                        <Route path='/Home/*' element={<Home />} /> 
+                        <Route path='/*' element={<Home />} /> 
                         <Route path='/admin/*' element={<Admin />} /> 
                     </Routes>
                 </div>

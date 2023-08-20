@@ -1,38 +1,26 @@
 import MultipleCharts from "./multiplecharts"
-import { useEffect, useState, createContext } from "react"
+import { useEffect, useState, createContext, useRef } from "react"
+import { useNavigate , Link, useLocation } from 'react-router-dom'
 import SoloPerDayChart from "./soloperdaychart"
-import Adminpie from "./adminpie"
-const apiBaseUrl = import.meta.env.VITE_CI_BASE_URL
-const endpointUrl = `${apiBaseUrl}/get/logtraffic`
+import Notification from "./notifications"
+import socket from "./socket"
 
 export const data = createContext(null)
 
 export default function AdminDashboard(){
 
+    const navigate = useNavigate() 
+    const socketDataRef = useRef(null)
     const [json, setJson] = useState(null)
 
     useEffect(()=>{
-        async function getlogs(){
-            try{
-                const response = await fetch(endpointUrl, {
-                    method : 'GET'
-                })
-                if(response.ok){
-                    const apiData = await response.text()
-                    const jsonData = apiData ? await JSON.parse(apiData) : {}
-                    setJson(jsonData.response)
-                }
-                else {
-                    throw new Error('Request failed')
-                }
-            }
-            catch(err){
-                console.error(err)
-            }
-        }   
-        if(json) return
-        getlogs()
-    },[json])
+        const mySocket = socket(data =>  {
+            setJson(data)
+        })
+        return () => {
+            mySocket.disconnect()
+        } 
+    },[])
 
     const lineChart = (
         <data.Provider value={json}>
@@ -46,11 +34,19 @@ export default function AdminDashboard(){
         </data.Provider>
     )
 
+    const notif = (
+        <data.Provider value={json}>
+            <Notification />
+        </data.Provider>
+    )
+
     return (
         <div id="adminDashboard">
             {lineChart}
-            {solo}
-            <Adminpie />
+            <div id="soloContainer">
+                {solo}
+                {notif}
+            </div>
         </div>
     )
 

@@ -37,6 +37,9 @@ $routes->post('/messages', 'Messages::getAll');
 $routes->post('/delete', 'Messages::deleteAdmin');
 $routes->post('/session', 'Messages::sessionG');
 
+//MESSAGES
+$routes->post('/create-bug', 'Bugs::create');
+
 //PROCESSES
 $routes->get('/api/worldtour', 'Process::worldTour');
 $routes->post('/api/uploadfile', 'Process::convertToJson');
@@ -45,7 +48,7 @@ $routes->post('/api/uploadfile', 'Process::convertToJson');
 $routes->post('/api/phregion', 'Process::phRegion'); */
 
 //ADMINS
-$routes->post('/admin/admin', 'Admins::adminLogin');
+$routes->post('/admin/login', 'Admins::adminLogin');
 $routes->post('/admin/logout', 'Admins::adminLogout');
 
 //TRAFFIC

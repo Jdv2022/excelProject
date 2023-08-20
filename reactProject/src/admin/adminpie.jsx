@@ -135,7 +135,7 @@ export default function Adminpie(){
             })
             .on("mouseout", function(event, d, i) {
                 unhov(d)
-            });
+            })
         const text = svg.append('g')
         text.append('text')
             .attr('x', '50%')

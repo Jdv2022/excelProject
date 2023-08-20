@@ -17,7 +17,7 @@
     height: 90vh;
 }
 .landscape{
-    width: 100%;
+    width: 99%;
     margin: 0 auto;
     background-color: white;
     height: 90vh;
@@ -30,6 +30,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
     overflow: auto;
+    color: white
 }
     #toolsContainer h3{
         color: white

@@ -5,28 +5,34 @@
     background-color: rgba(0, 0, 0, 0.16);
     width: 10%;
     height: 100vh;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 .sidebarChoices{
     font-size: 1rem;
     color: whitesmoke;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
     display: block;
     width: 100%;
     margin: 0 0 10px;
-    padding: 10px;
+    height: 100px;
     text-align: center;
     text-decoration: none;
     overflow: hidden;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.sidebarChoices:hover{
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #e6e627 100%);
+.sidebarChoices:not(#selectedHighlight):hover{
+    background-color: #f4f2de4b;
 }
 #selectedHighlight{
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #2bec04 100%);
+    background-color: #F4F2DE;
+    color: black;
 }
 @media screen and (min-width: 1103px) {
     .sidebarChoices{
@@ -35,6 +41,7 @@
 }
 @media screen and (max-width: 1102px) and (min-width: 895px) {
     .sidebarChoices{
+        display: block;
         font-size: .7rem;
     }
 }
@@ -50,6 +57,7 @@
         white-space: normal;
     }
     #sideBar{
+        display: block;
         white-space: nowrap;
         width: 100%;
         height: 60px;

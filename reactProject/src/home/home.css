@@ -1,7 +1,9 @@
 #temp{
     width: 100%;
     height: 100vh;
-    background-color: rgba(168, 150, 150, 0.516);
+    /* background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); */
+    overflow: auto;
+    display: flex;
 }
 #downloadButton{
     width: 100px;
@@ -10,13 +12,18 @@
 #tempSecondContainer{
     width: 90%;
 }
-@media screen and (max-width: 894px) and (min-width: 503px) {
+/* @media screen and (max-width: 1101px) and (min-width: 503px) {
+    #tempSecondContainer{
+        width: 100%;
+    }
+} */
+@media screen and (max-width: 502px) {
     #tempSecondContainer{
         width: 100%;
     }
 }
-@media screen and (max-width: 502px) {
-    #tempSecondContainer{
-        width: 100%;
+@media screen and (max-width: 1102px){
+    #temp{
+        display: inline-block;
     }
 }

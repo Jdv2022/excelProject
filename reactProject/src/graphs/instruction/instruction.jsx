@@ -1,9 +1,9 @@
-import './instructions.css'
+import './instruction.css'
 
 export default function Instruction(){
 
     return (
-        <div id='instructions'>
+        <div id='instruction'>
             <h1>Instructions</h1>
             <h2>Upload User Data</h2>
             <ul>

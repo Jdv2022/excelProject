@@ -1,14 +1,20 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { MyWidget } from './welcome'
 import * as d3 from 'd3'
-/* Horizontal bar chart in the landiong page widget */
+
+/* 
+    Docu: This is a horizontal bar loaded in the welcome page. This component's parent is ./welcome.jsx
+*/
 export default function Widget(){
-    const myValue = useContext(MyWidget)
+
+    const parentRef = useRef(null)
+    const myValue = useContext(MyWidget) //from ./welcome.js
     const svgRef = useRef(null)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
     useEffect(()=>{
-        window.addEventListener("resize", logScreenSize)
-        if (!myValue) return;
+        window.addEventListener("resize", logScreenSize) //rerender when screen resizes
+        if (!myValue) return
         let populationArray = [
             {'key':'2020','value':myValue['2020']},
             {'key':'2019','value':myValue['2019']},
@@ -18,6 +24,9 @@ export default function Widget(){
             {'key':'2015','value':myValue['2015']},
         ]
         chart(populationArray)
+        return () => {
+            window.removeEventListener('resize', logScreenSize) //remove resize eventlistener when unmounted do not remove
+        }
     },[myValue, screenWidth])
 
     function logScreenSize() {
@@ -25,35 +34,36 @@ export default function Widget(){
     }
 
     function chart(populationArray){  
+        if(screenWidth <= 925) return //for smallest screen width, do not render below 768px
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth
+        const height = parentRef.current.clientHeight
         const name = myValue['Country Name'] 
-        const marginTop = 30
+        const marginTop = 50
         const marginRight = 0
         const marginBottom = 10
         const marginLeft = 35
-        const width = screenWidth * .1
-        const height = screenWidth * .1
         // Create the scales.
         const x = d3.scaleLinear()
             .domain([0, d3.max(populationArray, (d) => d.value)])
-            .range([marginLeft, width - marginRight]);
+            .range([marginLeft, width - marginRight])
         const y = d3.scaleBand()
             .domain(populationArray.map((d) => d.key))
-            .rangeRound([marginTop, height - marginBottom])
-            .padding(0.1);
+            .rangeRound([marginTop, height * .5 - marginBottom])
+            .padding(0.1)
         // Create a value format.
-        const format = x.tickFormat(10, ".2f");
+        const format = x.tickFormat(10, ".2f")
         // Create the SVG container.
         const svg = d3.select(svgRef.current)
         svg.selectAll('*').remove()
         svg
             .attr("width", width)
             .attr("height", height)
-            .attr("viewBox", [0, -10, width, height])
-            .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+            .attr("transform", `translate(${0},${0})`)
         svg
             .append('text')
             .attr('x', 10)
-            .attr('y', 10)
+            .attr('y', 20)
             .style('fill','#E1ECC8')
             .style('font','Sans Serif')
             .style('font-weight','bold')
@@ -67,7 +77,8 @@ export default function Widget(){
             .style('font','Sans Serif')
             .style('font-weight','bold')
             .style('font-size','.85em')
-            .text('Population per km²');
+            .text('Population per km²')
+            .attr("transform", `translate(${0},20)`)
         // Append a rect for each letter.
         svg.append("g")
             .selectAll("rect")
@@ -102,5 +113,10 @@ export default function Widget(){
             .style("fill", "#E1ECC8")
             .style('font-size','.7em')    
     }
-    return <svg id='widget1' ref={svgRef}></svg>
+    
+    return (
+        <div ref={parentRef} className='parent-container'>
+            <svg ref={svgRef}></svg>
+        </div>
+    )
 }

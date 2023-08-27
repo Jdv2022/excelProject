@@ -11,8 +11,12 @@ import { Move as iwashereMove } from '../graphs/iwashere/iwahere'
 import { useState, useContext, useEffect } from "react"
 import { useLocation } from 'react-router-dom'
 import html2canvas from 'html2canvas'
-import './downloadbars.css'
+import './common.css'
 
+/* 
+    Docu: Use for downloads and chart movements
+    parent component -> all charts
+*/
 export default function DownloadBars(){
         
         const urlpagination = {
@@ -76,7 +80,7 @@ export default function DownloadBars(){
             })
         }
         return (
-            <div id="downloadBars" className='inlineBlock vat'>
+            <div id='downloadContainer'>
                 {downloadImg}
                 {move}
                 {(render)?chart:(location.pathname == '/home/iwashere!')?null:pagination}

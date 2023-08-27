@@ -1,6 +1,5 @@
 import { useEffect, useRef, createContext, useState, useContext } from 'react'
 import * as d3 from 'd3'
-import '../graph.css'
 import PhTool from '../../tools/phtool'
 import { userData } from '../../home/home'
 import DownloadBars from '../../common/downloadbars'
@@ -8,24 +7,32 @@ import JumpLoading from '../../extra/jumploading'
 import DashBoard from '../../common/dashboard'
 import Process from '../process/phprocess'
 import PhilippinesMapApi from '../process/philippinesMapApi'
-export const downloadBars = createContext()
+/* The styling of this component is similar to iwashere.jsx */
+//import '../iwashere/iwas.css' 
+
 export const tools = createContext()
 export const Move = createContext()
 export const table = createContext()
 
-/* Parent home */
+/* 
+    Docu: This is use to render ph provinces
+    parent component -> home.jsx
+    child component -> common/dashboard.jsx -> that uploads/downloads csv/xlsx file from user to render a chart
+    child component -> common/downloadbars.jsx -> download img move chart (left and right) 
+*/
+
 export default function Philippines(prop){
-    
-    /* hooks */
+
+    const parentRef = useRef(null)
+    const svgRef = useRef(null)
     const fromHome = useContext(userData)
     const [home, setHome] = useState(fromHome)
     const [tableData, setTableData] = useState(null)
-    const svgRef = useRef(null)
     const [render, setRender] = useState(false)
     const [getGeoData, setGeoData] = useState(null)
     const [height, setHeight] = useState(window.innerHeight)
     const [width, setWidth] = useState(window.innerWidth)
-    const [moveIt, setMoveIt] = useState(-(width * .28))
+    const [moveIt, setMoveIt] = useState(0)
 
     useEffect(()=>{
         window.addEventListener('resize', handleResize)
@@ -36,7 +43,7 @@ export default function Philippines(prop){
             const result = Process(getGeoData, tableData, home)
             renderMap(getGeoData, tableData, result)
         }
-        // Clean up the event listener when the component is unmounted
+        // Clean up the event listener when the component is unmounted, do not remove
         return () => {
             window.removeEventListener('resize', handleResize)
         }
@@ -48,8 +55,12 @@ export default function Philippines(prop){
 
     /* functions */
     function handleResize(){
-        setWidth(window.innerWidth)
-        setHeight(window.innerHeight)
+        if(window.innerWidth > 925){
+            setWidth(window.innerWidth)
+        }
+        if(window.innerHeight > 700){
+            setHeight(window.innerHeight)
+        }
     }
     //from child philipiinestool
     function handleValue(params){
@@ -62,9 +73,10 @@ export default function Philippines(prop){
     }
 
     async function renderMap(geoDatax, params1, params2){
+        if(!parentRef.current) return 
         const chart_dimensions = ({
-            width: width * .9,
-            height: height * .9,
+            width: parentRef.current.clientWidth,
+            height: parentRef.current.clientHeight,
             margin: 50,
         })
         const bdC = params1.borderC
@@ -81,7 +93,7 @@ export default function Philippines(prop){
         const svg = d3.select(svgRef.current)
             .attr('width', chart_dimensions.width)
             .attr('height', chart_dimensions.height)
-        svg.selectAll('*').remove()
+        svg.selectAll('*').remove() //reset chart when rerendering, do not remove
         const clippedWidth = chart_dimensions.width 
         const clippedHeight = chart_dimensions.height - chart_dimensions.margin 
         const geoMercator = d3
@@ -141,7 +153,7 @@ export default function Philippines(prop){
             .data(noDataArray)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', color)
@@ -150,7 +162,7 @@ export default function Philippines(prop){
             .data(newArrMax)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', maxC)
@@ -159,7 +171,7 @@ export default function Philippines(prop){
             .data(newArrMid)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', midC)
@@ -168,7 +180,7 @@ export default function Philippines(prop){
             .data(newArrMin)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', minC)
@@ -187,8 +199,8 @@ export default function Philippines(prop){
         </table.Provider>
     )
     const chart = (
-        <div className='portrait'>
-            <svg id='svg' ref={svgRef} />
+        <div id='screenShoot' className='portrait' ref={parentRef}>
+            <svg ref={svgRef} />
         </div>
     )
     function handleMoveIt(params){
@@ -212,12 +224,10 @@ export default function Philippines(prop){
     }
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='phchart'>
+                <div>
                     {(render)?pagination:(getGeoData)?chart:<JumpLoading />}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <tools.Provider value={handleValue}>

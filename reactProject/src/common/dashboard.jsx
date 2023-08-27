@@ -10,8 +10,8 @@ import { table as pieTable } from '../graphs/piechart/piechart'
 import { table as donutTable } from '../graphs/piechart/donut'
 import { table as multiplelineTable } from '../graphs/multipleline/multipleline'
 import { table as improvedhorizontalTable } from '../graphs/horizontalbar/improvedhorizontal'
-import './dashboard.css'
 import convertToJson from './convertojson'
+import './common.css'
 
 /* Renders the table */
 export default function DashBoard(prop){
@@ -102,7 +102,7 @@ export default function DashBoard(prop){
     if(!valueFromHome) return
     const renderTable = (
         <table>
-            <thead className="positionSticky headColor">
+            <thead>
                 <tr>
                     {header.map((item,index) => (
                         typeof data[index][item] != 'object' ? (<th key={item}>{item}</th>) : null
@@ -121,12 +121,12 @@ export default function DashBoard(prop){
         </table>
     )
     const downloadSampleData = (
-        <input className='inlineBlock vat downloadFile' type='button' value='Download File' onClick={()=>{downloadAsCSV()} } />
+        <input type='button' value='Download File' onClick={()=>{downloadAsCSV()} } />
     )
     const upload = (
-        <div id='uploadFile' className='inlineBlock vat'>
-            <input id='handlechange' type='file' onChange={handleFileChange}></input>
-            <input id='handlesubmit' type='submit' onClick={()=>{handleSubmit()}}></input>
+        <div>
+            <input type='file' onChange={handleFileChange}></input>
+            <input type='submit' onClick={()=>{handleSubmit()}}></input>
         </div>
     )
     function sendDataToParent(params){
@@ -134,11 +134,11 @@ export default function DashBoard(prop){
     }
     return (
         <>
-            <h1 id='titleFile'>{selectedFileName}</h1>
-            <div id='tableDashboard'>
+            <h1>{selectedFileName}</h1>
+            <div>
                 {renderTable}
             </div>
-            <div id='fileUploadcontainer'>
+            <div>
                 {upload}
                 {downloadSampleData}
             </div>

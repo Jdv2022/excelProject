@@ -1,66 +1,73 @@
-.borderBox{
-    box-sizing: border-box;
-}
 #sideBar{
-    background-color: rgba(0, 0, 0, 0.16);
-    width: 10%;
-    height: 100vh;
-    padding: 10px 0 10px 10px;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    width: 10%;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
-.sidebarChoices{
-    font-size: 1rem;
-    color: whitesmoke;
-    border-radius: 5px 0 0 5px;
-    display: block;
+#sideBar > :first-child{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 0 10px;
+    overflow: auto;
+}
+#sideBar > :first-child > .sidebarChoices{
+    height: 40px;
     width: 100%;
-    margin: 0 0 10px;
-    height: 100px;
-    text-align: center;
     text-decoration: none;
-    overflow: hidden;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    margin: 2.5px 0 2.5px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    font-size: .8rem;
+    padding: 0 0 0 5px;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    color: white;
 }
-.sidebarChoices:not(#selectedHighlight):hover{
-    background-color: #f4f2de4b;
-}
-#selectedHighlight{
-    background-color: #F4F2DE;
+#sideBar > :first-child > #selectedHighlight{
+    font-weight: bold;
+    background-color: white;
     color: black;
 }
-@media screen and (min-width: 1103px) {
-    .sidebarChoices{
-        font-size: .8rem;
-    }
+#sideBar > :first-child > .sidebarChoices:hover:not(#sideBar > :first-child > #selectedHighlight){
+    background-color: rgba(255, 255, 255, 0.278);
 }
-@media screen and (max-width: 1102px) and (min-width: 895px) {
-    .sidebarChoices{
-        display: block;
-        font-size: .7rem;
-    }
+#messagePic{
+    display: block;
+    margin: auto;
+    width: 30%;
 }
-@media screen and (max-width: 894px) {
-    .sidebarChoices{
+
+@media screen and (max-width: 1174px) and (min-width: 926px) {
+    #sideBar > :first-child > .sidebarChoices{
         font-size: .6rem;
-        width: 100px;
-        display: inline-block;
-        vertical-align: top;
-        margin: 0 10px 0 0;
-        height: 100%;
-        padding: 10px;
-        white-space: normal;
     }
-    #sideBar{
+}
+@media screen and (max-width: 925px){
+    #sideBar {
         display: block;
-        white-space: nowrap;
+        position: relative; 
         width: 100%;
-        height: 60px;
-        overflow: auto;
+        height: 50px;
+        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        border-bottom: 1px solid silver;
     }
+    #sideBar > :first-child {
+        display: none;
+        width: 100%;
+        height: 200px;
+        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        border-bottom: 1px solid silver;
+        padding: 0 10px;
+    }
+    #sideBar > :nth-child(2) {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    }
+    #sideBar > #clicked { 
+        display: block;
+    } 
 }

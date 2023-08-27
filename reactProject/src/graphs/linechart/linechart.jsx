@@ -10,16 +10,22 @@ export const tools = createContext()
 export const Move = createContext()
 export const table = createContext()
 
+/* 
+    Docu: This for ph region component 
+    parent component -> home.jsx
+    child component -> downloadbars.jsx
+    child component -> dashboard.jsx
+    child componnent -> linecharttool.jsx
+*/
+
 export default function LineChart(){
 
     const svgRef = useRef(null)
-    const titleRef = useRef(null)
-    const yRef = useRef(null)
-    const xRef = useRef(null)
+    const parentRef = useRef(null)
     const [data, setData] = useState(null)
     const [tempData, setTempData] = useState(null)
-    const [width, setWidth] = useState(window.innerWidth * .7)
-    const [height, setHeight] = useState(window.innerHeight * .77)
+    const [screenwidth, setWidth] = useState(window.innerWidth * .7)
+    const [screenheight, setHeight] = useState(window.innerHeight * .77)
     const [render, setRender] = useState(false)
     const [moveIt, setMoveIt] = useState(100)
     const [tool, setTool] = useState(null)
@@ -44,7 +50,7 @@ export default function LineChart(){
         return () =>{
             window.removeEventListener('resize', handleResize)
         }
-    },[data, height, width, moveIt, render, tool, color])
+    },[data, screenheight, screenwidth, moveIt, render, tool, color, yl, xl, title])
 
     function handleResize(){
         setWidth(window.innerWidth)
@@ -62,6 +68,10 @@ export default function LineChart(){
     }
 
     function renderChart(params1, toolset){  
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth 
+        const height = parentRef.current.clientHeight 
+        const margin = 200
         let data
         let fill
         const segData = segregateData(params1)
@@ -95,14 +105,14 @@ export default function LineChart(){
             .selectAll('*').remove()
         const x = d3.scaleTime()
             .domain(d3.extent(data, function(d) { return d3.timeParse("%Y-%m-%d")(d.date) }))
-            .range([ 0, width ])
+            .range([ 0, width - margin ])
         svg
             .append('g')
-            .attr("transform", "translate(" + moveIt + "," + height + ")")
+            .attr("transform", "translate(" + moveIt + "," + (height - 100) + ")")
             .call(d3.axisBottom(x).ticks(toolset.ticksx))
         const y = d3.scaleLinear()
             .domain([ maxHeight, 0 ])
-            .range([ 0 , height - 100 ])
+            .range([ 0 , height - margin ])
         svg
             .append('g')
             .attr("transform", "translate(" + moveIt + "," + 100 + ")")
@@ -113,7 +123,7 @@ export default function LineChart(){
             .datum(data)
             .attr("fill", fill)
             .attr('opacity', .5)
-            .attr("stroke", toolset.lcolor)
+            .attr("stroke", fill)
             .attr("stroke-width", toolset.lwidth)
             .attr("d", d3.line()
                 .x(function(d) { return x(d3.timeParse("%Y-%m-%d")(d.date)) })
@@ -127,13 +137,13 @@ export default function LineChart(){
             .attr('color', color)
         svg.append('text')
             .attr('font-size', '2rem')
-            .attr("transform", "translate(" + width * .6 + "," + 100 + ")")
+            .attr("transform", "translate(" + width * .5 + "," + 100 + ")")
             .attr('text-anchor', 'middle')
             .attr('fill', color)
             .text(title)
         svg.append('text')
             .attr('font-size', '1.5rem')
-            .attr("transform", "translate(" + width * .6 + "," + height * 1.1 + ")")
+            .attr("transform", "translate(" + width * .5 + "," + height * .95 + ")")
             .attr('text-anchor', 'middle')
             .attr('fill', color)
             .text(xl)
@@ -156,8 +166,8 @@ export default function LineChart(){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className={(dark)?'landscape darkmode': 'landscape'}>
-            <svg id='svgV' ref={svgRef}/>
+        <div id='screenShoot' ref={parentRef} className={(dark)?'landscape darkmode': 'landscape'}>
+            <svg id='svg' ref={svgRef}/>
         </div>
     )
     function handleMoveIt(params){
@@ -182,12 +192,10 @@ export default function LineChart(){
     /* -----------------------copy---------------------- */
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='landscapeContainer'>
+                <div>
                     {(render)?pagination:chart}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <tools.Provider value={handleValue}>

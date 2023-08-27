@@ -1,8 +1,9 @@
 import React from 'react'
-import './app.css'
 import { Route, Routes } from 'react-router-dom'
 import Home from './home/home' 
-import Admin from './admin/admin'
+import './app.css'
+import './tool.css'
+import './landscapechart.css'
 
 export const MyContext = React.createContext('null');
 
@@ -12,7 +13,6 @@ function App() {
                 <div>
                     <Routes>
                         <Route path='/*' element={<Home />} /> 
-                        <Route path='/admin/*' element={<Admin />} /> 
                     </Routes>
                 </div>
             </MyContext.Provider>

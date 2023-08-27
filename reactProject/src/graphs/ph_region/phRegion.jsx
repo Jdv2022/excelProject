@@ -1,6 +1,5 @@
 import { useEffect, useRef, useContext, createContext, useState } from 'react'
 import * as d3 from 'd3'
-import '../graph.css'
 import JumpLoading from '../../extra/jumploading'
 import { userData } from '../../home/home'
 import PhTool from '../../tools/phtool'
@@ -13,9 +12,18 @@ export const toolsRegion = createContext()
 export const Move = createContext()
 export const table = createContext()
 
+/* 
+    Docu: This for ph region component 
+    parent component -> home.jsx
+    child component -> downloadbars.jsx
+    child component -> dashboard.jsx
+    child componnent -> phtool.jsx
+*/
+
 export default function PhRegion(prop){
 
     const svgRef = useRef(null)
+    const parentRef = useRef(null)
     const userDatas = useContext(userData)
     const [render, setRender] = useState(false)
     const [tableData, setTableData] = useState(userDatas)
@@ -23,7 +31,7 @@ export default function PhRegion(prop){
     const [getGeoData, setGeoData] = useState(null)
     const [height, setHeight] = useState(window.innerHeight)
     const [width, setWidth] = useState(window.innerWidth)
-    const [moveIt, setMoveIt] = useState(-(width * .28))
+    const [moveIt, setMoveIt] = useState(0)
     
     useEffect(()=>{
         window.addEventListener('resize', handleResize)
@@ -34,11 +42,19 @@ export default function PhRegion(prop){
             const result = PhRegionProcess(getGeoData, toolData, tableData)
             renderMap(getGeoData, toolData, result)
         }
-        // Clean up the event listener when the component is unmounted
+        // Clean up the event listener when the component is unmounted, do not remove
         return () => {
             window.removeEventListener('resize', handleResize)
         }
     },[toolData, getGeoData, width, moveIt, height, render])
+
+    /* functions */
+    function handleResize(){
+        if(window.innerHeight > 700){
+            setHeight(window.innerHeight)
+        }
+        setWidth(window.innerWidth)
+    }
 
     async function fetchGeo(){
         const response = await PhilippinesMapApi()
@@ -47,9 +63,10 @@ export default function PhRegion(prop){
 
     /* Renders the entire map */
     async function renderMap(geoDatax, params1, params2){
+        if(!parentRef.current) return 
         const chart_dimensions = ({
-            width: width * .9,
-            height: height * .9,
+            width: parentRef.current.clientWidth,
+            height: parentRef.current.clientHeight,
             margin: 50,
         })
         const bdC = params1.borderC
@@ -126,7 +143,7 @@ export default function PhRegion(prop){
             .data(noDataArray)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', color)
@@ -135,7 +152,7 @@ export default function PhRegion(prop){
             .data(newArrMax)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', maxC)
@@ -144,7 +161,7 @@ export default function PhRegion(prop){
             .data(newArrMid)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', midC)
@@ -153,7 +170,7 @@ export default function PhRegion(prop){
             .data(newArrMin)
             .enter()
             .append('path')
-            .attr("transform", `translate(${moveIt},20)`)
+            .attr("transform", `translate(${moveIt},0)`)
             .attr('d', pathGen)
             .attr('stroke', bdC)
             .attr('fill', minC)
@@ -195,23 +212,17 @@ export default function PhRegion(prop){
         </table.Provider>
     )
     const chart = (
-        <div className='portrait'>
-            <svg id='svg' ref={svgRef}></svg>
+        <div id='screenShoot' className='portrait' ref={parentRef}>
+            <svg ref={svgRef}></svg>
         </div>
     )
-    /* functions */
-    function handleResize(){
-        setWidth(window.innerWidth)
-        setHeight(window.innerHeight)
-    }
+
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='phchart'>
+                <div>
                     {(render)?pagination:(getGeoData)?chart:<JumpLoading />}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <toolsRegion.Provider value={handleValue}>

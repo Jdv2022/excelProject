@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useContext } from 'react'
 import { tools } from '../graphs/multipleline/multipleline'
-import './verticalTool.css'
 
 export default function MultipleLineTool(){
 
@@ -60,22 +59,20 @@ export default function MultipleLineTool(){
     }
 
     const sideTools = (
-        <div id='toolsContainer' className='inlineBlock vat'>
-            <div id="horizontal_tool">
-                <p>Line-Width</p>
-                <input type="number" placeholder='Line-Width' defaultValue={1.5} onChange={handleLWidth} />
-                <p>Ticks X & Y</p>
-                <input type="number" placeholder='Ticks X' defaultValue={4} onChange={handleX}/>
-                <input type="number" placeholder='Ticks Y' defaultValue={10} onChange={handleY}/>
-                <p>Title</p>
-                <input type="text" placeholder="Title" defaultValue={'XYZ Sales'} onChange={handleTitle} />
-                <p>X-Label</p>
-                <input type="text" placeholder="X-label" defaultValue={'Dates'} onChange={handleXlabel} />
-                <p>Y-Label</p>
-                <input type="text" placeholder="Y-label" defaultValue={'Amount'} onChange={handleYlabel} />
-                <p>Dark Mode</p>
-                <input type="checkbox" className="rad" onChange={handlemode} />
-            </div>
+        <div id='toolsContainer'>
+            <p>Line-Width</p>
+            <input type="number" placeholder='Line-Width' defaultValue={1.5} onChange={handleLWidth} />
+            <p>Ticks X & Y</p>
+            <input type="number" placeholder='Ticks X' defaultValue={4} onChange={handleX}/>
+            <input type="number" placeholder='Ticks Y' defaultValue={10} onChange={handleY}/>
+            <p>Title</p>
+            <input type="text" placeholder="Title" defaultValue={'XYZ Sales'} onChange={handleTitle} />
+            <p>X-Label</p>
+            <input type="text" placeholder="X-label" defaultValue={'Dates'} onChange={handleXlabel} />
+            <p>Y-Label</p>
+            <input type="text" placeholder="Y-label" defaultValue={'Amount'} onChange={handleYlabel} />
+            <p>Dark Mode</p>
+            <input type="checkbox" className="checkbox" onChange={handlemode} />
         </div>
     )
 

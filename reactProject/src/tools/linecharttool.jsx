@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useContext } from 'react'
 import { tools } from '../graphs/linechart/linechart'
-import './verticalTool.css'
 
 export default function LineTool(){
 
@@ -68,25 +67,23 @@ export default function LineTool(){
     }
 
     const sideTools = (
-        <div id='toolsContainer' className='inlineBlock vat'>
-            <div id="philippinesSidetoolsSub_I">
-                <p>Line-Width</p>
-                <input type="number" placeholder='Line-Width' defaultValue={1.5} onChange={handleLWidth} />
-                <input type="text" placeholder="Color" defaultValue={'SteelBlue'} onChange={lcoloro} />
-                <p>Ticks X & Y</p>
-                <input type="number" placeholder='Ticks X' defaultValue={4} onChange={handleX}/>
-                <input type="number" placeholder='Ticks Y' defaultValue={10} onChange={handleY}/>
-                <p>Title</p>
-                <input type="text" placeholder="Title" defaultValue={'XYZ Sales'} onChange={handleTitle} />
-                <p>X-Label</p>
-                <input type="text" placeholder="X-label" defaultValue={'Dates'} onChange={handleXlabel} />
-                <p>Y-Label</p>
-                <input type="text" placeholder="Y-label" defaultValue={'Amount'} onChange={handleYlabel} />
-                <p>Fill</p>
-                <input type="checkbox" onChange={handlefill} />
-                <p>Dark Mode</p>
-                <input type="checkbox" onChange={handlemode} />
-            </div>
+        <div id='toolsContainer'>
+            <p>Line-Width</p>
+            <input type="number" placeholder='Line-Width' defaultValue={1.5} onChange={handleLWidth} />
+            <input type="text" placeholder="Color" defaultValue={'SteelBlue'} onChange={lcoloro} />
+            <p>Ticks X & Y</p>
+            <input type="number" placeholder='Ticks X' defaultValue={4} onChange={handleX}/>
+            <input type="number" placeholder='Ticks Y' defaultValue={10} onChange={handleY}/>
+            <p>Title</p>
+            <input type="text" placeholder="Title" defaultValue={'XYZ Sales'} onChange={handleTitle} />
+            <p>X-Label</p>
+            <input type="text" placeholder="X-label" defaultValue={'Dates'} onChange={handleXlabel} />
+            <p>Y-Label</p>
+            <input type="text" placeholder="Y-label" defaultValue={'Amount'} onChange={handleYlabel} />
+            <p>Fill</p>
+            <input className='checkbox' type="checkbox" onChange={handlefill} />
+            <p>Dark Mode</p>
+            <input className='checkbox' type="checkbox" onChange={handlemode} />
         </div>
     )
 

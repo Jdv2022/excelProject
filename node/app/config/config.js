@@ -11,8 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //require cors
 const cors = require('cors')
-const local_dev = 'http://localhost:3000'
-const allowedOrigins = [local_dev]
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:3001'
+]
 app.use(cors({
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin)) {

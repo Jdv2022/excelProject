@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 
 async function Q(){
     try {
-        const result = await Traffics.traffic()
+        const result = await Traffics.sockettraffic()
         io.emit('to', result)
     } 
     catch (error) {
@@ -31,17 +31,21 @@ function jwtTokenIsValid(token) {
 
 io.on('connect', async function (socket) {
     const token = socket.handshake.query.token
+    let intervalId = null
     if (jwtTokenIsValid(token)) {
-        Q()
-        setInterval( async ()=>{
+        intervalId = setInterval( async ()=>{
             Q()
         }, 10000)
     } 
     else {
-        console.log('serversocket not connected')
+        console.log('serversocket not connected, invalid token')
         // Token is invalid, reject the connection or handle it accordingly
     }
-        
+    socket.on('disconnect', () => {
+        if (intervalId !== null) {
+            clearInterval(intervalId)
+        }
+    })
 })
 
 module.exports = io

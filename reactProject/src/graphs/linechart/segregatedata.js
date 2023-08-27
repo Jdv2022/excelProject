@@ -1,5 +1,3 @@
-
-
 export default function segregateData(data){
     const day = Object.keys(data[0])[0]
     function rec(par){

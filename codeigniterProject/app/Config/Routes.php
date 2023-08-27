@@ -29,13 +29,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-
+$routes->options('/update', 'CORSController::handleOptions');
+$routes->options('/delete', 'CORSController::handleOptions');
 //MESSAGES
 $routes->get('/index', 'Messages::index');
 $routes->post('/admin', 'Messages::create');
 $routes->post('/messages', 'Messages::getAll');
-$routes->post('/delete', 'Messages::deleteAdmin');
+$routes->delete('/delete', 'Messages::deleteAdmin');
 $routes->post('/session', 'Messages::sessionG');
+$routes->put('/update', 'Messages::update');
 
 //MESSAGES
 $routes->post('/create-bug', 'Bugs::create');

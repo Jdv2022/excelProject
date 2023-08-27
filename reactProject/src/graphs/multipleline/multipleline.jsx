@@ -12,16 +12,24 @@ export const table = createContext()
 
 const colors = ["red","green","blue","yellow","purple","orange","pink","cyan","magenta","lime","indigo","teal","violet","brown","gray","black","white"]
 
+/* 
+    Docu: This for ph region component 
+    parent component -> home.jsx
+    child component -> downloadbars.jsx
+    child component -> dashboard.jsx
+    child componnent -> multipleline.jsx
+*/
 
 export default function Multipleline(){
 
     /* COPY */
     const svgRef = useRef()
+    const parentRef = useRef(null)
     const [data, setData] = useState(multipleline())
     const [render, setRender] = useState(false)
     const [tool, setTool] = useState(null)
-    const [width, setWidth] = useState(window.innerWidth * .7)
-    const [height, setHeight] = useState(window.innerHeight * .77)
+    const [screenwidth, setWidth] = useState(window.innerWidth * .7)
+    const [screenheight, setHeight] = useState(window.innerHeight * .77)
     const [moveIt, setMoveIt] = useState(100)
     const [display, setDisplay] = useState('none')
     const [dark, setDark] = useState(false)
@@ -43,15 +51,18 @@ export default function Multipleline(){
         return () =>{
             window.removeEventListener('resize', handleResize)
         }
-    },[data, width, height, moveIt, tool, render, display, dark])
+    },[data, screenwidth, screenheight, moveIt, tool, render, display, dark])
     
     function handleResize(){
         setWidth(window.innerWidth)
         setHeight(window.innerHeight)
     }
 
-
     function renderchart(params, tool){
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth 
+        const height = parentRef.current.clientHeight 
+        const margin = 100
         const maximum = max(params)
         const dat = Object.keys(params[0])[1]
         const val = Object.keys(params[0])[2]
@@ -62,12 +73,12 @@ export default function Multipleline(){
         svg.selectAll('*').remove()
         const x = d3.scaleTime()
             .domain(d3.extent(segData[0], function (d) {return d3.timeParse('%Y-%m-%d')(d[dat])}))
-            .range([0, width])
+            .range([0, width-100-margin])
         const y = d3.scaleLinear()
             .domain([0, maximum])
-            .range([height - 100, 0])
+            .range([height - 100 - margin, 0])
         svg.append('g')
-            .attr('transform', `translate(${moveIt}, ${height})`)
+            .attr('transform', `translate(${moveIt}, ${height-margin})`)
             .call(d3.axisBottom(x).ticks(tool.ticksx))
         svg.append('g')
             .attr('transform', `translate(${moveIt}, 100)`)
@@ -91,13 +102,13 @@ export default function Multipleline(){
         svg.selectAll('.domain')
             .attr('stroke', color)
         svg.append('text')
-            .attr('transform', `translate(${width * .6}, 50)`)
+            .attr('transform', `translate(${width * .5}, 50)`)
             .text(tool.titleT)
             .attr('font-size', '2rem')
             .attr('text-anchor', 'middle')
             .attr('fill', color)
         svg.append('text')
-            .attr('transform', `translate(${width * .6}, ${height * 1.12})`)
+            .attr('transform', `translate(${width * .5}, ${height * .95})`)
             .text(tool.xlabel)
             .attr('font-size', '1.5rem')
             .attr('text-anchor', 'middle')
@@ -121,7 +132,7 @@ export default function Multipleline(){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className={(dark)?'landscape darkmode': 'landscape'}>
+        <div id='screenShoot' ref={parentRef} className={(dark)?'landscape darkmode': 'landscape'}>
             <svg id='svgV' ref={svgRef}/>
         </div>
     )
@@ -145,12 +156,10 @@ export default function Multipleline(){
     }
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='landscapeContainer'>
+                <div>
                     {(render)?pagination:chart}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <tools.Provider value={handleValue}>

@@ -1,16 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, createContext } from 'react'
 import * as d3 from 'd3'
 import Api from './worldTourApi'
 import Versor from './versor'
-import { createContext } from 'react'
 import Widget from './widget'
 import Widget2 from './widget2'
 import JumpLoading from '../../extra/jumploading'
-import './welcome.css'
+import './introduction.css'
 
 export const MyWidget = createContext('')
 
-/*  World in the landing page render */
+/*  
+    Docu: Welcome Component (parent is ../home/home.jsx)
+*/
 
 export default function Welcome(){
 
@@ -35,15 +36,16 @@ export default function Welcome(){
         }
     }, [])
     useEffect(() => {   
-        window.addEventListener("resize", logScreenSize)
+        window.addEventListener('resize', logScreenSize)
         if(!data){
             return
         }
         world() 
         return () => {
+            window.removeEventListener('resize', logScreenSize)
             clearInterval(interval)
         }
-    }, [data, renderMainWorld])
+    }, [data, renderMainWorld, screenWidth])
 
     function logScreenSize() {
         setScreenWidth(window.innerWidth)
@@ -64,7 +66,7 @@ export default function Welcome(){
             svg.selectAll('*').remove()
             svg.selectAll('path')
                 .style('position', 'absolute')
-                .style('z-index', '-1');
+                .style('z-index', '-1')
             //countries color
             svg 
                 .append('path')
@@ -145,14 +147,14 @@ export default function Welcome(){
                         render(country, {
                             type: 'LineString',
                             coordinates: [p1, ip(t)],
-                        });
+                        })
                     })
                     .transition()
                     .tween('render', () => (t) => {
                         render(country, {
                             type: 'LineString',
                             coordinates: [ip(t), p2],
-                        });
+                        })
                     })
                     .on('end', resolve)
             })
@@ -161,7 +163,7 @@ export default function Welcome(){
 
     const widgets = (
         <MyWidget.Provider value={widgetData}>
-            <div id='widgetcontainer'>
+            <div>
                 <Widget />
                 <Widget2 />
             </div>
@@ -169,8 +171,16 @@ export default function Welcome(){
     )
     return (
         <div id='welcomeContainer'>
-                {renderMainWorld ? <div id='worldtourContainer'>{widgets}<svg ref={svgRef} /></div>:<div><JumpLoading/></div>}
-            <div id='contentContainer'>
+            <div>
+                {renderMainWorld ? 
+                    <div id='worldTour'>
+                        {widgets}
+                        <svg ref={svgRef} />
+                    </div>
+                    :<div><JumpLoading/></div>
+                }
+            </div>
+            <article>
                 <h1 id=''>Convert Excel/CSV into Stunning Graphs</h1>
                 <p>Introducing our powerful and user-friendly tool that transforms your Excel data into visually appealing and interactive graphs in just a few clicks.</p>
                 <p>Benefits:</p>
@@ -180,8 +190,8 @@ export default function Welcome(){
                     <li>Customize and visualize your data in a variety of graph types</li>
                     <li>Effortlessly share and export your graphs for presentations or reports</li>
                 </ul>
-                <a href='/home/instructions' id='button' className='bg-primary mt-5'>Get started!</a>
-            </div>
+                <a href='/home/instructions'>Get started!</a>
+            </article>
         </div>
     )
 }

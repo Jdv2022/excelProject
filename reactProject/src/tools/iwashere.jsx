@@ -1,7 +1,9 @@
 import { useEffect, useContext, useState } from "react"
 import { tools } from "../graphs/iwashere/iwahere"
 
-/* ph-province tool bar */
+/* 
+    Docu: Tool bar for iwashere.jsx
+*/
 export default function IwasHereTool(){
 
     const handleValue = useContext(tools)
@@ -16,23 +18,24 @@ export default function IwasHereTool(){
     },[radio])
 
     function handleRadio(e){
+        console.log(e.target.value)
         setRadio(e.target.value)
     }
 
     const sideTools = (
-        <div id='toolsContainer' className='inlineBlock vat'>
-            <h5 id="iwasheretool">Select choices here then click map.</h5>     
-            <div className="iwashere">
-                <input className="inlineBlock vat width_50" value={'red'} type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
-                <label className="inlineBlock vat width_50 mt_5" htmlFor="flexRadioDefault1">Settled</label>
+        <div id='toolsContainer' className="iwashereTool">
+            <h5>Select choices here then click map.</h5>     
+            <div>
+                <input value={'red'} type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
+                <label htmlFor="flexRadioDefault1">Settled</label>
             </div>
             <div className="iwashere">
-                <input className="inlineBlock vat width_50" value={'yellow'} type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={handleRadio}/>
-                <label className="inlineBlock vat width_50 mt_5" htmlFor="flexRadioDefault2">Visited</label>
+                <input value={'yellow'} type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={handleRadio}/>
+                <label htmlFor="flexRadioDefault2">Visited</label>
             </div>
             <div className="iwashere">
-                <input className="inlineBlock vat width_50" value={'blue'} type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={handleRadio}/>
-                <label className="inlineBlock vat width_50 mt_5" htmlFor="flexRadioDefault2">Explored</label>
+                <input value={'blue'} type="radio" name="flexRadioDefault" id="flexRadioDefault3" onClick={handleRadio}/>
+                <label htmlFor="flexRadioDefault3">Explored</label>
             </div>
         </div>
     )

@@ -8,8 +8,8 @@ function checkExistingToken(req, res, next) {
 
     // If a valid token is found, deny the request
     if (jwtTokenIsValid(accessToken) && fullUrl != '/admin/logout') {
-        console.log('tokenauth')
-        return res.status(403).send('Token already present')
+        console.log('tokenauth token is already valid no need for new token')
+        return res.status(201)
     }
     // Proceed to the next middleware or route handler
     next()

@@ -2,7 +2,9 @@ import { useEffect, useState, useContext } from 'react'
 import { tools } from '../graphs/ph_province/philippinesMap'
 import { toolsRegion } from '../graphs/ph_region/phRegion'
 import { useLocation } from 'react-router-dom'
-/* ph-province tool bar */
+/* 
+    Docu: Toolbar for philippinesmap.jsx and phRegion.jsx
+*/
 export default function PhTool(){
     const [maxUpD, setMaxUp] = useState(7)
     const [maxC, setMaxD] = useState('Red')
@@ -79,26 +81,24 @@ export default function PhTool(){
     }
 
     const sideTools = (
-        <div id='toolsContainer' className='inlineBlock vat'>
+        <div id='toolsContainer'>
             <h3>Range</h3>
-            <div id="philippinesSidetoolsSub_I">
-                <p className=''>Maximum</p>
-                <input type="number" placeholder='Max up' defaultValue={7} onChange={maxUp}/>
-                <input type="text" placeholder="Color" defaultValue={'Red'} onChange={maxCo} />
-                <p>Middle</p>
-                <input type="number" placeholder='Mid. max' defaultValue={6} onChange={midMax}/>
-                <input type="number" placeholder='Mid. min' defaultValue={4} onChange={midMin}/>
-                <input type="text" placeholder="Color" defaultValue={'Orange'} onChange={midCo} />
-                <p>Minimum</p>
-                <input type="number" placeholder='Min' defaultValue={0} onChange={min}/>
-                <input type="text" placeholder="Color" defaultValue={'Green'} onChange={minCo} />
-                <p>No Data</p>
-                <input type="text" placeholder="Color" defaultValue={'#69b3a2'} onChange={bgC} />
-                <p>Border Color</p>
-                <input type="text" placeholder="Color" defaultValue={'White'} onChange={borderColorHandle} />
-                <p>Title</p>
-                <input type="text" placeholder="Title" defaultValue={'XYZ Foods Stock Price Index'} onChange={title} />
-            </div>
+            <p>Maximum</p>
+            <input type="number" placeholder='Max up' defaultValue={7} onChange={maxUp}/>
+            <input type="text" placeholder="Color" defaultValue={'Red'} onChange={maxCo} />
+            <p>Middle</p>
+            <input type="number" placeholder='Mid. max' defaultValue={6} onChange={midMax}/>
+            <input type="number" placeholder='Mid. min' defaultValue={4} onChange={midMin}/>
+            <input type="text" placeholder="Color" defaultValue={'Orange'} onChange={midCo} />
+            <p>Minimum</p>
+            <input type="number" placeholder='Min' defaultValue={0} onChange={min}/>
+            <input type="text" placeholder="Color" defaultValue={'Green'} onChange={minCo} />
+            <p>No Data</p>
+            <input type="text" placeholder="Color" defaultValue={'#69b3a2'} onChange={bgC} />
+            <p>Border Color</p>
+            <input type="text" placeholder="Color" defaultValue={'White'} onChange={borderColorHandle} />
+            <p>Title</p>
+            <input type="text" placeholder="Title" defaultValue={'XYZ Foods Stock Price Index'} onChange={title} />
         </div>
     )
 

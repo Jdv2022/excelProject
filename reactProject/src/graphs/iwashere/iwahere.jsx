@@ -1,28 +1,30 @@
 import { useEffect, useRef, createContext, useState, useContext } from 'react'
 import * as d3 from 'd3'
-import '../graph.css'
-import './iwashere.css'
 import DownloadBars from '../../common/downloadbars'
 import JumpLoading from '../../extra/jumploading'
 import IwasHereTool from '../../tools/iwashere'
 import PhilippinesMapApi from '../process/philippinesMapApi'
+import './iwas.css'
 
-export const downloadBars = createContext()
-export const tools = createContext()
-export const Move = createContext()
-export const table = createContext()
+export const tools = createContext() //heading to ../../tools/iwashere.jsx
+export const Move = createContext() //heading to ../../common/downloadbars.jsx
+export const table = createContext() //heading to ../../common/dashboard.jsx
 
-/* Parent home */
+/* 
+    Docu: This component order in the sidebar menu can be change in the sidebar.jsx
+    (parent component is home.jsx)
+    This is done only with css and rerendering will cause it to reset default css
+*/
 export default function IwasHere(prop){
     
-    /* hooks */
     const svgRef = useRef(null)
+    const parentRef = useRef(null)
     const [render, setRender] = useState(false)
     const [getGeoData, setGeoData] = useState(null)
     const [height, setHeight] = useState(window.innerHeight)
-    const [width, setWidth] = useState(window.innerWidth)
-    const [moveIt, setMoveIt] = useState(-(width * .28))
-    let cls = null
+    const [screenWidth, setWidth] = useState(window.innerWidth)
+    const [moveIt, setMoveIt] = useState(0)
+    let cls = null //for css colors
 
     useEffect(()=>{
         window.addEventListener('resize', handleResize)
@@ -32,45 +34,51 @@ export default function IwasHere(prop){
         else{
             renderMap(getGeoData)
         }
-        // Clean up the event listener when the component is unmounted
+        // Clean up the event listener when the component is unmounted, do not remove
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    },[getGeoData, width, moveIt, height, render])
+    },[getGeoData, screenWidth, moveIt, height, render])
 
     useEffect(()=>{
         setRender(false)
     },[location.pathname])
 
-    /* functions */
     function handleResize(){
-        setWidth(window.innerWidth)
-        setHeight(window.innerHeight)
+        if(window.innerWidth > 925){
+            setWidth(window.innerWidth)
+        }
+        if(window.innerHeight > 700){
+            setHeight(window.innerHeight)
+        }
     }
 
-    async function fetchGeo(){
+    async function fetchGeo(){ //fetch data that renders Philippines map
         const response = await PhilippinesMapApi()
         setGeoData(response)
     }
 
     function renderMap(geoDatax){
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth
+        const height = parentRef.current.clientHeight
         const arr = [
             {color:'red', intensity: 'Settled'}, 
             {color:'yellow', intensity: 'Visited'}, 
             {color:'blue', intensity: 'Explored'}
         ]
-        const chart_dimensions = ({
-            width: width * .9,
-            height: height * .9,
+        const chart_dimensions = {
+            width: width,
+            height: height,
             margin: 50,
-        })
+        }
         const svg = d3.select(svgRef.current)
             .attr('width', chart_dimensions.width)
             .attr('height', chart_dimensions.height)
-        svg.selectAll('*').remove()
+        svg.selectAll('*').remove() //resets svg when rerendered
         const clippedWidth = chart_dimensions.width 
         const clippedHeight = chart_dimensions.height - chart_dimensions.margin 
-
+        
         const geoMercator = d3
             .geoMercator()
             // the center uses longtitude and latitude
@@ -124,7 +132,8 @@ export default function IwasHere(prop){
             .attr('stroke', 'black')
     }
 
-    function handleClick(event) {
+    function handleClick(event) { //handles color changes when a province is clicked 
+        if(cls == null) return
         if(cls == 'red'){
             d3.select(event.target).classed('yellow', false)
             d3.select(event.target).classed('blue', false)
@@ -139,18 +148,6 @@ export default function IwasHere(prop){
         }
         d3.select(event.target).classed(cls, true)
     }
-
-    const lowerBars = (
-        <Move.Provider value={handleMoveIt}>
-            <DownloadBars sendDataToParent={handleDataFromChild}/>
-        </Move.Provider>
-    )
-
-    const chart = (
-        <div id='screenShoot' className='portrait paleblue'>
-            <svg id='svg' ref={svgRef} />
-        </div>
-    )
 
     function handleDataFromChild(params){
         sendDataToParent(params)
@@ -175,21 +172,30 @@ export default function IwasHere(prop){
     function handleValue(params){
         cls = params.radio
     }
+
+    const lowerBars = (
+        <Move.Provider value={handleMoveIt}>
+            <DownloadBars sendDataToParent={handleDataFromChild}/>
+        </Move.Provider>
+    )
+
+    const chart = (
+        <div id='screenShoot' className='portrait' ref={parentRef}>
+            <svg ref={svgRef} />
+        </div>
+    )
+
     return (
-        <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
-                    {(render)?pagination:(getGeoData)?chart:<JumpLoading />}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
-                </div>
-                {
-                    <tools.Provider value={handleValue}>
-                        <IwasHereTool />
-                    </tools.Provider>
-                }
+        <div id='phchart'>
+            <div>
+                {(render)?pagination:(getGeoData)?chart:<JumpLoading />}
+                {lowerBars}
             </div>
-        </>
+            {
+                <tools.Provider value={handleValue}>
+                    <IwasHereTool />
+                </tools.Provider>
+            }
+        </div>
     )
 }

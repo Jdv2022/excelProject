@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import './contactme.css'
+import { Link } from 'react-router-dom'
 import Messages from './mes'
-import Bugs from './bug'
-import Admins from './admin'
 import { useNavigate } from 'react-router-dom'
+const navi = import.meta.env.VITE_react_BASE_URL
+const to = `${navi}/admin/login`
 
 const QUERY = {
     'message': Messages,
-    'bug': Bugs,
-    'admin': Admins,
+    'bug': Messages,
 }
 
 export default function ContactMe(){
@@ -18,6 +18,10 @@ export default function ContactMe(){
     const [data, setData] = useState(null)
     const [border, setborder] = useState(null)
     const navigate = useNavigate()
+
+    /* if(accessToken){
+        navigate('/admin')
+    } */
 
     useEffect(() => {
         if(!render) return
@@ -34,7 +38,14 @@ export default function ContactMe(){
             if(res == true){
                 navigate('/admin')
             }
-            setData(res)
+            if(res?.success == 'Sent!'){
+                setRender(null)
+                alert('Message Sent.')
+                setData(res.success)
+            }
+            else{
+                setData(res)
+            }
         }
         form.addEventListener('submit', handleSubmit)
         // Cleanup function to remove the event listener
@@ -56,7 +67,7 @@ export default function ContactMe(){
     }
 
     const message = (
-        <div id='mesform' className={`bluetheme ${border}`} >
+        <span id='mesform' className={data && data.Success !== 'Sent!' ? 'error' : ''}>
             <span className='close' onClick={handleClose}>X</span>
             <form id='message'>
                 <label htmlFor="mesname">Your name</label>
@@ -67,70 +78,57 @@ export default function ContactMe(){
                 <textarea id="mestext" name='message' placeholder={data && data.message?data.message:''}/>
                 <input type='submit' className='submit block'/>
             </form>
-        </div>
+        </span>
     )
 
     const bug = (
-        <div id='mesform' className={`redtheme ${border}`} >
+        <span id='mesform' className={data && data.Success !== 'Sent!' ? 'error' : ''}>
             <span className='close' onClick={handleClose}>X</span>
             <form id='bug'>
                 <label htmlFor="mesname">Your name</label>
                 <input type="text" id="mesname" className='block' name='name' placeholder={data && data.name?data.name:''}/>
                 <label htmlFor="mestitle">Bug</label>
-                <input type="text" id="mestitle" className='block' name='bug' placeholder={data && data.bug?data.bug:''}/>
+                <input type="text" id="mestitle" className='block' name='title' placeholder={data && data.title?data.title:''}/>
                 <label htmlFor="mestext">Description</label>
                 <textarea id="mestext" name='message' placeholder={data && data.message?data.message:''}/>
                 <input type='submit' className='submit block'/>
             </form>
-        </div>
-    )
-
-    const ad = (
-        <div id='mesform' className={`greentheme ${border}`} >
-            <span className='close' onClick={handleClose}>X</span>
-            <form id='admin'>
-                <label htmlFor="mesname">Username</label>
-                <input type="text" id="mesname" className='block' name='username' />
-                <label htmlFor="mestitle">Password</label>
-                <input type="password" id="mestitle" className='block' name='password' />
-                <input type='submit' className='submit'/>
-            </form>
-            {data?data:''}
-        </div>
+        </span>
     )
 
     const selection = {
         'message': message,
         'bug': bug,
-        'admin': ad
     }
 
     const dev = (
-        <div id='contactme'>
+        <section id='contactme'>
             {render && selection[render]}
-            <div id='mesC' onClick={() => handleSelected('message')}>
-                <h2 className='contactblue'>Message Me</h2>
-                <div className='contactmetext'>
+            <div className='blue' onClick={() => handleSelected('message')}>
+                <h2 className='blue-5'>Message Me</h2>
+                <article className='blue-5'>
                     <p>Can't find what you're looking for? Send me a message, and I'll be happy to customize and create it for you! Click here.</p>
-                </div>
+                </article>
             </div>
-            <div id='bugC' onClick={() => handleSelected('bug')}>
-                <h2 className='contactred'>Report a bug</h2>
-                <div className='contactmetext' >
+            <div className='red' onClick={() => handleSelected('bug')}>
+                <h2 className='red-5'>Report a bug</h2>
+                <article className='red-5'>
                     <p>If you've encountered a bug or issue with our application, please let us know. Your feedback is valuable in helping us improve your experience. Click here.</p>
-                </div>
+                </article>
             </div>
-            <div id='adC' onClick={() => handleSelected('admin')}>
-                <h2 className='contactgreen'>Are you an Admin?</h2>
-                <div className='contactmetext'>
-                    <p>Admin privileges include:</p>
-                    <ul id='adminul'>
-                        <li>Viewing and analyzing data</li>
-                        <li>Performing administrative tasks</li>
-                    </ul>
-                </div>
+            <div className='green'>
+                <Link to={to} className='link'>
+                    <h2 className='green-5'>Are you an Admin?</h2>
+                    <article className='green-5'>
+                        <p>Admin privileges include:</p>
+                        <ul id='adminul'>
+                            <li>Viewing and analyzing data</li>
+                            <li>Performing administrative tasks</li>
+                        </ul>
+                    </article>
+                </Link>
             </div>
-        </div>
+        </section>
     )
 
     return dev

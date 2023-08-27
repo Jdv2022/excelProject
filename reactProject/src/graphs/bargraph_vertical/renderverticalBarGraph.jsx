@@ -8,98 +8,109 @@ export const Move = createContext()
 export const table = createContext()
 export const tools = createContext()
 
-/* REnders the vertical bar chart */
+/* 
+    Docu: This for ph region component 
+    parent component -> home.jsx
+    child component -> downloadbars.jsx
+    child component -> dashboard.jsx
+    child componnent -> verticalgraphtoolbar.jsx
+*/
+
 export default function RenderVerticalBarGraph(prop){
+
     /* copy */
+    const parentRef = useRef(null)
     const svgRef = useRef(null)
     const fromHome = useContext(userData)
     const [tool, setTool] = useState(null)
     const [render, setRender] = useState(false)
-    const [width, setWidth] = useState(window.innerWidth * .7)
-    const [height, setHeight] = useState(window.innerHeight * .6)
+    const [screenWidth, setWidth] = useState(window.innerWidth)
+    const [screenHeight, setHeight] = useState(window.innerHeight)
     const [moveIt, setMoveIt] = useState(100)
 
     useEffect(()=>{
         if(!tool) return
         window.addEventListener('resize', handleResize)
         VBG(tool, fromHome)
-        // Clean up the event listener when the component is unmounted
+        // Clean up the event listener when the component is unmounted, do not remove
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    },[fromHome, tool, width, height, moveIt, render])
+    },[fromHome, tool, screenWidth, screenHeight, moveIt, render])
     /* copy */
+
     function handleResize(){
         setWidth(window.innerWidth)
         setHeight(window.innerHeight)
     }
-    function VBG(params1, params2){
-        const svg = d3.select(svgRef.current)
-        svg.selectAll('*').remove()
-        const xScale = d3.scaleBand().range ([0, width]).padding(0.4)
-        const yScale = d3.scaleLinear().range ([height, 0])
-        const color = params1.data2
-        const fontAngle = params1.data1
-        const diff = params1.data0 
-        const title = params1.data5
-        const x_label = params1.data3
-        const y_label = params1.data4
-    
-        let g = svg.append("g")
-            .attr("transform", "translate(" + moveIt + "," + 100 + ")")
-        svg.append("text")
-            .attr("transform", "translate(100,0)")
-            .attr("text-anchor", "middle")
-            .attr("x", width * .5)
-            .attr("y", height * .1)
-            .attr("font-size", "24px")
-            .text(title)
-        svg.append("text")
-            .attr("transform", "translate(100,0)")
-            .attr("text-anchor", "middle")
-            .attr("x", width * .5)
-            .attr("y", (height * 1)+ height * .45)
-            .attr("font-size", "24px")
-            .text(y_label)
-        svg.append("text")
-            .attr("text-anchor", "start")
-            .attr("transform", "rotate(270, 190, 140)")
-            .attr("font-size", "24px")
-            .text(x_label)           
 
-        const AxisX = Object.keys(params2[0])
-        const AxisY = Object.keys(params2[1])
-        let temp = 0;
-        for(let i=0;i<params2.length;i++){
-            const num = parseInt(params2[i][AxisY[1]])
-            if(temp < num){
-                temp = num
+    function maxs(params, key){
+        let temp = 0
+        for(let i=0; i<params.length; i++){
+            const val = params[i][key]
+            if(temp < val){
+                temp = val
             }
         }
-        xScale.domain(params2.map(function(d) { return d[AxisX[0]] }))
-        yScale.domain([0, temp])
-        g.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(xScale))
-            .selectAll(".tick text") // Select the text elements within the ticks
-            .classed("X-Axis", true); // Add the class "my-class" to the selected text elements
-        g.append("g")
-            .call(d3.axisLeft(yScale).tickFormat(function(d){return d})
-            .ticks(diff))
-        g.selectAll('.X-Axis')
-            .style('font-size', '12px')
-            .attr("text-anchor", (fontAngle == 'Horizontal')?"middle":"start")
-            .attr("transform", (fontAngle == 'Horizontal')?"":"rotate(45)")
-        g.selectAll(".bar")
+        return temp
+    }
+
+    function VBG(params1, params2){
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth 
+        const height = parentRef.current.clientHeight 
+        const margin = 200
+        const svg = d3.select(svgRef.current)
+        svg.selectAll('*').remove() //remove previous render with new. Do not remove so charts wont stack
+        const keys = Object.keys(params2[0])
+        const max = maxs(params2, keys[1])
+        console.log(params1, params2, max)
+        const x = d3.scaleBand()
+            .domain( params2.map(function(d){ return d[keys[0]] }) )
+            .range( [0,width-margin] )
+            .padding(.2)
+        const y = d3.scaleLinear()
+            .domain( [0, max] )
+            .range( [height-margin ,0] )
+        svg.append('g')
+            .call( d3.axisBottom(x) )
+            .attr("transform", "translate(" + moveIt + "," + (height-100) + ")")
+            .classed('x-label', true)
+        svg.append('g')
+            .call( d3.axisLeft(y).ticks(params1.data0) )
+            .attr("transform", "translate(" + moveIt + "," + 100 + ")")
+        svg.selectAll('rect')
             .data(params2)
             .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return xScale(d[AxisX[0]]) })
-            .attr("y", function(d) { return yScale(d[AxisX[1]]) })
-            .attr("width", xScale.bandwidth())
-            .attr("height", function(d) { return height - yScale(d[AxisX[1]]) })
-            .attr('fill', color)
+            .append('rect')
+            .attr('x', function(d){return x(d[keys[0]])})
+            .attr('y', function(d){return y(d[keys[1]])})
+            .attr('width', x.bandwidth())
+            .attr('height', function(d){return (height-margin) - y(d[keys[1]])})
+            .attr('fill', params1.data2)
+            .attr("transform", "translate(" + moveIt + "," + 100 + ")")
+        svg.append('text')
+            .attr('x', width*.5)
+            .attr('y', height*.95)
+            .text(params1.data3)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '1.5rem')
+        svg.append('text')
+            .text(params1.data4)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '1.5rem')
+            .attr('transform', `translate(${width*.04}, ${height*.5}) rotate(-90)`)
+        svg.append('text')
+            .text(params1.data5)
+            .attr('x', width*.5)
+            .attr('y', height*.1)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '2rem')
+        svg.selectAll('.tick line')
+            .attr('stroke', 'black')
+        svg.selectAll('.x-label .tick text')
+            .attr('transform', `translate(5,0) ${params1.data1}`)
+            .attr('text-anchor',(params1.data1 == 'rotate(45)')?'start':'middle')
     }
     /* -----------------------copy---------------------- */
     const lowerBars = (
@@ -113,8 +124,8 @@ export default function RenderVerticalBarGraph(prop){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className='landscape'>
-            <svg id='svgV' ref={svgRef} />
+        <div id='screenShoot' className='landscape' ref={parentRef}>
+            <svg id='svg' ref={svgRef} />
         </div>
     )
     function handleMoveIt(params){
@@ -141,12 +152,10 @@ export default function RenderVerticalBarGraph(prop){
     /* -----------------------copy---------------------- */
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='landscapeContainer'>
+                <div>
                     {(render)?pagination:chart}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <tools.Provider value={handleValue}>

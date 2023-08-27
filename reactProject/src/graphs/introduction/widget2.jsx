@@ -2,12 +2,19 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { MyWidget } from './welcome'
 import * as d3 from 'd3'
 
+/* 
+    Docu: This component is for the pie chart loaded at ./welcome.js 
+*/
+
 export default function Widget2(){
-    const myValue = useContext(MyWidget)
+
+    const parentRef = useRef(null)
+    const myValue = useContext(MyWidget) //from ./welcome.js 
     const svgRef = useRef(null)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
     useEffect(()=>{
-        window.addEventListener("resize", logScreenSize)
+        window.addEventListener("resize", logScreenSize) //rerender when screen resizes
         if (!myValue) return
         let populationArray = [
             {'key':'2020','value':myValue['2020']},
@@ -18,13 +25,19 @@ export default function Widget2(){
             {'key':'2015','value':myValue['2015']},
         ]
         chart(populationArray)
+        return () => {
+            window.removeEventListener('resize', logScreenSize) //remove eventlistener when unmount do not remove
+        }
     },[myValue, screenWidth])
 
     function logScreenSize() {
         setScreenWidth(window.innerWidth)
     }
         
-    function chart(populationArray){  
+    function chart(populationArray){ 
+        if (!parentRef.current) return
+        const parentWidth = parentRef.current.clientWidth
+        const parentHeight = parentRef.current.clientHeight
         const population = myValue['total']
         const low = myValue['0-14']
         const mid = myValue['15-64']
@@ -71,17 +84,18 @@ export default function Widget2(){
             "#F24C3D",
         ] 
         const formatedData = d3.pie().value((d) => d.amount)(data)
-        const width = 200
-        const height = 450
         const arc = d3.arc()
             .innerRadius(0)
-            .outerRadius(100)
+            .outerRadius(parentWidth/2)
         const svg = d3.select(svgRef.current)
-            .style("font", "12px sans-serif");
+            .attr("transform", `translate(${0},${0})`)
+            .style("font", "12px sans-serif")
+            .attr("width", parentWidth)
+            .attr("height", parentHeight / 1.02)
         svg
             .selectAll('*').remove()
         const g = svg.append("g")
-            .attr("transform", `translate(${width / 2},${height / 2})`);
+            .attr("transform", `translate(${parentWidth / 2},${parentHeight / 1.6})`)
         svg
             .append('text')
             .attr('x', 5)
@@ -90,7 +104,7 @@ export default function Widget2(){
             .style('font','Sans Serif')
             .style('font-weight','bold')
             .style('font-size','1.1em')
-            .text('Population:');
+            .text('Population:')
         svg
             .append('text')
             .attr('x', 85)
@@ -100,7 +114,7 @@ export default function Widget2(){
             .style('font-weight','bold')
             .style('font-size','1.1em')
             .style('fill','#FFED00')
-            .text(num);
+            .text(num)
         svg
             .append('text')
             .attr('x', 5)
@@ -109,7 +123,7 @@ export default function Widget2(){
             .style('font','Sans Serif')
             .style('font-weight','bold')
             .style('font-size','1.1em')
-            .text('Legend:');
+            .text('Legend:')
         svg
             .append('text')
             .attr('x', 28)
@@ -118,7 +132,7 @@ export default function Widget2(){
             .style('font','Sans Serif')
             .style('font-weight','bold')
             .style('font-size','1.1em')
-            .text('0-14 Years Old');
+            .text('0-14 Years Old')
         svg
             .append('text')
             .attr('x', 28)
@@ -127,7 +141,7 @@ export default function Widget2(){
             .style('font','Sans Serif')
             .style('font-weight','bold')
             .style('font-size','1.1em')
-            .text('15-64 Years Old');
+            .text('15-64 Years Old')
         svg
             .append('text')
             .attr('x', 28)
@@ -136,7 +150,7 @@ export default function Widget2(){
             .style('font','Sans Serif')
             .style('font-weight','bold')
             .style('font-size','1.1em')
-            .text('65+ Years Old');
+            .text('65+ Years Old')
         svg
             .append('rect')
             .attr('x', 5)
@@ -174,5 +188,10 @@ export default function Widget2(){
             .style('font-weight','bold')
             .attr('fill','#1d1b1b')
         }
-    return <svg id='widget2' ref={svgRef}></svg>
+        
+    return (
+        <div ref={parentRef} className='parent-container'>
+            <svg ref={svgRef}></svg>
+        </div>
+    )
 }

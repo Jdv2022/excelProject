@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useContext } from 'react'
 import { tools } from '../graphs/piechart/piechart'
-import './verticalTool.css'
 
 export default function PieChartTool(){
 
@@ -29,15 +28,13 @@ export default function PieChartTool(){
         setLColor(e.target.value)
     }
     const sideTools = (
-        <div id='toolsContainer' className='inlineBlock vat'>
-            <div id="horizontal_tool">
-                <p>Line-Width</p>
-                <input type="text" placeholder='Line-Width' defaultValue={'XYZ Sales'} onChange={handlTitle} />
-                <p>Percent</p>
-                <input className="inlineBlock vat width_50 rad" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
-                <label className="inlineBlock vat width_50 mt_5 w_70pr p_10px" htmlFor="flexRadioDefault1">Pie Label</label>
-                <input type="text" placeholder='Line-Width' defaultValue={'white'} onChange={handlecolor} />
-            </div>
+        <div id='toolsContainer'>
+            <p>Line-Width</p>
+            <input type="text" placeholder='Line-Width' defaultValue={'XYZ Sales'} onChange={handlTitle} />
+            <p>Percent</p>
+            <input className='checkbox' type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
+            <label htmlFor="flexRadioDefault1">Pie Label</label>
+            <input type="text" placeholder='Line-Width' defaultValue={'white'} onChange={handlecolor} />
         </div>
     )
 

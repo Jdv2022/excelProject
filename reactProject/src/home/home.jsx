@@ -81,9 +81,7 @@ export default function Home(){
         <>
             <div id='temp'>
                 {sidebar}
-                <div id='tempSecondContainer' className='inlineBlock vat'>
-                    {urls[urlname]}
-                </div>
+                {urls[urlname]}
             </div>
         </>
     )

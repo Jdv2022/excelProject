@@ -9,15 +9,24 @@ export const tools = createContext()
 export const Move = createContext()
 export const table = createContext()
 
+/* 
+    Docu: This for ph region component 
+    parent component -> home.jsx
+    child component -> downloadbars.jsx
+    child component -> dashboard.jsx
+    child componnent -> piechartool.jsx
+*/
+
 export default function PieChart(){
     /* COPY */
     const svgRef = useRef()
+    const parentRef = useRef(null)
     const [data, setData] = useState(pieData())
     const [render, setRender] = useState(false)
     const [tool, setTool] = useState(null)
-    const [width, setWidth] = useState(window.innerWidth * .7)
-    const [height, setHeight] = useState(window.innerHeight * .77)
-    const [moveIt, setMoveIt] = useState(width * .8)
+    const [screenwidth, setWidth] = useState(window.innerWidth * .7)
+    const [screenheight, setHeight] = useState(window.innerHeight * .77)
+    const [moveIt, setMoveIt] = useState(screenwidth * .8)
     const [display, setDisplay] = useState('none')
     /* COPY */
     useEffect(()=>{
@@ -27,12 +36,15 @@ export default function PieChart(){
         return () =>{
             window.removeEventListener('resize', handleResize)
         }
-    },[data, width, height, moveIt, tool, render, display])
+    },[data, screenwidth, screenheight, moveIt, tool, render, display])
     function handleResize(){
         setWidth(window.innerWidth)
         setHeight(window.innerHeight)
     }
     function renderPie(params, tool){
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth 
+        const height = parentRef.current.clientHeight 
         if(tool.label){
             setDisplay(null)
         }
@@ -50,9 +62,9 @@ export default function PieChart(){
         svg.selectAll('*').remove()
         const arc = d3.arc()
             .innerRadius(0)
-            .outerRadius(width * .26)
+            .outerRadius(width * .25)
         const pie = svg.append('g')
-            .attr("transform", `translate(${moveIt},${height / 1.8})`)
+            .attr("transform", `translate(${moveIt},${height / 2})`)
         pie.selectAll("path")
             .data(formatedData)
             .enter()
@@ -127,8 +139,8 @@ export default function PieChart(){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className='landscape'>
-            <svg id='svgV' ref={svgRef}/>
+        <div id='screenShoot' ref={parentRef} className='landscape'>
+            <svg id='svg' ref={svgRef}/>
         </div>
     )
     function handleMoveIt(params){
@@ -150,21 +162,17 @@ export default function PieChart(){
         setTool(params)
     }
     return (
-        <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
-                    {(render)?pagination:chart}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
-                </div>
-                {
-                    <tools.Provider value={handleValue}>
-                        <PieChartTool />
-                    </tools.Provider>
-                }
+        <div id='landscapeContainer'>
+            <div>
+                {(render)?pagination:chart}
+                {lowerBars}
             </div>
-        </>
+            {
+                <tools.Provider value={handleValue}>
+                    <PieChartTool />
+                </tools.Provider>
+            }
+        </div>
     )
     /* -----------------------copy---------------------- */
 

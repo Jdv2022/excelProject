@@ -12,12 +12,13 @@ export const tools = createContext()
 export default function ImpHorizontalBar(){
     /* COPY */
     const svgRef = useRef()
+    const parentRef = useRef(null)
     const [data, setData] = useState(horizontal())
     const [subData, setSubData] = useState(horizontal())
     const [render, setRender] = useState(false)
     const [tool, setTool] = useState(null)
-    const [width, setWidth] = useState(window.innerWidth * .7)
-    const [height, setHeight] = useState(window.innerHeight * .77)
+    const [screenwidth, setWidth] = useState(window.innerWidth * .7)
+    const [screenheight, setHeight] = useState(window.innerHeight * .77)
     const [dark, setDark] = useState(false)
     const [color, setColor] = useState('black')
     const [moveIt, setMoveIt] = useState(150)
@@ -28,7 +29,7 @@ export default function ImpHorizontalBar(){
         return () =>{
             window.removeEventListener('resize', handleResize)
         }
-    },[data, render, tool, width, height, dark, moveIt])
+    },[data, render, tool, screenwidth, screenheight, dark, moveIt])
 
     function handleResize(){
         setWidth(window.innerWidth)
@@ -36,6 +37,10 @@ export default function ImpHorizontalBar(){
     }
 
     function renderChart(main, tool){
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth 
+        const height = parentRef.current.clientHeight 
+        const margin = 200
         if(!tool)return
         let data
         if(tool.asc == 'nrm'){
@@ -66,13 +71,13 @@ export default function ImpHorizontalBar(){
         svg.selectAll('*').remove()
         const x = d3.scaleLinear()
             .domain([0, max + max*.09])
-            .range([0, width - 80])
+            .range([0, width - margin])
         const y = d3.scaleBand()
             .domain(data.map(function(d) { return d[x_key] } ))
-            .range([0, height-100])
+            .range([0, height-margin])
             .padding(0.2)
         svg.append('g')
-            .attr("transform", "translate(" + moveIt + "," + height + ")")
+            .attr("transform", "translate(" + moveIt + "," + (height - margin/2) + ")")
             .call(d3.axisBottom(x))
         svg.append('g')
             .attr("transform", "translate(" + moveIt + "," + 100 + ")")
@@ -146,13 +151,13 @@ export default function ImpHorizontalBar(){
             .attr("transform", "translate(" + moveIt + "," + 100 + ")")
             .attr("fill", function(d) {return d.color})
         const title = svg.append('text')
-            .attr("transform", "translate(" + width * 0.6 + "," + (height * 0.1 + 20) + ")")
+            .attr("transform", "translate(" + width * 0.5 + "," + (height * 0.1 + 20) + ")")
             .text(tool.titleT)
             .attr('text-anchor', 'middle')
             .attr('font-size', '1.5rem')
             .attr('fill', color)
         const xlabel = svg.append('text')
-            .attr("transform", "translate(" + width * 0.6 + "," + height * 1.1 + ")")
+            .attr("transform", "translate(" + width * 0.5 + "," + height * .95 + ")")
             .text(tool.xlabel)
             .attr('text-anchor', 'middle')
             .attr('font-size', '1.3rem')
@@ -241,8 +246,8 @@ export default function ImpHorizontalBar(){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className={(dark)?'landscape darkmode': 'landscape'}>
-            <svg id='svgV' ref={svgRef}/>
+        <div id='screenShoot' ref={parentRef} className={(dark)?'landscape darkmode': 'landscape'}>
+            <svg id='svg' ref={svgRef}/>
         </div>
     )
     function handleMoveIt(params){
@@ -267,12 +272,10 @@ export default function ImpHorizontalBar(){
     }
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='landscapeContainer'>
+                <div>
                     {(render)?pagination:chart}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <tools.Provider value={handleValue}>

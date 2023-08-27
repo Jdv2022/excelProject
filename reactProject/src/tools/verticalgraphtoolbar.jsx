@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useContext } from 'react'
 import { tools } from '../graphs/bargraph_vertical/renderverticalBarGraph'
-import './verticalTool.css'
+
 /* Vertical graph tool bar */
 export default function VerticalGraphTool(){
 
@@ -47,22 +47,22 @@ export default function VerticalGraphTool(){
         sety_label(e.target.value)
     }
     const sideTools = (
-        <div id='toolsContainerV' className='inlineBlock vat'>
-            <h3 className='vertical_h3 margin_30'>Y-axis</h3>
-            <input type="number" defaultValue={10} className="height_v_80" onChange={handlerangeY}/>
-            <h3 className='vertical_h3 margin_30'>X-axis</h3>
-            <input className="inlineBlock vat width_50" value={'rotate(45)'} type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
-            <label className="inlineBlock vat width_50 mt_5" htmlFor="flexRadioDefault1">45°</label>
-            <input className="inlineBlock vat width_50" value={'Horizontal'} type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={handleRadio}/>
-            <label className="inlineBlock vat width_50 mt_5" htmlFor="flexRadioDefault2">180°</label>
-            <p className=''>Bar Color</p>
-            <input className="height_v_80 m_10" type="text" ref={inputRef} defaultValue={'#F2BE22'} onChange={handleColor}></input>
-            <p className=''>Title</p>
-            <input className="height_v_80 m_10" type="text" ref={inputRef} defaultValue={'XYZ Food Stock Price'} onChange={handleTitle}></input>
-            <p className=''>X-label</p>
-            <input className="height_v_80 m_10" type="text" ref={inputRef} defaultValue={'Fruits'} onChange={handleX}></input>
-            <p className=''>Y-label</p>
-            <input className="height_v_80 m_10" type="text" ref={inputRef} defaultValue={'Amount'} onChange={handleY}></input>
+        <div id='toolsContainer'>
+            <h3>Y-axis</h3>
+            <input type="number" defaultValue={10} onChange={handlerangeY}/>
+            <h3>X-axis</h3>
+            <input className='radio'  value={'rotate(45)'} type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleRadio}/>
+            <label htmlFor="flexRadioDefault1">45°</label>
+            <input className='radio'  value={'Horizontal'} type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={handleRadio}/>
+            <label htmlFor="flexRadioDefault2">180°</label>
+            <p>Bar Color</p>
+            <input type="text" ref={inputRef} defaultValue={'#F2BE22'} onChange={handleColor}></input>
+            <p>Title</p>
+            <input type="text" ref={inputRef} defaultValue={'XYZ Food Stock Price'} onChange={handleTitle}></input>
+            <p>X-label</p>
+            <input type="text" ref={inputRef} defaultValue={'Fruits'} onChange={handleX}></input>
+            <p>Y-label</p>
+            <input type="text" ref={inputRef} defaultValue={'Amount'} onChange={handleY}></input>
         </div>
     )
     return sideTools

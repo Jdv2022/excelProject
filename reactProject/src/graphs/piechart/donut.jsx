@@ -9,17 +9,28 @@ export const tools = createContext()
 export const Move = createContext()
 export const table = createContext()
 
+/* 
+    Docu: This for ph region component 
+    parent component -> home.jsx
+    child component -> downloadbars.jsx
+    child component -> dashboard.jsx
+    child componnent -> donuttool.jsx
+*/
+
 export default function DonutPie(){
+
     /* COPY */
     const svgRef = useRef()
+    const parentRef = useRef(null)
     const [data, setData] = useState(pieData())
     const [render, setRender] = useState(false)
     const [tool, setTool] = useState(null)
-    const [width, setWidth] = useState(window.innerWidth * .7)
-    const [height, setHeight] = useState(window.innerHeight * .77)
-    const [moveIt, setMoveIt] = useState(width * .8)
+    const [screenwidth, setWidth] = useState(window.innerWidth * .7)
+    const [screenheight, setHeight] = useState(window.innerHeight * .77)
+    const [moveIt, setMoveIt] = useState(screenwidth * .8)
     const [display, setDisplay] = useState('none')
     /* COPY */
+
     useEffect(()=>{
         window.addEventListener('resize', handleResize)
         if(!tool) return
@@ -27,12 +38,17 @@ export default function DonutPie(){
         return () =>{
             window.removeEventListener('resize', handleResize)
         }
-    },[data, width, height, moveIt, tool, render, display])
+    },[data, screenwidth, screenheight, moveIt, tool, render, display])
+
     function handleResize(){
         setWidth(window.innerWidth)
         setHeight(window.innerHeight)
     }
+
     function renderPie(params, tool){
+        if(!parentRef.current) return 
+        const width = parentRef.current.clientWidth 
+        const height = parentRef.current.clientHeight 
         if(tool.label){
             setDisplay(null)
         }
@@ -50,9 +66,9 @@ export default function DonutPie(){
         svg.selectAll('*').remove()
         const arc = d3.arc()
             .innerRadius(tool.r)
-            .outerRadius(width * .26)
+            .outerRadius(width * .25)
         const pie = svg.append('g')
-            .attr("transform", `translate(${moveIt},${height / 1.8})`)
+            .attr("transform", `translate(${moveIt},${height / 2})`)
         pie.selectAll("path")
             .data(formatedData)
             .enter()
@@ -127,7 +143,7 @@ export default function DonutPie(){
         </table.Provider>
     )
     const chart = (
-        <div id='screenShoot' className='landscape'>
+        <div id='screenShoot' ref={parentRef} className='landscape'>
             <svg id='svgV' ref={svgRef}/>
         </div>
     )
@@ -151,12 +167,10 @@ export default function DonutPie(){
     }
     return (
         <>
-            <div id='chartContainer' className='inlineBlock vat'>
-                <div id='content' className='inlineBlock vat'>
+            <div id='landscapeContainer'>
+                <div>
                     {(render)?pagination:chart}
-                    <div id='options'>
-                        {lowerBars}
-                    </div>
+                    {lowerBars}
                 </div>
                 {
                     <tools.Provider value={handleValue}>

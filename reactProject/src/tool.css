@@ -1,0 +1,46 @@
+#toolsContainer{
+    width: 10%;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    padding: 10px;
+    color: white;
+}
+#toolsContainer > :first-child{    
+    margin-bottom: 20px;
+}
+#toolsContainer > input{
+    width: 100%;
+    line-height: 20px;
+    border-radius: 5px;
+    padding: 0 0 0 5px;
+    margin-bottom: 10px;
+}
+#toolsContainer > p{
+    margin: 20px 0 10px;
+}
+#toolsContainer > .radio{
+    width: 20%;
+}
+#toolsContainer > .checkbox{
+    width: 20%;
+}
+#toolsContainer > label{
+    width: 100%;
+    margin: 5px 0;
+    display: block;
+}
+@media screen and (max-width: 1400px){
+    #toolsContainer > div{
+        font-size: .8rem;
+    }
+    #toolsContainer > label{
+        font-size: .8rem;
+    }
+}
+@media screen and (max-width: 1200px){
+    #toolsContainer > label{
+        font-size: .6rem;
+    }
+    #toolsContainer > p{
+        font-size: .7rem;
+    }
+}

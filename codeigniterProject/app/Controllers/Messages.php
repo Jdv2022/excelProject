@@ -7,6 +7,9 @@ use CodeIgniter\Session\SessionInterface;
 use Config\Services;
 
 class Messages extends BaseController{
+    public function index(){
+        return view('index');
+    }
     public function sessionG(){
         $model = new Admin();
         $status = $model->where('username', 'admin')->findAll();
@@ -68,15 +71,17 @@ class Messages extends BaseController{
         $id = $this->request->getJSON(true);
         $model = new Message();
         $deleted = $model->where('id', $id)->delete();
-        if ($deleted) {
-            $get = $model->orderBy('id', 'desc')->findAll();
-            if ($get) {
-                return $this->response->setJSON(['response' => $get]);
-            } 
-            return $this->response->setJSON(['response' => null]);
-        } 
-        else {
-            return $this->response->setJSON(['response' => null]);
-        }
+        $get = $model->orderBy('id', 'desc')->findAll();
+        return $this->response->setJSON(['response' => $get]);
+    }
+    public function update(){
+        $id = $this->request->getJSON(true);
+        $model = new Message();
+        $columnData = [
+            'read' => 1
+        ];
+        $update = $model->where('id', $id)->set($columnData)->update();
+        $get = $model->orderBy('id', 'desc')->findAll();
+        return $this->response->setJSON(['response' => $get]);
     }
 }

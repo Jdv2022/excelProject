@@ -29,16 +29,34 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-
+$routes->options('/update', 'CORSController::handleOptions');
+$routes->options('/delete', 'CORSController::handleOptions');
 //MESSAGES
+$routes->get('/index', 'Messages::index');
 $routes->post('/admin', 'Messages::create');
 $routes->post('/messages', 'Messages::getAll');
-$routes->post('/delete', 'Messages::deleteAdmin');
+$routes->delete('/delete', 'Messages::deleteAdmin');
 $routes->post('/session', 'Messages::sessionG');
+$routes->put('/update', 'Messages::update');
+
+//MESSAGES
+$routes->post('/create-bug', 'Bugs::create');
+
+//PROCESSES
+$routes->get('/api/worldtour', 'Process::worldTour');
+$routes->post('/api/uploadfile', 'Process::convertToJson');
+/* $routes->get('/api/ph', 'Process::phMap'); */
+/* $routes->post('/api/philippinesmap', 'Process::philippines');
+$routes->post('/api/phregion', 'Process::phRegion'); */
 
 //ADMINS
-$routes->post('/admin/admin', 'Admins::adminLogin');
+$routes->post('/admin/login', 'Admins::adminLogin');
 $routes->post('/admin/logout', 'Admins::adminLogout');
+
+//TRAFFIC
+$routes->post('/logtraffic', 'Traffics::log');
+$routes->get('/get/logtraffic', 'Traffics::getlog');
+$routes->get('/get/timelog', 'Traffics::getTime');
 
 /*
  * --------------------------------------------------------------------

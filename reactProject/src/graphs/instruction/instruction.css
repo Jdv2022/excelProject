@@ -1,0 +1,17 @@
+#instruction{
+    padding: 20px;
+    color: silver;
+    height: 100%;
+    overflow: auto;
+}
+#instruction > h1{
+    margin-bottom: 30px;
+}
+#instruction > h2{
+    margin: 20px 0;
+}
+#instruction > ul{
+    padding-left: 40px;
+    line-height: 30px;
+    color: white;
+}

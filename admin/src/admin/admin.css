@@ -1,0 +1,222 @@
+#mainAdmin{
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    height: 100vh;
+    width: 100%;
+}
+#mainAdmin > :first-child{
+    height: 5%;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    display: flex;
+    align-items: center;
+}
+#mainAdmin > :first-child > :first-child{
+    margin: 0 50px 0 auto;
+    text-decoration: none;
+    color: white;
+}
+#mainAdmin > :nth-child(2){
+    height: 93%;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+#adminDashboard{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+#adminDashboard > :first-child{ 
+    height: 50%;
+    width: 100%;
+}
+#adminDashboard > :nth-child(2){ 
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+#adminDashboard > :nth-child(2) > :first-child{ 
+    width: 50%;
+    height: 100%;
+}
+#messagesTextAdminContainer{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    color: white;
+    padding: 20px;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    border-radius: 10px;
+}
+#messagesTextAdminContainer > :first-child{
+    margin: 0 0 0 auto;
+    width: 70%;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 10px 0 0 10px;
+    overflow: auto;
+}
+#messagesTextAdminContainer > :nth-child(2){
+    border: 1px solid white;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    width: 30%;
+    padding: 20px;
+}
+#messagesTextAdminContainer > :nth-child(2) > :first-child{
+    margin: 0 0 20px;
+}   
+#messagesTextAdminContainer > :nth-child(2) > :nth-child(2){
+    overflow: auto;
+    height: 85%;
+}   
+.asidetextAdmin{
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-left: 5px;
+    margin-bottom: 5px;
+}
+.asidetextAdmin:hover:not(.color:active) {
+    opacity: .5;
+}
+.unread{
+    background: radial-gradient(ellipse at bottom, #27323f 0%, #14ff0392 100%);
+}
+#msg{
+    width: 100%;
+    height: 100%;
+}
+#msg > h5{
+    font-weight: bold;
+    margin: 2px;
+}
+#msg > p{
+    margin: 50px 0 0;
+}
+#deleteADmin{
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(44, 44, 240);
+    border-radius: 5px;
+    margin: 50px 0 0;
+    text-align: center;
+}
+#deleteADmin:hover{
+    background-color: rgba(44, 44, 240, 0.323);
+}
+.pie:hover{
+    opacity: .1;
+}
+.color{
+    background-color: rgb(239, 17, 17);
+}
+.line-graph:hover{
+    stroke: white;
+    stroke-width: 5px;
+}
+@media screen and (max-width: 980px) and (min-width: 666px) {
+    #mainAdmin{
+        height: 150vh;
+    }
+    #mainAdmin > :first-child{
+        height: 5%;
+    }
+    #mainAdmin > :nth-child(2){
+        height: 95%;
+    }
+    #adminDashboard > :nth-child(2){ 
+        flex-direction: column;
+    }
+    #adminDashboard > :nth-child(2) > :first-child{ 
+        width: 100%;
+        height: 50%;
+    }
+    #messagesTextAdminContainer{
+        height: 50%;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 666px) and (min-width: 321px){
+    #mainAdmin{
+        height: 150vh;
+    }
+    #mainAdmin > :first-child{
+        height: 5%;
+    }
+    #mainAdmin > :nth-child(2){
+        height: 95%;
+    }
+    #adminDashboard > :nth-child(2){ 
+        flex-direction: column;
+    }
+    #adminDashboard > :nth-child(2) > :first-child{ 
+        width: 100%;
+        height: 50%;
+    }
+    #messagesTextAdminContainer{
+        height: 50%;
+        width: 100%;
+    }
+    #messagesTextAdminContainer{
+        font-size: .8rem;
+    }  
+    #messagesTextAdminContainer > :nth-child(2) > :first-child{
+        margin: 0 0 5px;
+        font-size: .8rem;
+    }  
+    #messagesTextAdminContainer > :nth-child(2){
+        padding: 5px;
+    }
+    .asidetextAdmin > span{
+        font-size: .6rem;
+    }
+}
+@media screen and (max-width: 320px){
+    #mainAdmin{
+        height: 150vh;
+        width: 320px;
+    }
+    #mainAdmin > :first-child{
+        height: 5%;
+    }
+    #mainAdmin > :nth-child(2){
+        height: 95%;
+    }
+    #adminDashboard > :nth-child(2){ 
+        flex-direction: column;
+    }
+    #adminDashboard > :nth-child(2) > :first-child{ 
+        width: 100%;
+        height: 50%;
+    }
+    #messagesTextAdminContainer{
+        height: 50%;
+        width: 100%;
+    }
+    #messagesTextAdminContainer{
+        font-size: .8rem;
+    }  
+    #messagesTextAdminContainer > :nth-child(2) > :first-child{
+        margin: 0 0 5px;
+        font-size: .8rem;
+    }  
+    #messagesTextAdminContainer > :nth-child(2){
+        padding: 5px;
+    }
+    .asidetextAdmin > span{
+        font-size: .6rem;
+    }
+}
+@media screen and (max-height: 760px) and (max-width: 500px){
+    #mainAdmin{
+        overflow: auto;
+        height: 900px;
+    }
+}
+

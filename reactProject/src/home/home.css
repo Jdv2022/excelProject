@@ -1,0 +1,19 @@
+#temp{
+    display: flex;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    overflow: auto;
+    width: 100%;
+    height: 100vh;
+}
+@media screen and (max-width: 925px){
+    #temp{
+        flex-direction: column;
+        width: 925px;
+        height: calc(100vh - 17px);
+    }
+}
+@media screen and (max-height: 700px){
+    #temp{
+        height: 700px;
+    }
+}

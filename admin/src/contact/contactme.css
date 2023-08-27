@@ -1,0 +1,68 @@
+#admincontainer{
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#admin{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+    #admin > h1{
+        color: white;
+        margin: 0 auto 40px 0;
+    }
+    #admin > label{
+        color: rgb(255, 255, 255);
+        line-height: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 30px;
+    }
+    #admin > label > :first-child{
+        color: black;
+        line-height: 30px;
+        width: 70%;
+        border-radius: 10px;
+        padding: 0 10px;
+    }
+    #admin > input{
+        color: black;
+        line-height: 30px;
+        width: 50%;
+        border-radius: 10px;
+        padding: 0 10px;
+        display: block;
+        margin: 0 0 0 auto;
+    }
+    #admin > input:hover{
+        background-color: grey;
+    }
+    #admin > input:active{
+        background-color: rgb(255, 255, 255);
+        color: black;
+    }
+    #admincontainer > p{
+        color: white;
+    }
+@media screen and (max-width: 1000px) and (min-width: 600px) {
+    #admin{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 599px) {
+    #admin{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 400px) {
+    #admincontainer{
+        width: 400px;
+    }
+}

@@ -8,19 +8,16 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class Cors implements FilterInterface
 {
-    public function before(RequestInterface $request, $arguments = null){
-        header('Access-Control-Allow-Origin: http://localhost:3000');
-        header('Access-Control-Allow-Headers: *');
-        header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, PUT, DELETE');
+    public function before(RequestInterface $request, $arguments = null) {
+        // Set CORS headers for allowed origins, methods, and headers
+        $allowedOrigins = array('http://localhost:3000', 'http://localhost:3001');
+        $origin = $_SERVER['HTTP_ORIGIN'];
 
-        // If it's an OPTIONS request, we will just return an empty response with the appropriate headers
-        if ($request->getMethod() === 'OPTIONS') {
-            $response = service('response');
-            return $response->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
-                            ->setHeader('Access-Control-Allow-Headers', '*')
-                            ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, PUT, DELETE')
-                            ->setStatusCode(200); // Set the appropriate status code for OPTIONS response
+        if (in_array($origin, $allowedOrigins)) {
+            header("Access-Control-Allow-Origin: $origin");
         }
+        header('Access-Control-Allow-Headers: Content-Type');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, PUT, DELETE');
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

@@ -1,0 +1,36 @@
+#phchart{
+    background-color: white;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+#phchart > :first-child{ /* chart dashboard */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+#phchart > :nth-child(2) > p{
+    margin-top: 10px;
+}
+.red{
+    fill: red;
+}
+.yellow{
+    fill: yellow;
+}
+.blue{
+    fill: blue;
+}
+.iwashereTool > div{
+    margin: 20px 0;
+}
+@media screen and (max-width: 925px){
+    #phchart{
+        background-color: white;
+        display: flex;
+        width: 100%;
+        height: calc(100% - 50px);
+    }
+}

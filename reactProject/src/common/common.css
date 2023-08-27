@@ -1,0 +1,73 @@
+#screenShoot{
+    background-color: rgba(255, 255, 255, 0.241);
+}
+.portrait{
+    width: 500px;
+    height: 90%;
+    border: 1px solid silver;
+}
+.landscape{
+    height: 90%;
+    width: 100%;
+}
+#downloadContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+#downloadContainer > :first-child, #downloadContainer > :nth-child(2), #downloadContainer > :nth-child(3){
+    background-color: white;
+    width: 20%;
+    height: 50%;
+    border: none;
+    border-radius: 10px;
+}
+#downloadContainer > :nth-child(2){
+    display: flex;
+}
+#downloadContainer > :nth-child(2) > div{
+    background-color: grey;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#downloadContainer > :nth-child(2) > :first-child{
+    border-radius: 10px 0 0 10px;
+    background-color: white;
+}
+#downloadContainer > :nth-child(2) > :nth-child(2){
+    border-radius: 0 10px 10px 0;
+    background-color: white;
+}
+#downloadContainer > :first-child:hover, #downloadContainer > :nth-child(3):hover{
+    background-color: black;
+    color: white;
+}
+#downloadContainer > :nth-child(2) > div:hover{
+    background-color: black;
+    color: white;
+}
+@media screen and (min-height: 900px) {
+    .portrait{
+        width: 700px;
+    }
+}
+@media screen and (max-width: 1137px){
+    #downloadContainer > :first-child, #downloadContainer > :nth-child(2), #downloadContainer > :nth-child(3){
+        font-size: .8rem;
+    }
+}
+@media screen and (max-width: 925px){
+    .portrait, .landscape{
+        height: 90%;
+        border: black
+    }
+    #downloadContainer{
+        height: 10%;
+    }
+}

@@ -1,0 +1,122 @@
+#contactme{
+    width: 90%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#contactme > div > .link{
+    text-decoration: none;
+    color: white;
+}
+#contactme  > div, #contactme > div > :nth-child(3){
+    width: 25%;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+}
+#contactme  > div:hover, #contactme > div > .link:hover{
+    height: 230px;
+}
+#contactme  > div > h2, #contactme > div  > .link > h2{
+    margin: 0 0 20px 0;
+    border: 1px solid white;
+    text-align: center;
+    border-radius: 50px 10px 50px 10px;
+}
+#contactme  > div > article, #contactme > div > .link > article{
+    height:80%;
+    border: 1px solid white;
+    padding: 10px;
+}
+#contactme  > div > article > ul, #contactme > div > .link > article > ul{
+    padding-left: 20px;
+    line-height: 30px;
+}
+#contactme  > div > article > p, #contactme > div > .link > article > p{
+    line-height: 30px;
+}
+.blue{
+    background-color: rgba(0, 0, 255, 0.563);
+}
+.blue-5{
+    background-color: rgb(1, 1, 81);
+}
+.red{
+    background-color: rgba(255, 0, 0, 0.563);
+}
+.red-5{
+    background-color: rgb(81, 1, 1);
+}
+.green{
+    background-color: rgba(43, 255, 0, 0.563);
+}
+.green-5{
+    background-color: rgb(22, 81, 1);
+}
+#mesform{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+#mesform > form {
+    padding: 20px;
+}
+#mesform > p {
+    color: black;
+    margin: auto;
+}
+#mesform > form > label{
+    display: block;
+    color: black;
+    margin: 20px 0 10px;
+}
+#mesform > form > input{
+    line-height: 30px;
+    border-radius: 5px;
+    width: 50%;
+    padding: 5px;
+    border: 2px solid silver;
+}
+#mesform > form > textarea{
+    line-height: 30px;
+    border-radius: 5px;
+    width: 100%;
+    resize: none;
+    padding: 5px;
+}
+.close{
+    display: block;
+    padding: 5px 10px;
+    margin: 10px 10px 0 auto;
+    color: black;
+}
+.close:hover{
+    color: red;
+}
+.submit{
+    margin-top: 20px;
+    display: block;
+}
+.submit:hover{
+    background-color: grey;
+    color: white;
+}
+.submit:active{
+    background-color: white;
+    color: black;
+}
+.error{
+    border: 10px solid red;
+}
+@media screen and (max-width: 925px){
+    #contactme{
+        width: 100%;
+        height: 100%;
+    }
+}

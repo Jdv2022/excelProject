@@ -19,8 +19,8 @@ class App extends BaseConfig
      *    excel2charts.online - prod
      *    http://localhost:8081/ - dev
      */
-    public string $baseURL = 'http://excel2charts.online/';
-    public $env = 'development';
+    public string $baseURL = 'https://excel2charts.online/';
+    public $env = 'production';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -34,7 +34,7 @@ class App extends BaseConfig
      * @var string[]
      * @phpstan-var list<string>
      */
-    public array $allowedHostnames = [];
+    public array $allowedHostnames = ['excel2charts.online','api-excel2chart.excel2charts.online'];
 
     /**
      * --------------------------------------------------------------------------
